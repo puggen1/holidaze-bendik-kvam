@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <Box sx={{backgroundColor:"primary.main", height:"10vh"}}>Footer</Box>
+    <Box sx={{backgroundColor:"primary.main", height:"10vh"}}></Box>
   )
 }
 

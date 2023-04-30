@@ -9,7 +9,9 @@ const Layout = ({children}) => {
   return (
     <div className="app">
     <Header/>
+    <div className='mainContent'>
     {children}
+    </div>
     <Footer/>
     </div>
   )

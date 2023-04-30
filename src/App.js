@@ -4,6 +4,16 @@ import { Home } from "./pages/home";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme/theme";
 import "./theme/style.css";
+import User from "./pages/user";
+import Venue from "./pages/venue";
+import EditVenue from "./pages/venue/editVenue";
+import Booking from "./pages/booking";
+import UserBookings from "./pages/user/userBookings";
+import UserVenues from "./pages/user/userVenues";
+import Admin from "./pages/adminPanel";
+import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
+import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
+import NotFound from "./pages/notFound";
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -11,30 +21,16 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/booking/:id" element={<div>booking</div>} />
-            <Route path="/venue/:id" element={<div>venue</div>} />
-            <Route path="/venue/:id/edit" element={<div>edit venue</div>} />
-            <Route path="/user/:name" element={<div>user</div>} />
-            <Route
-              path="/user/:name/bookings"
-              element={<div>users' bookings</div>}
-            />
-            <Route
-              path="/user/:name/venues"
-              element={<div>users' venues</div>}
-            />
-            <Route path="/admin" element={<div>admin</div>} />
-            <Route path="/admin/venues" element={<div>admin venues</div>} />
-            <Route
-              path="/admin/venues/:id"
-              element={<div>admin venues single</div>}
-            />
-            <Route path="/admin/bookings" element={<div>admin bookings</div>} />
-            <Route
-              path="/admin/bookings/:id"
-              element={<div>admin bookings single</div>}
-            />
-            <Route path="*" element={<div>404 not found</div>} />
+            <Route path="/booking/:id" element={<Booking />} />
+            <Route path="/venue/:id" element={<Venue />} />
+            <Route path="/venue/:id/edit" element={<EditVenue />} />
+            <Route path="/user/:name" element={<User />} />
+            <Route path="/user/:name/bookings" element={<UserBookings />} />
+            <Route path="/user/:name/venues" element={<UserVenues />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/venues" element={<AdminPanelVenues />} />
+            <Route path="/admin/bookings" element={<AdminPanelBookings />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </BrowserRouter>
