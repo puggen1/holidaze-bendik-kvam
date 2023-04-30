@@ -1,40 +1,9 @@
-import Layout from "./components/layout";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { Home } from "./pages/home";
-import { ThemeProvider } from "@mui/material";
-import { theme } from "./theme/theme";
-import "./theme/style.css";
-import User from "./pages/user";
-import Venue from "./pages/venue";
-import EditVenue from "./pages/venue/editVenue";
-import Booking from "./pages/booking";
-import UserBookings from "./pages/user/userBookings";
-import UserVenues from "./pages/user/userVenues";
-import Admin from "./pages/adminPanel";
-import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
-import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
-import NotFound from "./pages/notFound";
+
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/booking/:id" element={<Booking />} />
-            <Route path="/venue/:id" element={<Venue />} />
-            <Route path="/venue/:id/edit" element={<EditVenue />} />
-            <Route path="/user/:name" element={<User />} />
-            <Route path="/user/:name/bookings" element={<UserBookings />} />
-            <Route path="/user/:name/venues" element={<UserVenues />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/venues" element={<AdminPanelVenues />} />
-            <Route path="/admin/bookings" element={<AdminPanelBookings />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </ThemeProvider>
+    <div className="App">
+    <img src="background.jpg" alt="background" />
+    </div>
   );
 }
 
