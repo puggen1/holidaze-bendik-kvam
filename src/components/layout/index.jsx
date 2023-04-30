@@ -7,11 +7,11 @@ import Footer from '../footer'
 //footer
 const Layout = ({children}) => {
   return (
-    <>
+    <div className="app">
     <Header/>
     {children}
     <Footer/>
-    </>
+    </div>
   )
 }
 
