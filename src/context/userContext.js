@@ -49,7 +49,7 @@ const User = ({children})=>{
         return {success: true, message: "Logout Successful"}
     }
     return (
-        <UserContext.Provider value={{login, register,changeAvatar, user}}>
+        <UserContext.Provider value={{login, register,changeAvatar, logout, user}}>
             {children}
         </UserContext.Provider>
     )
