@@ -14,10 +14,14 @@ import Admin from "./pages/adminPanel";
 import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
 import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
 import NotFound from "./pages/notFound";
+import Modal from "./context/modalContext";
+import OuterModal from "./components/modal";
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+      <Modal>
+        <OuterModal/>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -33,6 +37,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
+        </Modal>
       </BrowserRouter>
     </ThemeProvider>
   );
