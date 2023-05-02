@@ -1,10 +1,9 @@
-import Button from "../../components/Button"
-import DefaultInput from "../../components/input/defaultInput"
-import GuestInput from "../../components/input/guestInput"
-
+import { Switch } from "@mui/material"
+import IconSwitch from "../../components/iconSwitch"
+import PetsIcon from '@mui/icons-material/Pets';
 export const Home = () => {  
-  return(<div style={{width:"200px", height:"auto"}}
-  ><GuestInput/>
+  return(<div>
+    <IconSwitch Icon={<PetsIcon/>} outlined={true}/>
   </div>)
 
 }
