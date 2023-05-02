@@ -40,6 +40,25 @@ const theme = createTheme({
           height:"100%",
           width:"100%",
         },
-}}}});
+}},MuiSlider:{
+  styleOverrides:{
+    root:{
+    },
+    thumb:{
+      backgroundColor: "white",
+      border: "5px solid #4189CC",
+    },
+    track:{
+      backgroundColor: "#4189CC !important",
+      color: "#4189CC !important",
+    },
+    rail:{
+      color: "#4189CC !important",
+    }
+  }
+  
+  
+}
+}});
 
 export { theme };
