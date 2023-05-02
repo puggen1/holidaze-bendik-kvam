@@ -1,4 +1,4 @@
-import { border, styled } from "@mui/system";
+import { styled } from "@mui/system";
 
 import { Button } from "@mui/material";
 
@@ -7,6 +7,7 @@ const StyledButton = styled(Button)(({ theme, color, variant}) => ({
     border: `2px solid ${theme.palette[color].main}`,
     color: variant === "contained" ? "white" : theme.palette[color].main,
     borderRadius: "20px",
+    padding: "5px 16px !important",
     boxSizing: "border-box",
     "&.MuiButton-root:hover":{
         border: `2px solid ${theme.palette[color].main}`,

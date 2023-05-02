@@ -2,7 +2,7 @@ import { Switch, styled} from "@mui/material";
 
 const IconSwitcher = styled(Switch)(({ theme, color, variant, outlined }) => ({
     "& .MuiSwitch-track": {
-        border: `solid 1px ${outlined ? theme.palette.secondary.main : theme.palette.secondary.main}` ,
+        border: `solid 1px ${outlined ? theme.palette.secondary.main : theme.palette.primary.main}` ,
     }
 }))
 

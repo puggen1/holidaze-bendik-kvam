@@ -24,6 +24,7 @@ const GuestInputSection = styled("div")(({ theme }) => ({
     gridTemplateColumns: "repeat(3, 1fr)",
     justifyContent: "space-between",
     alignItems: "center",
+    justifyItems: "center",
     gap: "10px",
 
 }));
