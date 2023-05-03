@@ -1,9 +1,9 @@
 import React from 'react'
 import { IconSwitcher, SwitchDiv } from './index.styles'
-const IconSwitch = ({Icon, outlined}) => {
+const IconSwitch = ({children, outlined}) => {
   return (
     <SwitchDiv>
-      {Icon}
+      {children}
       <IconSwitcher color='secondary' outlined={outlined}/>
     </SwitchDiv>
   )
