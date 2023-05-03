@@ -8,7 +8,7 @@ import {IconBox} from './index.styles.js'
 const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="filter"}) => {
     if(type === "filter"){
         return(
-            <IconBox variant="filter">
+            <IconBox>
             <IconSwitch>
                 <WifiIcon />
             </IconSwitch>
@@ -26,7 +26,7 @@ const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="f
     }
     if(type ==="card"){
         return(
-            <IconBox variant="card">
+            <IconBox className='icons'>
             {wifi && <WifiIcon/>}
             {pets && <PetsIcon/>}
             {parking && <LocalParkingIcon/>}

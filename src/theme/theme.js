@@ -58,7 +58,8 @@ const theme = createTheme({
   }
   
   
+},
 }
-}});
+});
 
 export { theme };
