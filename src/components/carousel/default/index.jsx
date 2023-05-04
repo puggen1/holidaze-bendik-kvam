@@ -4,14 +4,15 @@ import { OuterCarousel, CarouselNavigation } from './index.styles'
 import carouselLogic from '../../../utils/carouselLogic'
 import { ChevronLeftRounded, ChevronRightRounded } from '@mui/icons-material'
 const Carousel = ({images}) => {
+    let size = window.innerWidth;
     //the current carousel image
     const [current, setCurrent] = useState(0)
     //the carousel image navigation buttons that should show
     const [carouselNavigation, setCarouselNavigation] = useState([])
     //an useeffect to update what images should be shown in the navigation
     useEffect(() => {
-        setCarouselNavigation(carouselLogic(images, current, navigate))
-    }, [current, images])
+        setCarouselNavigation(carouselLogic(images, current, navigate, size))
+    }, [current, images, size])
     const carouselRef = useRef(null)
 
     //uses the inbuilt goto of the carousel to navigate to the correct image  also sets the current that triggers the useEffect

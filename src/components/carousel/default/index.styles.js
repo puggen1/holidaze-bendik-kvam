@@ -13,24 +13,27 @@ const OuterCarousel = styled(Box)(({ theme }) => ({
         height:"350px",
     },
     "& .icon":{
-        color:"white",
         position:"absolute",
         top:"30%",
         zIndex:1,
+        backgroundColor:"rgba(255,255,255,0.5)",
+        boxSizing:"border-box",
+        borderRadius:"50%",
+        color:theme.palette.primary.main,
     },
     "& .icon:hover":{
         cursor:"pointer",
-        color:theme.palette.primary.main,
+        color:theme.palette.secondary.main,
     },
     "& .prev":{
-        left:"0px",
+        left:"2%",
     },
     "& .next":{
-        right:"0px",
+        right:"2%",
     },
     "& .carousel":{
         height:"350px",
-    },
+    },    
     "@media (max-width: 850px)": {
         width:"90%",
         margin:"auto",
@@ -45,31 +48,42 @@ const OuterCarousel = styled(Box)(({ theme }) => ({
             top:"unset",
             bottom:"5px",
         },
-        "& .next, & .prev":{
-            backgroundColor:"rgba(255,255,255,0.5)",
-            boxSizing:"border-box",
-            borderRadius:"50%",
-            color:theme.palette.primary.main,
+    },
+    "@media (max-width: 450px)": {
+        width:"90%",
+        margin:"auto",
+        position:"absolute",
+        "& .prev":{
+            right: "unset",
+            left:"10px",
+            top:"35%",
+        },
+        "& .next":{
+            right: "10px",
+            left:"unset",
+            top:"35%",
+            bottom:"unset",
         },
     }
 }));
 const CarouselNavigation = styled(Box)(({ theme }) => ({
     display:"flex",
-    flexWrap:"wrap",
-    gap:"20px",
+    flexWrap:"nowrap",
+    gap:"6.25%",
     margin:"20px auto",
     overflow:"hidden",
-    height:"120px",
+    height:"auto",
 
     "& img":{
         borderRadius:"20px",
         top: 0,
         left: 0,
-        height:"120px",
-        width:"120px",
+        height:"100%",
+        width:"15%",
         boxSizing:"border-box",
         opacity:0,
        border:`solid 2px white`,
+       
 
     },
     "& .active":{
@@ -80,15 +94,37 @@ const CarouselNavigation = styled(Box)(({ theme }) => ({
     },
     "@media (max-width: 850px)": {
         position:"absolute",
-        right:"5px",
+        right:"5%",
         flexDirection:"column",
-        width:"120px",
-        height:"350px",
+        width:"auto",
+        height:"100%",
         boxSizing:"border-box",
         justifyContent:"center",
+        padding:"5% 0",
+        gap:"7.5%",
         margin:"auto",
         "& img":{
             border:"none",
+            height:"25%",
+            width:"100%",
+            objectFit:"cover"
+        }
+    },
+    "@media (max-width: 450px)": {
+        position:"unset",
+        flexDirection:"row",
+        flexWrap:"nowrap",
+        width:"100%",
+        maxWidth:"100%",
+        height:"auto",
+        justifyContent:"center",
+        margin:"10px auto",
+        boxSizing:"border-box",
+        gap:"5%",
+        "& img":{
+            border:"none",
+            height:"100%",
+            width:"20%",
         }
     }
 }));
