@@ -26,24 +26,40 @@ const Calendar = ({bookedDates = []}) => {
       };
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       const isBookedChecker = (dates, datestring) => {
+        if(dates === null){
+            console.log("test")
+            reset()
+            return
+        }
         const start = dates[0]
         const end = dates[1]
+        console.log(start, end)
+        if(start === undefined || start === null || end === null || end === undefined){
+            reset()
+            return
+        }
+        if(start.isSame(end)){
+            reset()
+            return 
+        }
+        // if any of them are between set
+        let invalid = false
         for(let day of booked){
-            if((day.isAfter(start) || day.isSame(start)) &&  (day.isBefore(end) || day.isSame(end))){
-                setDefaultValue([])
-                return
+            let after = (day.isAfter(start) || day.isSame(start))
+            let before = (day.isBefore(end) || day.isSame(end)) 
+            if(after && before){
+                invalid = true
             }
-            else{
-                setDefaultValue([start, end])
-                console.log(start,end)
-            }
-
-        } 
-
-    };
+        }
+        console.log(invalid)
+        invalid  ? setDefaultValue(undefined, undefined) : setDefaultValue([start, end])
+    }
     //makes days in the past and days that are booked disabled
       const disabled = (current) => {
         let now = dayjs()
+        if(current === undefined){
+            return false
+        }
         if(now.format(dateFormat) === current.format(dateFormat)){
             return false
         }
@@ -56,7 +72,7 @@ const Calendar = ({bookedDates = []}) => {
     <>
     <RangePicker
     allowClear={true}
-    defaultValue={defaultValue}
+    defaultPickerValue={defaultValue}
     value={defaultValue}
     //format={dateFormat}
     open={true}
@@ -65,6 +81,8 @@ const Calendar = ({bookedDates = []}) => {
     mode={['date', 'date']}
     format="YYYY-MM-DD"
   />
+<button style={{marginTop:"auto"}} onClick={()=>{console.log(defaultValue)}}>click me</button>
+<button style={{marginTop:"auto"}} onClick={()=>{setDefaultValue([booked[0], booked[1]])}}>click me</button>
 
 </>
   )
