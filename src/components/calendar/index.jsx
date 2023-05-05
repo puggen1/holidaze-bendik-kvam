@@ -1,25 +1,19 @@
 import { DatePicker } from "antd"
-import dayjs, { Dayjs } from "dayjs"
+import dayjs from "dayjs"
 import { useState } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-
+import { StyledRangePanel } from "./index.styles";
 const Calendar = ({bookedDates = []}) => {
  
     dayjs.extend(customParseFormat);
     const { RangePicker } = DatePicker;
     const dateFormat = "DD/MM/YYYY";
-    const weekFormat = "MM/DD";
     let booked = bookedDates.map((date)=>{
         return dayjs(date)
     })
     //const monthFormat = "YYYY/MM";
     //const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
-    const customFormat = (value) => `custom format: ${value.format(dateFormat)}`;
-    const customWeekStartEndFormat = (value) =>
-    `${dayjs(value).startOf("week").format(weekFormat)} ~ ${dayjs(value)
-      .endOf("week")
-      .format(weekFormat)}`;
-
+    
       const [defaultValue, setDefaultValue] = useState([]);
       const reset = () => {
         setDefaultValue([]);
@@ -33,13 +27,12 @@ const Calendar = ({bookedDates = []}) => {
         }
         const start = dates[0]
         const end = dates[1]
-        console.log(start, end)
         if(start === undefined || start === null || end === null || end === undefined){
             reset()
             return
         }
         if(start.isSame(end)){
-            reset()
+          setDefaultValue(undefined, undefined)
             return 
         }
         // if any of them are between set
@@ -60,18 +53,26 @@ const Calendar = ({bookedDates = []}) => {
         if(current === undefined){
             return false
         }
-        if(now.format(dateFormat) === current.format(dateFormat)){
+        else if(now.format(dateFormat) === current.format(dateFormat)){
             return false
         }
-        if(booked.find((date)=>{
-            return date.format(dateFormat) === current.format(dateFormat)
-        })){return true}
+        else if(booked.find((date)=>{return date.format(dateFormat) === current.format(dateFormat)})){
+          return true
+        }
         return current.isBefore(now);
       };
+      const panelRenderer = (panelNode)=>{
+            return(<StyledRangePanel>
+            {panelNode}
+          </StyledRangePanel>)
+      }
   return (
     <>
     <RangePicker
+    popupStyle={{maxWidth:"100%"}}
+    popupClassName="bookingCalendar"
     allowClear={true}
+    panelRender={panelRenderer}
     defaultPickerValue={defaultValue}
     value={defaultValue}
     //format={dateFormat}
@@ -81,8 +82,6 @@ const Calendar = ({bookedDates = []}) => {
     mode={['date', 'date']}
     format="YYYY-MM-DD"
   />
-<button style={{marginTop:"auto"}} onClick={()=>{console.log(defaultValue)}}>click me</button>
-<button style={{marginTop:"auto"}} onClick={()=>{setDefaultValue([booked[0], booked[1]])}}>click me</button>
 
 </>
   )

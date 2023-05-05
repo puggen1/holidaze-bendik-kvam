@@ -62,4 +62,12 @@ const theme = createTheme({
 }
 });
 
-export { theme };
+const antDTheme = {
+  token: {
+    colorPrimary: '#1D2B38',
+    colorError: "#CC6238",
+    colorInfo:"#4189CC"
+  },
+}
+
+export { theme, antDTheme };
