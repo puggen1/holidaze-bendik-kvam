@@ -18,6 +18,9 @@ const StyledInput = styled(TextField)(({ theme, color, variant, range }) => ({
         borderRadius: range ? "15px": "50px",
         padding: range ? "5px 0px" : "15px 25px",
         textAlign: range ? "center" : "left",
+    },
+    "& ::placeholder":{
+        color:theme.palette.primary.main,
     }
 }));
 
