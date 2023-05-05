@@ -12,4 +12,16 @@ footer{
 }
 .mainContent{
     min-height: 90vh;
+};
+
+/* range picker*/
+.ant-picker-dropdown {
+    display: none;
+    border: solid 1px  #4189CC !important;
+    margin:0 auto !important;
+    
+}
+.ant-picker-panel-container{
+    margin: 0 auto !important;
+    border-radius: 20px !important;
 }
