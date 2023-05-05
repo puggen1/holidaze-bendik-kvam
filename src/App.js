@@ -14,8 +14,9 @@ import Admin from "./pages/adminPanel";
 import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
 import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
 import NotFound from "./pages/notFound";
+import Modal from "./context/modalContext";
+import OuterModal from "./components/modal";
 import { ConfigProvider } from "antd";
-
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -26,6 +27,8 @@ function App() {
       <ConfigProvider
       theme={antDTheme}>
       <BrowserRouter>
+      <Modal>
+        <OuterModal/>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -41,6 +44,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
+        </Modal>
       </BrowserRouter>
       </ConfigProvider>
     </ThemeProvider>
