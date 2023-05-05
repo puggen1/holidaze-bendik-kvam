@@ -69,6 +69,8 @@ const Calendar = ({bookedDates = []}) => {
   return (
     <>
     <RangePicker
+    //style to hide rane picker input
+    style={{visibility:"hidden"}}
     popupStyle={{maxWidth:"100%"}}
     popupClassName="bookingCalendar"
     allowClear={true}

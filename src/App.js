@@ -15,6 +15,11 @@ import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
 import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
 import NotFound from "./pages/notFound";
 import { ConfigProvider } from "antd";
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 function App() {
   return (
     <ThemeProvider theme={theme}>

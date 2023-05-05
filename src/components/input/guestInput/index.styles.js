@@ -1,12 +1,11 @@
-import { styled } from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import { StyledButton } from "../../Button/index.styles";
-const GuestAmount = styled("p")(({ theme }) => ({
+const GuestAmount = styled(Typography)(({ theme }) => ({
     fontSize: "1.5rem",
-    borderRadius: "50%",
+    borderRadius: "20px",
     width: "100%",
     height: "100%",
     minWidth: "50px",
-
     maxHeight: "50px",
     maxWidth: "50px",
     margin: "0",
@@ -21,8 +20,10 @@ const GuestAmount = styled("p")(({ theme }) => ({
 
 const GuestInputSection = styled("div")(({ theme }) => ({
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "30px 50px 30px",
+    gridTemplateRows: "50px",
     justifyContent: "space-between",
+    boxSizing: "border-box",
     alignItems: "center",
     justifyItems: "center",
     gap: "10px",
@@ -31,13 +32,12 @@ const GuestInputSection = styled("div")(({ theme }) => ({
 
 const GuestButton = styled(StyledButton)(({ theme }) => ({
     fontSize: "1.5rem",
-    height:"100%",
-    width:"100%",
-    maxHeight: "50px",
-    maxWidth: "50px",
-    minWidth: "50px",
+    height:"30px",
+    width:"30px",
+    maxHeight: "30px",
+    maxWidth: "30px",
+    minWidth: "30px",
     padding: "0",
     borderRadius: "50%",
-
 }));
 export { GuestAmount, GuestInputSection, GuestButton }

@@ -15,9 +15,9 @@ const GuestInput = () => {
 
   return (
     <GuestInputSection>
-            <GuestButton  variant="outlined" color="secondary" onClick={RemoveGuest}>+</GuestButton>
-            <GuestAmount>{guestAmount}</GuestAmount>
-            <GuestButton  variant="outlined" color="secondary" onClick={AddGuest}>-</GuestButton>
+            <GuestButton  variant="outlined" color="secondary" onClick={RemoveGuest}>-</GuestButton>
+            <GuestAmount fontFamily="roboto" fontWeight="300">{guestAmount}</GuestAmount>
+            <GuestButton  variant="outlined" color="secondary" onClick={AddGuest}>+</GuestButton>
     </GuestInputSection>
   )
 }
