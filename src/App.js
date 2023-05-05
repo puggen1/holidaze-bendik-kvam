@@ -2,7 +2,7 @@ import Layout from "./components/layout";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Home } from "./pages/home";
 import { ThemeProvider } from "@mui/material";
-import { theme } from "./theme/theme";
+import { antDTheme, theme } from "./theme/theme";
 import "./theme/style.css";
 import User from "./pages/user";
 import Venue from "./pages/venue";
@@ -14,9 +14,17 @@ import Admin from "./pages/adminPanel";
 import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
 import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
 import NotFound from "./pages/notFound";
+import { ConfigProvider } from "antd";
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <ConfigProvider
+      theme={antDTheme}>
       <BrowserRouter>
         <Layout>
           <Routes>
@@ -34,6 +42,7 @@ function App() {
           </Routes>
         </Layout>
       </BrowserRouter>
+      </ConfigProvider>
     </ThemeProvider>
   );
 }

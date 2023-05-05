@@ -1,3 +1,5 @@
-export const Home = () => {  
-  return(<div>home</div>)
+export const Home = () => {
+  return(<div>Home
+  </div>)
+
 }
