@@ -1,10 +1,12 @@
 import React from 'react'
 import { OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions} from './index.styles'
-import { Typography } from '@mui/material'
+import { Typography , Box} from '@mui/material'
 import DefaultInput from '../input/defaultInput'
-import { ArrowForward, Search } from '@mui/icons-material'
+import { ArrowForward, ExpandMore, Search } from '@mui/icons-material'
 import { DatePicker } from 'antd'
 import Button from '../Button'
+import GuestInput from '../input/guestInput'
+import { Link } from 'react-router-dom'
 const { RangePicker } = DatePicker;
 const Hero = () => {
 
@@ -22,7 +24,15 @@ const Hero = () => {
             </HeroDate>
             <HeroOptions>
                 <Button variant="contained" color="secondary" text="Find"/>
+                <Box style={{display:"flex", alignItems:"center", gap:"1rem"}}>
+                    <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
+                <GuestInput/>
+                </Box>
             </HeroOptions>
+                <Link to="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 2rem 0"}}>
+                <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">View all</Typography>
+                <ExpandMore fontSize='large' sx={{color:"white"}}/>
+                </Link>
         </InnerHero>
     </OuterHero>
   )

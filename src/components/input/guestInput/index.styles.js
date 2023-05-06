@@ -37,7 +37,7 @@ const GuestButton = styled(StyledButton)(({ theme }) => ({
     maxHeight: "30px",
     maxWidth: "30px",
     minWidth: "30px",
-    padding: "0",
+    padding: "0 !important",
     borderRadius: "50%",
 }));
 export { GuestAmount, GuestInputSection, GuestButton }

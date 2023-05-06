@@ -10,8 +10,8 @@ const OuterHero = styled(Box)(({ theme }) => ({
 const InnerHero = styled(Box)(({ theme }) => ({
     backgroundColor:"#1a1a1a",
     opacity:"0.75",
-    height: "90%",
-    width: "80%",
+    height: "80%",
+    width: "70%",
     margin: "auto",
     borderRadius: "20px",
     display: "flex",
@@ -56,21 +56,24 @@ const HeroSearch = styled(Box)(({ theme }) => ({
 const HeroDate = styled(Box)(({ theme }) => ({
     width: "60%",
     display: "grid",
-    gridTemplateColumns: "50% 50%",
+    gridTemplateColumns: "45% 10% 45%",
     ".from":{
         gridColumn: "1 / 2",
         paddingBottom:"1rem",
     },
     ".to":{
-        gridColumn: "2 / 3",
+        gridColumn: "3 / 4",
         paddingBottom:"1rem",
     },
     ".ant-picker-range":{
-        gridColumn: "1 / 3",
+        gridColumn: "1 / 4",
     },
 
 }));
 const HeroOptions = styled(Box)(({ theme }) => ({
-
+    display:"flex",
+    padding:"2rem 0",
+    width:"60%",
+    justifyContent:"space-between"
 }));
 export {OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions}
