@@ -9,16 +9,16 @@ const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="f
     if(type === "filter"){
         return(
             <IconBox>
-            <IconSwitch>
+            <IconSwitch outlined="true">
                 <WifiIcon />
             </IconSwitch>
-            <IconSwitch>
+            <IconSwitch outlined="true">
                 <PetsIcon />
             </IconSwitch>
-            <IconSwitch>
+            <IconSwitch outlined="true">
                 <LocalParkingIcon />
             </IconSwitch>
-            <IconSwitch>
+            <IconSwitch outlined="true">
                 <BreakfastDiningIcon />
             </IconSwitch>
             </IconBox>

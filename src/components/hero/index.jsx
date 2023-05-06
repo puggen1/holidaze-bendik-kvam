@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <OuterHero sx={{backgroundImage:"url(/background.jpg)"}}>
         <InnerHero>
-            <Typography variant='h1' component="h1"  fontSize="4rem" color="white" fontFamily="source sans pro">Plan your next holiday here</Typography>
+            <Typography variant='h1' component="h1" textAlign="center"  fontSize="2.5em" color="white" fontFamily="source sans pro">Plan your next holiday here</Typography>
             <HeroSearch>
             <DefaultInput variant="outlined"  placeholder="find a venue or search by location"><Search/></DefaultInput>
             </HeroSearch>
@@ -24,15 +24,15 @@ const Hero = () => {
             </HeroDate>
             <HeroOptions>
                 <Button variant="contained" color="secondary" text="Find"/>
-                <Box style={{display:"flex", alignItems:"center", gap:"1rem"}}>
+                <Box className="guests" style={{display:"flex", alignItems:"center", gap:"1rem"}}>
                     <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
                 <GuestInput/>
                 </Box>
             </HeroOptions>
-                <Link to="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 2rem 0"}}>
+                <a href="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 2rem 0"}}>
                 <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">View all</Typography>
                 <ExpandMore fontSize='large' sx={{color:"white"}}/>
-                </Link>
+                </a>
         </InnerHero>
     </OuterHero>
   )

@@ -84,7 +84,10 @@ const VenueCardContent = styled(CardContent)(({theme})=>({
 
         },
         '& .icons':{
+            display:"flex",
+            gap:"0 10px",
             flex:"100% 0 0",
+
         }
     }
 }))
