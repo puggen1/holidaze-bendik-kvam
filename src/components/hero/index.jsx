@@ -18,8 +18,7 @@ const Hero = () => {
             <DefaultInput variant="outlined"  placeholder="find a venue or search by location"><Search/></DefaultInput>
             </HeroSearch>
             <HeroDate>
-                <Typography className='from' variant="p" component="p" color="white" fontWeight="300" fontSize="1.5rem" fontFamily="Roboto">From</Typography>
-                <Typography className='to' variant="p" component="p" color="white" fontWeight="300" fontSize="1.5rem" fontFamily="Roboto">To</Typography>
+                <Typography className='when' variant="p" component="p" color="white" fontWeight="300" fontSize="1rem" fontFamily="Roboto">When</Typography>
                 <RangePicker separator={<ArrowForward sx={{color:"white"}}/>}/>
             </HeroDate>
             <HeroOptions>

@@ -55,11 +55,12 @@ const InnerHero = styled(Box)(({ theme }) => ({
     },
     "@media (max-width: 1024px)": {
         width: "80%",
-        ".ant-picker-range-separator":{
-            display:"none !important",
-        }
+       
     },
     "@media (max-width: 550px)": {
+        ".ant-picker-range-separator":{
+            display:"none !important",
+        },
         h1:{
             fontSize:"1.5rem",
             padding: "2rem 0 0 0",
@@ -82,14 +83,11 @@ const HeroDate = styled(Box)(({ theme }) => ({
     width: "60%",
     display: "grid",
     gridTemplateColumns: "45% 10% 45%",
-    ".from":{
-        gridColumn: "1 / 2",
+    ".when":{
+        gridColumn: "1 / 4",
         paddingBottom:"1rem",
     },
-    ".to":{
-        gridColumn: "3 / 4",
-        paddingBottom:"1rem",
-    },
+    
     ".ant-picker-range":{
         gridColumn: "1 / 4",
     },
@@ -98,6 +96,9 @@ const HeroDate = styled(Box)(({ theme }) => ({
     },
     "@media (max-width: 550px)": {
         width: "90%",
+        ".when":{
+            textAlign:"center",
+        }
     },
 
 }));
