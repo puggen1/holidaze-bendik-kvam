@@ -9,13 +9,16 @@ const Footer = styled("footer")(({theme})=>({
     gridTemplateRows:"auto auto",
     justifyContent:"center",
      alignItems:"center",
+     ".footerName":{
+        textAlign:"center",
+
+     },
      "@media screen and (max-width: 500px)": {
         gridTemplateColumns:"1fr 1fr",
         ".footerName":{
             gridRow:"2/3",
             gridColumn:"1/3",
             marginTop:"1rem",
-            textAlign:"center",
         },
         ".footerContact":{
 

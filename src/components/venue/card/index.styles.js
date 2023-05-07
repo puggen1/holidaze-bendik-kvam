@@ -11,7 +11,6 @@ const VenueCard = styled(Card)(({theme})=>({
     '& .guests':{
         opacity:0,
         transition: "opacity 1s ease",
-        maxWidth:"40%",
         marginTop:"auto",
         flex:"100% 0 0",
         textAlign:"start",

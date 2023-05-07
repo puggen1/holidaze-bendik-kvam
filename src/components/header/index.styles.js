@@ -4,9 +4,10 @@ const InnerHeader = styled(Box)(({theme})=>({
     backgroundColor: theme.palette.primary.main,
     display:"flex",
     height:"10vh",
+    alignItems:"center",
     "& .logo":{
         margin:"auto auto",
-        height:"90%",
+        height:"60%",
         display:"block",
         width:"auto",
         img:{
