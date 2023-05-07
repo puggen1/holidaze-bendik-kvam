@@ -6,7 +6,6 @@ import { ArrowForward, ExpandMore, Search } from '@mui/icons-material'
 import { DatePicker } from 'antd'
 import Button from '../Button'
 import GuestInput from '../input/guestInput'
-import { Link } from 'react-router-dom'
 const { RangePicker } = DatePicker;
 const Hero = () => {
 

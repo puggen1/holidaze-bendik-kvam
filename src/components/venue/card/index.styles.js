@@ -37,7 +37,15 @@ const VenueCard = styled(Card)(({theme})=>({
     },
     "&:hover .icons":{
         opacity:0.75,
-    }
+    },
+
+    "@media (max-width: 716px)": {
+        width:"75%",
+        margin:"1rem auto",
+    },
+    "@media (max-width: 501px)": {
+        width:"95%",
+    },
 }));
 const VenueCardMedia = styled(CardMedia)(({theme})=>({
     position: "absolute",

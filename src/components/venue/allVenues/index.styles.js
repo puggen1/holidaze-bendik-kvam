@@ -10,6 +10,10 @@ const OuterAllVenues = styled(Box)(({ theme }) => ({
     flexWrap:"wrap",
     justifyContent:"space-around",
     gap:"1rem",
+
+    "@media screen and (max-width: 716px)": {
+        flexDirection:"column",
+    }
 }));
 
 
