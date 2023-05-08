@@ -1,16 +1,19 @@
 import React from 'react'
 import { useContext } from 'react'
-import Modal from '@mui/material/Modal'
+import {DefaultModal} from './index.styles'
+import { InnerModal } from './index.styles'
 import { ModalContext } from '../../context/modalContext'
+import Login from './login/index'
+import Register from './register'
 const OuterModal = () => {
     const { modalStatus, setModalStatus, innerContent } = useContext(ModalContext)
     //placeholder divs for now
     let content = <div>Default</div>
     if(innerContent === "login"){
-        content = <div>Login</div>
+        content = <Login/>
     }
     else if(innerContent === "register"){
-        content = <div>Register</div>
+        content = <Register/>
     }
     else if(innerContent === "avatar"){
         content = <div>Avatar</div>
@@ -33,9 +36,11 @@ const OuterModal = () => {
 
 
   return (
-    <Modal open={modalStatus} onClose={() => setModalStatus(false)}>
+    <DefaultModal open={modalStatus} onClose={() => setModalStatus(false)}>
+        <InnerModal>
         {content}
-    </Modal>
+        </InnerModal>
+    </DefaultModal>
   )
 }
 

@@ -25,3 +25,7 @@ footer{
     margin: 0 auto !important;
     border-radius: 20px !important;
 }
+.iconButton:hover{
+ cursor: pointer;
+ color: #4189CC;
+}

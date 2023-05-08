@@ -1,9 +1,19 @@
-import { styled, Drawer } from "@mui/material";
-
+import { styled, Drawer, Box } from "@mui/material";
 
 const NavigationDrawer = styled(Drawer)(({ theme }) => ({
-    opacity: "0.9",
+  opacity: "1",
+  width: "100%",
+  height: "100%",
 }));
-
-
-export { NavigationDrawer}
+const InnerDrawer = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  width: "350px",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  button: {
+    width: "25%",
+    marginLeft: "2rem",
+  },
+}));
+export { NavigationDrawer, InnerDrawer };
