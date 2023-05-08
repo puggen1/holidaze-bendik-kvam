@@ -36,7 +36,7 @@ const [password, setPassword] = useState("")
         <DefaultInput value={password} event={changePassword} variant="outlined" color="secondary" text="Password" placeholder="Password" type="password"/>
         </Box>
         <Box>
-        <Button color="error" variant="contained" text="Cancel"/>
+        <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
         <MuiButton type='text' onClick={()=>{setInnerContent("register")}}>Register</MuiButton>
         <Button event={handleLogin} color="secondary" variant="contained" text="Login"/>
         </Box>
