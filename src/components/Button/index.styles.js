@@ -14,6 +14,7 @@ const StyledButton = styled(Button)(({ theme, color, variant}) => ({
         color: variant === "contained" ?  theme.palette[color].main : "white",
         backgroundColor: variant === "contained" ? "transparent" : theme.palette[color].main,
 }}));
+
     
 
 

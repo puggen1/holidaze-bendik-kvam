@@ -11,7 +11,6 @@ const VenueCard = styled(Card)(({theme})=>({
     '& .guests':{
         opacity:0,
         transition: "opacity 1s ease",
-        maxWidth:"40%",
         marginTop:"auto",
         flex:"100% 0 0",
         textAlign:"start",
@@ -37,7 +36,15 @@ const VenueCard = styled(Card)(({theme})=>({
     },
     "&:hover .icons":{
         opacity:0.75,
-    }
+    },
+
+    "@media (max-width: 716px)": {
+        width:"75%",
+        margin:"1rem auto",
+    },
+    "@media (max-width: 501px)": {
+        width:"95%",
+    },
 }));
 const VenueCardMedia = styled(CardMedia)(({theme})=>({
     position: "absolute",
@@ -84,7 +91,10 @@ const VenueCardContent = styled(CardContent)(({theme})=>({
 
         },
         '& .icons':{
+            display:"flex",
+            gap:"0 10px",
             flex:"100% 0 0",
+
         }
     }
 }))

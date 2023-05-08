@@ -21,6 +21,10 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import "@fontsource/source-sans-pro/300.css";
+import "@fontsource/source-sans-pro/400.css";
+import "@fontsource/source-sans-pro/700.css";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>

@@ -1,12 +1,13 @@
 {
   "name": "holidaze-bendik-kvam",
-  "version": "0.1.3",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@fontsource/roboto": "^4.5.8",
+    "@fontsource/source-sans-pro": "^4.5.11",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
     "@reduxjs/toolkit": "^1.9.5",

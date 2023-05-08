@@ -27,6 +27,7 @@ const theme = createTheme({
           borderRadius:"50px",
           opacity: "1 !important",
           backgroundColor: "#1D2B38",
+          boxSizing: "border-box",
         },
 
         thumb: {
@@ -35,6 +36,7 @@ const theme = createTheme({
             height: "10px",
             width: "10px",
             left: "14px",
+            margin:"3px 0 3px 0"
           },
         switchBase: {
           height:"100%",
@@ -59,6 +61,24 @@ const theme = createTheme({
   
   
 },
+MuiAccordion:{
+  styleOverrides:{
+    root:{
+      display:"flex",
+      flexDirection:"column-reverse !important",
+      "&.Mui-expanded":{
+        margin: "0 !important",        
+      },
+    },
+  },
+},
+MuiAccordionSummary:{
+  styleOverrides:{
+    root:{
+      flexDirection:"column !important",
+    }
+  },
+}
 }
 });
 
