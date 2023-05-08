@@ -10,7 +10,7 @@ import CustomButton from '../Button';
 import { ModalContext } from '../../context/modalContext';
 const Navigation = ({name, venueManager, logout}) => {
     const [openstatus, setOpenStatus] = useState(false);
-    const { modalStatus, setModalStatus, innerContent, setInnerContent } = useContext(ModalContext)
+    const { modalStatus, setModalStatus, setInnerContent } = useContext(ModalContext)
     const change = (content) => {
       if(content === ""){setOpenStatus(false); return}
       setInnerContent(content)
