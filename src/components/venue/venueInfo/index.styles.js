@@ -8,6 +8,10 @@ const OuterInfo = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
+  "@media (max-width: 591px)": {
+    boxShadow: "none",
+    width: "100%",
+  },
 }));
 
 export { OuterInfo };
