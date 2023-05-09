@@ -4,7 +4,6 @@ import { Box, styled } from "@mui/material";
 const OuterCarousel = styled(Box)(({ theme }) => ({
     display:"flex",
     flexDirection:"column",
-    width:"700px",
     position:"relative",
     "& .bigImg":{
         objectFit:"cover",
