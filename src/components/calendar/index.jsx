@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { useEffect, useState } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { StyledRangePanel } from "./index.styles";
-const Calendar = ({bookedDates = [], pickedDates, setPickedDates}) => {
+const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
     dayjs.extend(customParseFormat);
     const { RangePicker } = DatePicker;
     const dateFormat = "DD/MM/YYYY";
@@ -77,6 +77,9 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates}) => {
             {panelNode}
           </StyledRangePanel>)
       }
+     const test = (trigger) =>{
+      return parent.current
+      }
   return (
     <>
     <RangePicker
@@ -88,6 +91,7 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates}) => {
     panelRender={panelRenderer}
     defaultPickerValue={pickedDates}
     value={pickedDates}
+    getPopupContainer={test}
     //format={dateFormat}
     open={true}
     onCalendarChange={isBookedChecker}

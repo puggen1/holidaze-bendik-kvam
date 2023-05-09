@@ -30,5 +30,6 @@ footer{
  color: #4189CC;
 }
 .bookingCalendar{
-    position: fixed;
-}
+    position: inherit;
+
+    }
