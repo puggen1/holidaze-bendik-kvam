@@ -34,10 +34,9 @@ const OuterCarousel = styled(Box)(({ theme }) => ({
         height:"350px",
     },    
     "@media (max-width: 950px)": {
-        width:"90%",
-        margin:"auto",
-        position:"absolute",
-        "& .prev":{
+        width:"100%",
+        margin:"1rem auto",
+            "& .prev":{
             right: "50px",
             left:"unset",
             top:"5px",

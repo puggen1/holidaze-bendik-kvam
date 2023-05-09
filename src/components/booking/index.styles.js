@@ -16,6 +16,11 @@ const OuterBooking = styled(Box)(({ theme }) => ({
     "@media (max-width: 1400px)":{
         margin:"auto auto auto auto"
     },
+    "@media (max-width: 950px)":{
+            flexDirection:"row",
+            flexWrap:"nowrap",
+            maxWidth:"100%"
+    },
 
 
 }));
@@ -41,6 +46,21 @@ const LowerBooking = styled(Box)(({ theme }) => ({
                 gridRow:"2/3 !important",
 
             
+        }
+    },
+    "@media screen and (max-width: 950px)":{
+        gridTemplateColumns:"1fr",
+        "& .guest":{
+            gridColumn:"1/2",
+            gridRow:"1/2"
+        },
+        "& .reset":{
+            gridColumn:"1/2",
+            gridRow:"2/3"
+        },
+        "& .book":{
+            gridColumn:"1/2",
+            gridRow:"3/4"
         }
     }
 

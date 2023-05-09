@@ -7,6 +7,7 @@ const OuterVenue = styled(Box)(({ theme }) => ({
   gap: "2rem",
  "@media (max-width: 950px)": {
   flexDirection: "column",
+  width:"80%"
  }
 }));
 
