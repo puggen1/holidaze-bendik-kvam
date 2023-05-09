@@ -13,7 +13,7 @@ export const Header = () => {
     <header>
         <InnerHeader>
         <Navigation name={name ? name : ""} venueManager={venueManager} logout={logout}/>
-        <Link to="/" className='logo'><img src='logo.svg' alt='the holidaze logo'/></Link>
+        <Link to="/" className='logo'><img src='/logo.svg' alt='the holidaze logo'/></Link>
         <ProfileHeader name={name} avatar={avatar}/>
         </InnerHeader>
     </header>

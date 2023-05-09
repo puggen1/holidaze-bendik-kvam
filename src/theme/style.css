@@ -29,3 +29,6 @@ footer{
  cursor: pointer;
  color: #4189CC;
 }
+.bookingCalendar{
+    position: fixed;
+}
