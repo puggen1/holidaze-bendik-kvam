@@ -31,23 +31,22 @@ const StyledRangePanel = styled("div")(({theme})=>({
             },
             /* taken from https://stackoverflow.com/questions/60091618/react-daterangepicker-mobile-friendly */
             "&:last-child":{
-              width: 0,
               ".ant-picker-header":{
-                position: "absolute",
                 right: 0,
                 ".ant-picker-header-prev-btn, .ant-picker-header-view":{
-                  visibility: "hidden",
                 }
               },
-            ".ant-picker-body":{
-                display: "none",
-              },
-              "@media (min-width: 768px)":{
-                width: "280px!important",
+              "@media (max-width: 1300px)":{
+                position: "absolute",
+                visibility: "hidden !important",
                 ".ant-picker-header":{
-                position:"relative",
+                right: "0px",
+                position: "relative",
                 ".ant-picker-header-prev-btn, .ant-picker-header-view":{
-                    visibility: "initial",
+                    visibility: "hidden !important",
+                  },
+                  ".ant-picker-header-next-btn, .ant-picker-header-super-next-btn":{
+                    visibility: "visible !important",
                   }
                 },
                 ".ant-picker-body":{

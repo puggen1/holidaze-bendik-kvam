@@ -33,7 +33,7 @@ const OuterCarousel = styled(Box)(({ theme }) => ({
     "& .carousel":{
         height:"350px",
     },    
-    "@media (max-width: 850px)": {
+    "@media (max-width: 950px)": {
         width:"90%",
         margin:"auto",
         position:"absolute",
@@ -91,7 +91,7 @@ const CarouselNavigation = styled(Box)(({ theme }) => ({
     "& .show":{
         opacity:1,
     },
-    "@media (max-width: 850px)": {
+    "@media (max-width: 950px)": {
         position:"absolute",
         right:"5%",
         flexDirection:"column",

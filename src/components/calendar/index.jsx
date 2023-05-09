@@ -52,6 +52,13 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
     checkBooked()
 
     },[bookedDates])
+    useEffect(() => {
+      if(pickedDates=== undefined){
+        return
+      }
+      isBookedChecker(pickedDates)
+    }, [booked]);
+
       const reset = () => {
         setPickedDates([]);
       };
