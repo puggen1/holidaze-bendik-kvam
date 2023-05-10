@@ -5,12 +5,16 @@ import { InnerModal } from './index.styles'
 import { ModalContext } from '../../context/modalContext'
 import Login from './login/index'
 import Register from './register'
+import Booking from './booking'
 const OuterModal = () => {
     const { modalStatus, setModalStatus, innerContent } = useContext(ModalContext)
     //placeholder divs for now
     let content = <div>Default</div>
     if(innerContent === "login"){
         content = <Login/>
+    }
+    else if(innerContent === "booking"){
+        content = <Booking/>
     }
     else if(innerContent === "register"){
         content = <Register/>

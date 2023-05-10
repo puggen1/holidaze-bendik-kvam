@@ -1,7 +1,10 @@
 import { GuestAmount, GuestInputSection, GuestButton } from "./index.styles"
 
-const GuestInput = ({value, changer}) => {
+const GuestInput = ({value, changer, max}) => {
     const AddGuest = () => {
+        if(value === max){
+            return
+        }
         changer(value + 1)
     }
     const RemoveGuest = () => {

@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import User from "./context/userContext";
+import Booking from "./context/bookingContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <User>
-      <App />
+      <Booking>
+        <App />
+      </Booking>
     </User>
   </React.StrictMode>
 );
