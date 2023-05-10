@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Typography } from '@mui/material'
 import DefaultInput from '../../../input/defaultInput'
 import Icons from '../../../icons'
@@ -7,8 +7,9 @@ import { OuterInfo } from '../index.styles'
 import { LocationInfo, OuterLocation } from '../location/index.styles'
 import { InnerEditInfo } from './index.styles'
 import { useForm } from 'react-hook-form'
+import AddEditContext from '../../../../context/addEditContext'
 const InputVenue = ({venue}) => {
-
+  const {venueInfo, setVenueInfo} = useContext(AddEditContext)
   const [guest, setGuest] = useState(1)
     const { register, handleSubmit, setValue } = useForm();
     const [meta, setMeta] = useState({
@@ -19,11 +20,11 @@ const InputVenue = ({venue}) => {
     })
     const onSubmit = (data) => {
       let allData = {...data, maxGuests: guest, meta}
-      console.log(allData);
+      setVenueInfo(allData)
       
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onChange={handleSubmit(onSubmit)} onSubmit={handleSubmit(onSubmit)}>
     <OuterInfo>
     <InnerEditInfo>
       <div className='name'><DefaultInput manager={{...register("name")}} variant="outlined" color="secondary" text="Venue Name" type="text"/></div>

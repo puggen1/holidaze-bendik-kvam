@@ -4,12 +4,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import User from "./context/userContext";
 import Booking from "./context/bookingContext";
+import { AddEdit } from "./context/addEditContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <User>
       <Booking>
+        <AddEdit>
         <App />
+        </AddEdit>
       </Booking>
 
     </User>
