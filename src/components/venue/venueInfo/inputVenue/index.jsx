@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import { Typography } from '@mui/material'
 import DefaultInput from '../../../input/defaultInput'
 import Icons from '../../../icons'
 import GuestInput from '../../../input/guestInput'
@@ -9,9 +8,9 @@ import { InnerEditInfo } from './index.styles'
 import { useForm } from 'react-hook-form'
 import AddEditContext from '../../../../context/addEditContext'
 const InputVenue = ({venue}) => {
-  const {venueInfo, setVenueInfo} = useContext(AddEditContext)
+  const {setVenueInfo} = useContext(AddEditContext)
   const [guest, setGuest] = useState(1)
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit } = useForm();
     const [meta, setMeta] = useState({
       parking: venue? venue.meta.parking : false,
       pets: venue? venue.meta.pets : false,
@@ -21,7 +20,6 @@ const InputVenue = ({venue}) => {
     const onSubmit = (data) => {
       let allData = {...data, maxGuests: guest, meta}
       setVenueInfo(allData)
-      
   }
   return (
     <form onChange={handleSubmit(onSubmit)} onSubmit={handleSubmit(onSubmit)}>
@@ -35,10 +33,10 @@ const InputVenue = ({venue}) => {
     </InnerEditInfo>
     <OuterLocation>
       <LocationInfo>
-        <div className='address'><DefaultInput manager={{...register("address")}} variant="outlined" color="secondary" text="Address" type="text" /></div>
-        <div className='city'><DefaultInput manager={{...register("city")}} variant="outlined" color="secondary" text="City" type="text" /></div>
-        <div className='zip'><DefaultInput manager={{...register("zip")}} variant="outlined" color="secondary" text="Zip" type="text" /></div>
-        <div className='country'><DefaultInput manager={{...register("country")}} variant="outlined" color="secondary" text="Country" type="text" /></div>
+        <div className='address'><DefaultInput manager={{...register("location.address")}} variant="outlined" color="secondary" text="Address" type="text" /></div>
+        <div className='city'><DefaultInput manager={{...register("location.city")}} variant="outlined" color="secondary" text="City" type="text" /></div>
+        <div className='zip'><DefaultInput manager={{...register("location.zip")}} variant="outlined" color="secondary" text="Zip" type="text" /></div>
+        <div className='country'><DefaultInput manager={{...register("location.country")}} variant="outlined" color="secondary" text="Country" type="text" /></div>
       </LocationInfo>
     </OuterLocation>
     </OuterInfo>
