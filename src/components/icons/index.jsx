@@ -5,7 +5,7 @@ import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import IconSwitch from '../iconSwitch';
 import {IconBox} from './index.styles.js'
-const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="filter"}) => {
+const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="filter", meta=undefined, changer=undefined}) => {
     if(type === "filter"){
         return(
             <IconBox>
@@ -32,6 +32,23 @@ const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="f
             {parking && <LocalParkingIcon/>}
             {breakfeast && <BreakfastDiningIcon/>}
             </IconBox>
+        )
+    }
+    if(type === "addEdit"){
+        return(<>
+            <IconSwitch event={()=>{changer({...meta, wifi:!meta.wifi})}} checked={meta.wifi} outlined="true">
+            <WifiIcon />
+            </IconSwitch>
+            <IconSwitch event={()=>{changer({...meta, pets:!meta.pets})}} checked={meta.pets} outlined="true">
+            <PetsIcon />
+            </IconSwitch>
+            <IconSwitch event={()=>{changer({...meta, parking:!meta.parking})}} checked={meta.parking} outlined="true">
+            <LocalParkingIcon />
+            </IconSwitch>
+            <IconSwitch event={()=>{changer({...meta, breakfast:!meta.breakfast})}} checked={meta.breakfast} outlined="true">
+            <BreakfastDiningIcon />
+            </IconSwitch>
+        </>
         )
     }
   return (

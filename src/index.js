@@ -11,6 +11,7 @@ root.render(
       <Booking>
         <App />
       </Booking>
+
     </User>
   </React.StrictMode>
 );
