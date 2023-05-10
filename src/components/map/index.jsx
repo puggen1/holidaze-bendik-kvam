@@ -3,8 +3,10 @@ const Map = ({lng, lat, address, city, zip, country}) => {
     const key = `AIzaSyB7bSL0jgw16oShULlXqPNoPX8lcc1w1lw`
     const lastPart = `&zoom=14&size=350x250&key=${key}&format=jpg&scale=2`
     const size={
-        width: '350px',
-        height: '250px',
+        width: 'auto',
+        height: 'auto',
+        maxHeight: '250px',
+        maxWidth: '100%',
         borderRadius: '20px'
     }
     let url

@@ -47,6 +47,29 @@ const InnerInfo = styled(Box)(({ theme }) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  "@media (max-width: 591px)": {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    ".name": {
+      flex: "1 1 70%",
+    },
+    ".host": {
+      flex: "1 1 30%",
+    },
+    ".icons": {
+      flex: "1 1 100%",
+    },
+    ".guests": {
+      flex: "1 1 auto",
+    },
+    ".price": {
+      flex: "1 1 auto",
+    },
+    ".desc": {
+      flex: "1 1 100%",
+    },
+  },
 }));
 
 export { InnerInfo };
