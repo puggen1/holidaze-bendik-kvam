@@ -1,16 +1,17 @@
 import { createContext, useEffect, useState } from "react";
-
 const AddEditContext = createContext();
 
 export const AddEdit = ({ children }) => {
   const [media, setMedia] = useState([]);
   //adding placeholder here for now
+  const [meta, setMeta] = useState({wifi: false, pets: false, breakfast: false, parking: false});
+  const [guest, setGuest] = useState(1)
   const [venueInfo, setVenueInfo] = useState({
     name: "",
     price: 0,
     maxGuests: 1,
     description: "",
-    meta: { wifi: false, pets: false, breakfast: false, parking: false },
+    meta: meta,
     media: [],
     location: {
       address: "",
@@ -21,14 +22,16 @@ export const AddEdit = ({ children }) => {
   });
   useEffect(() => {
     setVenueInfo({ ...venueInfo, media });
-  }, [venueInfo]);
-  const tester = () => {
-    //the console log proves that the state is slow, something needs to be done with the state before eventually sending new venue / update excisting one...........
-    console.log(venueInfo);
-  };
+  }, [media,venueInfo]);
+  useEffect(() => {
+    setVenueInfo({ ...venueInfo, meta });
+  },[meta, venueInfo]);
+  useEffect(() => {
+    setVenueInfo({ ...venueInfo, maxGuests: guest });
+  },[guest, venueInfo]);
   return (
     <AddEditContext.Provider
-      value={{ media, setMedia, venueInfo, setVenueInfo, tester }}
+      value={{ media, setMedia, venueInfo, setVenueInfo, setMeta, meta, setGuest, guest}}
     >
       {children}
     </AddEditContext.Provider>

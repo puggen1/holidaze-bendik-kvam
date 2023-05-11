@@ -8,43 +8,36 @@ import { InnerEditInfo } from './index.styles'
 import { set, useForm } from 'react-hook-form'
 import AddEditContext from '../../../../context/addEditContext'
 const InputVenue = ({venue}) => {
-  const { register, handleSubmit, setValue } = useForm();
-  const [guest, setGuest] = useState(1)
-  const {setVenueInfo, setMedia} = useContext(AddEditContext)
-
+  const { register, handleSubmit, setValue,  } = useForm();
+  const { setVenueInfo, setMedia, venueInfo, meta, setMeta,setGuest, guest } = useContext(AddEditContext)
   useEffect(()=>{
     if(venue){
-      setValue("name", venue.name ? venue.name : "")
-      setValue("price", venue.price ? venue.price : 0)
-      setGuest(venue.maxGuests ? venue.maxGuests : 1)
+      setMeta({
+        parking: venue.meta.parking,
+        pets: venue.meta.pets,
+        breakfast: venue.meta.breakfast,
+        wifi: venue.meta.wifi,
+      })
+      setValue("name", venue.name)
+      setValue("price", venue.price)
+      setGuest(venue.maxGuests)
       setValue("description", venue.description ? venue.description : "")
-      setValue("meta", venue.meta ? venue.meta : {})
-      setValue("address", venue.address ? venue.address : "")
-      setValue("city", venue.city ? venue.city : "")
-      setValue("state", venue.state ? venue.state : "")
-      setValue("zip", venue.zip ? venue.zip : "")
-      setValue("country", venue.country ? venue.country : "")
-      setValue("media", venue.media ? venue.media : [])
-      setValue("maxGuests", venue.maxGuests ? venue.maxGuests : 1)
-      setMedia(venue.media ? venue.media : [] )
+      setValue("location.address", venue.address ? venue.address : "")
+      setValue("location.city", venue.city ? venue.city : "")
+      setValue("location.zip", venue.zip ? venue.zip : "")
+      setValue("location.country", venue.country ? venue.country : "")
+      setValue("media", venue.media)
+      setValue("maxGuests", venue.maxGuests)
+      setMedia(venue.media)
+      setVenueInfo(venue)
     }
   }, [])
-    
-    const [meta, setMeta] = useState({
-      parking: venue? venue.meta.parking : false,
-      pets: venue? venue.meta.pets : false,
-      breakfast:venue? venue.meta.breakfast :  false,
-      wifi: venue? venue.meta.wifi : false,
-    })
-    const onSubmit = (data) => {
-      let allData = {...data, maxGuests: guest, meta}
-      setVenueInfo(allData)
+   
+    const onEvent = (data) => {
+      setVenueInfo({...venueInfo, ...data, maxGuests: guest})
   }
-  useEffect(()=>{
-    onSubmit()
-  }, [guest, meta])
   return (
-    <form onChange={handleSubmit(onSubmit)} onSubmit={handleSubmit(onSubmit)}>
+    <form onChange={handleSubmit(onEvent)} onSubmit={handleSubmit(onEvent)}>
     <OuterInfo>
     <InnerEditInfo>
       <div className='name'><DefaultInput manager={{...register("name")}} variant="outlined" color="secondary" text="Venue Name" type="text"/></div>
