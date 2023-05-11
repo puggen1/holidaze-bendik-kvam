@@ -8,6 +8,8 @@ import {Button} from "@mui/material"
 //import button as customButton
 import CustomButton from '../Button';
 import { ModalContext } from '../../context/modalContext';
+import Login from '../modal/login';
+import Register from '../modal/register';
 const Navigation = ({name, venueManager, logout}) => {
     const [openstatus, setOpenStatus] = useState(false);
     const { modalStatus, setModalStatus, setInnerContent } = useContext(ModalContext)
@@ -18,8 +20,8 @@ const Navigation = ({name, venueManager, logout}) => {
       setOpenStatus(false)
     }
     let content = (<>
-      <Button onClick={()=>{change("login")}}  sx={{color:"white", fontWeight:"300"}} variant="text">Login</Button>
-      <Button onClick={()=>{change("register")}}  sx={{color:"white", fontWeight:"300"}} variant="text">Register</Button>
+      <Button onClick={()=>{change(<Login/>)}}  sx={{color:"white", fontWeight:"300"}} variant="text">Login</Button>
+      <Button onClick={()=>{change(<Register/>)}}  sx={{color:"white", fontWeight:"300"}} variant="text">Register</Button>
       </>)
     
     if(name){

@@ -4,6 +4,7 @@ import { Typography, Button as MuiButton, Box } from '@mui/material'
 import Button from "../../Button/index"
 import {ModalContext} from '../../../context/modalContext'
 import {UserContext} from '../../../context/userContext'
+import Register from '../register'
 const Login = () => {
 const {setInnerContent, setModalStatus} = useContext(ModalContext)
 const {login} = useContext(UserContext)
@@ -37,7 +38,7 @@ const [password, setPassword] = useState("")
         </Box>
         <Box>
         <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
-        <MuiButton type='text' onClick={()=>{setInnerContent("register")}}>Register</MuiButton>
+        <MuiButton type='text' onClick={()=>{setInnerContent(<Register/>)}}>Register</MuiButton>
         <Button event={handleLogin} color="secondary" variant="contained" text="Login"/>
         </Box>
     </div>

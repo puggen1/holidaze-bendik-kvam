@@ -36,16 +36,16 @@ const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="f
     }
     if(type === "addEdit"){
         return(<>
-            <IconSwitch event={()=>{changer({...meta, wifi:!meta.wifi})}} checked={meta.wifi} outlined="true">
+            <IconSwitch event={()=>{changer({...meta, wifi: meta.wifi ? false : true})}} checked={meta.wifi} outlined="true">
             <WifiIcon />
             </IconSwitch>
-            <IconSwitch event={()=>{changer({...meta, pets:!meta.pets})}} checked={meta.pets} outlined="true">
+            <IconSwitch event={()=>{changer({...meta, pets: meta.pets ? false : true})}} checked={meta.pets} outlined="true">
             <PetsIcon />
             </IconSwitch>
-            <IconSwitch event={()=>{changer({...meta, parking:!meta.parking})}} checked={meta.parking} outlined="true">
+            <IconSwitch event={()=>{changer({...meta, parking:meta.parking ? false : true})}} checked={meta.parking} outlined="true">
             <LocalParkingIcon />
             </IconSwitch>
-            <IconSwitch event={()=>{changer({...meta, breakfast:!meta.breakfast})}} checked={meta.breakfast} outlined="true">
+            <IconSwitch event={()=>{changer({...meta, breakfast: meta.breakfast ? false : true})}} checked={meta.breakfast} outlined="true">
             <BreakfastDiningIcon />
             </IconSwitch>
         </>

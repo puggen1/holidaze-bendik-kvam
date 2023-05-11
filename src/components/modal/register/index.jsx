@@ -5,6 +5,7 @@ import Button from "../../Button/index"
 import {ModalContext} from '../../../context/modalContext'
 import {UserContext} from '../../../context/userContext'
 import IconSwitch from '../../iconSwitch'
+import Login from '../login'
  
 const Register = () => {
 const {setInnerContent, setModalStatus} = useContext(ModalContext)
@@ -61,7 +62,7 @@ const handleRegister =async () => {
         </Box>
         <Box>
         <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
-        <MuiButton type='text' onClick={()=>{setInnerContent("login")}}>Login</MuiButton>
+        <MuiButton type='text' onClick={()=>{setInnerContent(<Login/>)}}>Login</MuiButton>
         <Button event={handleRegister} color="secondary" variant="contained" text="Register"/>
         </Box>
     </div>

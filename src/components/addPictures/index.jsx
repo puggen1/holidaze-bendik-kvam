@@ -4,7 +4,7 @@ import { ImageList, ImageListItem } from '@mui/material'
 import Button from '../Button'
 import AddEditContext from '../../context/addEditContext'
 const AddPictures = () => {
-  const {media, setMedia, tester} = useContext(AddEditContext)
+  const {media, setMedia} = useContext(AddEditContext)
   const [currentUrl, setCurrentUrl] = useState("")
   const manager = {
     value : currentUrl,
@@ -24,18 +24,17 @@ const AddPictures = () => {
  }
   return (
     <div>
-      <ImageList>
+      <ImageList  variant='masonry' rowHeight={150} cols={4} sx={{minHeight:"300px"}}>
         {media.map((item, index) => (
-          <ImageListItem key={index} >
-            <img onClick={removePicture} id={index} style={{width:"50px", height:"50px"}}src={item} alt="pic" />
+          <ImageListItem key={index} sx={{}}>
+            <img onClick={removePicture} id={index} style={{borderRadius:"20px" }}src={item} alt="pic" />
           </ImageListItem>
         ))}
       </ImageList>
-      <form onSubmit={onsubmit}>
+      <form style={{display:"flex", gap:"1rem", margin:"1rem auto"}} onSubmit={onsubmit}>
           <DefaultInput manager={manager} variant="outlined" color="secondary" text="Add Pictures" type="url" />
           <Button variant="contained" text="add" color="secondary" event={onsubmit}/>
      </form>
-     <button onClick={tester}></button>
     </div>
   )
 }
