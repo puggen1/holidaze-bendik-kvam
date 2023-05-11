@@ -8,14 +8,13 @@ import { AddEdit } from "./context/addEditContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <User>
-      <Booking>
-        <AddEdit>
-        <App />
-        </AddEdit>
-      </Booking>
-
-    </User>
+    <AddEdit>
+      <User>
+        <Booking>
+          <App />
+        </Booking>
+      </User>
+    </AddEdit>
   </React.StrictMode>
 );
 

@@ -9,8 +9,9 @@ import { set, useForm } from 'react-hook-form'
 import AddEditContext from '../../../../context/addEditContext'
 const InputVenue =({venue}) => {
   const { register, handleSubmit, setValue,  } = useForm();
-  const { setVenueInfo, setMedia, venueInfo, meta, setMeta,setGuest, guest, tester } = useContext(AddEditContext)
+  const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest, tester } = useContext(AddEditContext)
   //adds data if edit and not create/add
+  
   useEffect(()=>{
     if(venue){
       setMeta({
@@ -33,7 +34,12 @@ const InputVenue =({venue}) => {
       setVenueInfo(venue)
     }
   }, [])
-   
+  useEffect(() => {
+    setVenueInfo({ ...venueInfo, media });
+  }, [media, venueInfo]);
+  useEffect(() => {
+    setVenueInfo({ ...venueInfo, maxGuests: guest });
+  }, [guest, venueInfo]);
     const onEvent = (data) => {
       setVenueInfo({...venueInfo, ...data, maxGuests: guest})
       

@@ -19,7 +19,8 @@ const EditVenue = () => {
   return (<>
     {isLoading && <div>loading</div>}
     {isError && <div>error</div>}
-    {Object.keys(data).length > 0 && <OuterVenue>
+    {Object.keys(data).length > 0 && 
+      <OuterVenue>
         <InnerVenue>
         <AddPictures/>
         <InputVenue venue={data}/>
@@ -33,7 +34,8 @@ const EditVenue = () => {
           <Button event={()=>{setModalStatus(true); setInnerContent(<div>test</div>); tester()}} text="Create" color="secondary" variant="contained"/>
           </Box>
         </InnerAddVenue>
-    </OuterVenue>}
+    </OuterVenue>
+}
     </>
   )
 }

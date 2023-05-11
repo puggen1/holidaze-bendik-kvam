@@ -13,6 +13,7 @@ const AddVenue = () => {
  const {tester} = useContext(AddEditContext)
  const {setModalStatus, setInnerContent} = useContext(ModalContext)
   return (
+  
     <OuterVenue>
         <InnerVenue>
         <AddPictures/>
@@ -28,6 +29,7 @@ const AddVenue = () => {
           </Box>
         </InnerAddVenue>
     </OuterVenue>
+
   )
 }
 
