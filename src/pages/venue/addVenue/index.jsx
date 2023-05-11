@@ -24,7 +24,7 @@ const AddVenue = () => {
           </Box>
           <Box sx={{display:"flex", justifyContent:"center", gap:"1rem"}}>
           <Button event={()=>{navigate(-1)}} text="cancel" color="error" variant="contained"/>
-          <Button event={()=>{setModalStatus(true); setInnerContent(<Create/>)}} text="Create" color="secondary" variant="contained"/>
+          <Button event={()=>{setModalStatus(true); setInnerContent(<Create/>); tester()}} text="Create" color="secondary" variant="contained"/>
           </Box>
         </InnerAddVenue>
     </OuterVenue>

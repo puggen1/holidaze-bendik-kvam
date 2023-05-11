@@ -7,9 +7,10 @@ import { LocationInfo, OuterLocation } from '../location/index.styles'
 import { InnerEditInfo } from './index.styles'
 import { set, useForm } from 'react-hook-form'
 import AddEditContext from '../../../../context/addEditContext'
-const InputVenue = ({venue}) => {
+const InputVenue =({venue}) => {
   const { register, handleSubmit, setValue,  } = useForm();
-  const { setVenueInfo, setMedia, venueInfo, meta, setMeta,setGuest, guest } = useContext(AddEditContext)
+  const { setVenueInfo, setMedia, venueInfo, meta, setMeta,setGuest, guest, tester } = useContext(AddEditContext)
+  //adds data if edit and not create/add
   useEffect(()=>{
     if(venue){
       setMeta({
@@ -35,6 +36,7 @@ const InputVenue = ({venue}) => {
    
     const onEvent = (data) => {
       setVenueInfo({...venueInfo, ...data, maxGuests: guest})
+      
   }
   return (
     <form onChange={handleSubmit(onEvent)} onSubmit={handleSubmit(onEvent)}>

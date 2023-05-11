@@ -5,7 +5,7 @@ import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import IconSwitch from '../iconSwitch';
 import {IconBox} from './index.styles.js'
-const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="filter", meta=undefined, changer=undefined}) => {
+const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="filter", meta=undefined, changer=undefined, manager=undefined}) => {
     if(type === "filter"){
         return(
             <IconBox>
@@ -36,16 +36,16 @@ const Icons = ({pets=false, parking=false, breakfeast=false, wifi=false, type="f
     }
     if(type === "addEdit"){
         return(<>
-            <IconSwitch event={()=>{changer({...meta, wifi: meta.wifi ? false : true})}} checked={meta.wifi} outlined="true">
+            <IconSwitch key={0} event={()=>{changer({...meta, wifi: !meta.wifi})}} checked={meta.wifi} outlined="true">
             <WifiIcon />
             </IconSwitch>
-            <IconSwitch event={()=>{changer({...meta, pets: meta.pets ? false : true})}} checked={meta.pets} outlined="true">
+            <IconSwitch key={1} event={()=>{changer({...meta, pets: !meta.pets})}} checked={meta.pets} outlined="true">
             <PetsIcon />
             </IconSwitch>
-            <IconSwitch event={()=>{changer({...meta, parking:meta.parking ? false : true})}} checked={meta.parking} outlined="true">
+            <IconSwitch key={3} event={()=>{changer({...meta, parking:!meta.parking})}} checked={meta.parking} outlined="true">
             <LocalParkingIcon />
             </IconSwitch>
-            <IconSwitch event={()=>{changer({...meta, breakfast: meta.breakfast ? false : true})}} checked={meta.breakfast} outlined="true">
+            <IconSwitch key={4} event={()=>{changer({...meta, breakfast: !meta.breakfast})}} checked={meta.breakfast} outlined="true">
             <BreakfastDiningIcon />
             </IconSwitch>
         </>

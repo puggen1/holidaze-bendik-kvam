@@ -11,7 +11,7 @@ export const AddEdit = ({ children }) => {
     price: 0,
     maxGuests: 1,
     description: "",
-    meta: meta,
+    meta: {...meta},
     media: [],
     location: {
       address: "",
@@ -22,16 +22,16 @@ export const AddEdit = ({ children }) => {
   });
   useEffect(() => {
     setVenueInfo({ ...venueInfo, media });
-  }, [media,venueInfo]);
-  useEffect(() => {
-    setVenueInfo({ ...venueInfo, meta });
-  },[meta, venueInfo]);
+  }, [media, venueInfo]);
   useEffect(() => {
     setVenueInfo({ ...venueInfo, maxGuests: guest });
   },[guest, venueInfo]);
+const tester = ()=>{
+  console.log({...venueInfo, media, meta, guest})
+}
   return (
     <AddEditContext.Provider
-      value={{ media, setMedia, venueInfo, setVenueInfo, setMeta, meta, setGuest, guest}}
+      value={{ media, setMedia, venueInfo, setVenueInfo, setMeta, meta, setGuest, guest, tester}}
     >
       {children}
     </AddEditContext.Provider>

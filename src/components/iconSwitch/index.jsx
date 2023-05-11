@@ -1,10 +1,10 @@
 import React from 'react'
 import { IconSwitcher, SwitchDiv } from './index.styles'
-const IconSwitch = ({children, outlined, event, checked}) => {
+const IconSwitch = ({children, outlined, event=undefined, checked=undefined}) => {
   return (
     <SwitchDiv>
       {children}
-      <IconSwitcher checked={checked} onChange={event} color='secondary' outlined={outlined}/>
+      <IconSwitcher value={checked} checked={checked} onChange={event} color='secondary' outlined={outlined}/>
     </SwitchDiv>
   )
 }

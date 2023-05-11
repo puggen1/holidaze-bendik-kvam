@@ -13,7 +13,7 @@ import { baseUrl } from '../../../utils/constants'
 const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
- const {venueInfo} = useContext(AddEditContext)
+ const {tester} = useContext(AddEditContext)
  const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id)
  const {setModalStatus, setInnerContent} = useContext(ModalContext)
   return (<>
@@ -30,7 +30,7 @@ const EditVenue = () => {
           </Box>
           <Box sx={{display:"flex", justifyContent:"center", gap:"1rem"}}>
           <Button event={()=>{navigate(-1)}} text="cancel" color="error" variant="contained"/>
-          <Button event={()=>{setModalStatus(true); setInnerContent(<div>test</div>); console.log(venueInfo)}} text="Create" color="secondary" variant="contained"/>
+          <Button event={()=>{setModalStatus(true); setInnerContent(<div>test</div>); tester()}} text="Create" color="secondary" variant="contained"/>
           </Box>
         </InnerAddVenue>
     </OuterVenue>}
