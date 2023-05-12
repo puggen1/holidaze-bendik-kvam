@@ -7,6 +7,7 @@ import { Guests, OuterBooking, LowerBooking } from "./index.styles";
 import useGetBookedDays from "../../hooks/useGetBookedDays";
 import { BookingContext } from "../../context/bookingContext";
 import { ModalContext } from "../../context/modalContext";
+import BookingModal from "../modal/booking";
 const Booking = ({bookedDates, max}) => {
   const {bookingTime, setBookingTime, guests, setGuests, venueId} = useContext(BookingContext)
   const {setModalStatus, setInnerContent} = useContext(ModalContext)
@@ -16,7 +17,7 @@ const Booking = ({bookedDates, max}) => {
       if(bookingTime.length === 0){
         return
       }
-      setInnerContent("booking")
+      setInnerContent(<BookingModal/>)
       setModalStatus(true)
     }
   return (

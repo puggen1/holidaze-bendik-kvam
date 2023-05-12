@@ -9,13 +9,30 @@ import { Box } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGetData } from '../../../hooks/useGetData'
 import { baseUrl } from '../../../utils/constants'
+import Edit from '../../../components/modal/edit'
 
 const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
- const {tester} = useContext(AddEditContext)
  const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id)
+ const {returnAllData, handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
  const {setModalStatus, setInnerContent} = useContext(ModalContext)
+
+
+
+ const validation = (data) => {
+  setVenueInfo({...venueInfo, ...data, maxGuests: guest})
+  setModalStatus(true)
+  setInnerContent(<Edit/>)
+  
+}
+
+  const onEdit =()=>{
+    handleSubmit(validation)()
+    if(Object.keys(errors).length > 0){
+      setModalStatus(false)
+    }
+  }
   return (<>
     {isLoading && <div>loading</div>}
     {isError && <div>error</div>}
@@ -31,7 +48,7 @@ const EditVenue = () => {
           </Box>
           <Box sx={{display:"flex", justifyContent:"center", gap:"1rem"}}>
           <Button event={()=>{navigate(-1)}} text="cancel" color="error" variant="contained"/>
-          <Button event={()=>{setModalStatus(true); setInnerContent(<div>test</div>); tester()}} text="Create" color="secondary" variant="contained"/>
+          <Button event={()=>{onEdit()}} text="Create" color="secondary" variant="contained"/>
           </Box>
         </InnerAddVenue>
     </OuterVenue>

@@ -14,7 +14,7 @@ const OuterLocation = styled(Box)(({ theme }) => ({
 const LocationInfo = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "space-evenly",
   "@media (max-width: 591px)": {
     flexDirection: "row",
     flexWrap: "wrap",

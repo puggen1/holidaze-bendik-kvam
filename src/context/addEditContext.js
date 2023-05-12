@@ -1,7 +1,16 @@
 import { createContext, useEffect, useState } from "react";
-const AddEditContext = createContext();
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import addEditSchema from "../utils/schemas/addEdit";
 
+const AddEditContext = createContext();
 export const AddEdit = ({ children }) => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(addEditSchema) });
   const [media, setMedia] = useState([]);
   //adding placeholder here for now
   const [meta, setMeta] = useState({
@@ -13,6 +22,7 @@ export const AddEdit = ({ children }) => {
   const [guest, setGuest] = useState(1);
   const [venueInfo, setVenueInfo] = useState({
     name: "",
+    id: "",
     price: 0,
     maxGuests: 1,
     description: "",
@@ -26,8 +36,8 @@ export const AddEdit = ({ children }) => {
     },
   });
 
-  const tester = () => {
-    console.log({ ...venueInfo, media, meta, maxGuests: guest });
+  const returnAllData = () => {
+    return { ...venueInfo, media, meta: meta, maxGuests: guest };
   };
   return (
     <AddEditContext.Provider
@@ -40,7 +50,11 @@ export const AddEdit = ({ children }) => {
         meta,
         setGuest,
         guest,
-        tester,
+        returnAllData,
+        register,
+        handleSubmit,
+        setValue,
+        errors,
       }}
     >
       {children}

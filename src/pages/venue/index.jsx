@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetData } from '../../hooks/useGetData'
 import { baseUrl } from '../../utils/constants'
@@ -11,9 +11,13 @@ const Venue = () => {
   const { id } = useParams();
   const {guests, setGuests, setVenueId, setVenueName, setPrice} = useContext(BookingContext)
   const { data, isLoading, isError } = useGetData(baseUrl + "/venues/" + id + "?_owner=true&_bookings=true")
-  setVenueId(id)
-  setVenueName(data.name)
-  setPrice(data.price)
+  //added into useEffect to prevent setting state on something that is loading...
+  useEffect(() => {
+    setVenueId(id)
+    setVenueName(data.name)
+    setPrice(data.price)
+  }, [data])
+ 
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error</div>
   return (

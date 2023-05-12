@@ -5,13 +5,20 @@ import GuestInput from '../../../input/guestInput'
 import { OuterInfo } from '../index.styles'
 import { LocationInfo, OuterLocation } from '../location/index.styles'
 import { InnerEditInfo } from './index.styles'
-import { set, useForm } from 'react-hook-form'
 import AddEditContext from '../../../../context/addEditContext'
+
 const InputVenue =({venue}) => {
-  const { register, handleSubmit, setValue,  } = useForm();
-  const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest, tester } = useContext(AddEditContext)
+  const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest,  register,
+    handleSubmit,
+    setValue,
+    errors, } = useContext(AddEditContext)
   //adds data if edit and not create/add
-  
+  const priceInput = (name) => register(name, {
+    setValue: (value) => {
+      const number = parseFloat(value);
+      register(name).onChange(number);
+    }
+  });
   useEffect(()=>{
     if(venue){
       setMeta({
@@ -30,6 +37,7 @@ const InputVenue =({venue}) => {
       setValue("location.country", venue.country ? venue.country : "")
       setValue("media", venue.media)
       setValue("maxGuests", venue.maxGuests)
+      setValue("id", venue.id ? venue.id : "")
       setMedia(venue.media)
       setVenueInfo(venue)
     }
@@ -38,21 +46,29 @@ const InputVenue =({venue}) => {
     setVenueInfo({ ...venueInfo, media });
   }, [media, venueInfo]);
   useEffect(() => {
+    setValue("maxGuests", guest)
+  }, [guest]);
+  useEffect(() => {
     setVenueInfo({ ...venueInfo, maxGuests: guest });
   }, [guest, venueInfo]);
-    const onEvent = (data) => {
-      setVenueInfo({...venueInfo, ...data, maxGuests: guest})
-      
-  }
+  
+  
   return (
-    <form onChange={handleSubmit(onEvent)} onSubmit={handleSubmit(onEvent)}>
+    <form >
     <OuterInfo>
     <InnerEditInfo>
-      <div className='name'><DefaultInput manager={{...register("name")}} variant="outlined" color="secondary" text="Venue Name" type="text"/></div>
+      <div className='name'><DefaultInput manager={{...register("name")}} variant="outlined" color={ errors.name? "error" : "secondary"} text="Venue Name" type="text"/>
+      <p>{errors.name?.message}</p></div>
       <div className='icons'><Icons meta={meta} changer={setMeta} type="addEdit"/></div>
-      <div className='price'><DefaultInput manager={{...register("price")}} variant="outlined" color="secondary" text="price" type="number"/></div>
-      <div className='guests'><GuestInput value={guest} changer={setGuest}/></div>
-      <div className='desc'><DefaultInput manager={{...register("description")}} variant="outlined" color="secondary" text="Description" type="text"/></div>
+      <div className='price'><DefaultInput manager={{...priceInput("price")}} variant="outlined" color={ errors.price? "error" : "secondary"} text="price" type="number" />
+      <p>{errors.price?.message}</p>
+      </div>
+      <div className='guests'><GuestInput value={guest} changer={setGuest}/>
+      <p>{errors.maxGuests?.message}</p>
+      </div>
+      <div className='desc'><DefaultInput manager={{...register("description")}} variant="outlined" color={ errors.description? "error" : "secondary"} text="Description" type="text"/>
+      <p>{errors.description?.message}</p>
+      </div>
     </InnerEditInfo>
     <OuterLocation>
       <LocationInfo>

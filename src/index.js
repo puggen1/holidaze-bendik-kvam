@@ -5,15 +5,18 @@ import reportWebVitals from "./reportWebVitals";
 import User from "./context/userContext";
 import Booking from "./context/bookingContext";
 import { AddEdit } from "./context/addEditContext";
+import Snackbar from "./context/snackBarContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AddEdit>
-      <User>
-        <Booking>
-          <App />
-        </Booking>
-      </User>
+      <Snackbar>
+        <User>
+          <Booking>
+            <App />
+          </Booking>
+        </User>
+      </Snackbar>
     </AddEdit>
   </React.StrictMode>
 );

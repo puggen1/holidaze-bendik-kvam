@@ -10,8 +10,24 @@ import { useNavigate } from 'react-router-dom'
 import Create from '../../../components/modal/create'
 const AddVenue = () => {
   const navigate = useNavigate()
- const {tester} = useContext(AddEditContext)
+ const {returnAllData, handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
  const {setModalStatus, setInnerContent} = useContext(ModalContext)
+
+
+
+ const validation = (data) => {
+  setVenueInfo({...venueInfo, ...data, maxGuests: guest})
+  setModalStatus(true)
+  setInnerContent(<Create/>)
+  
+}
+
+  const onCreate =()=>{
+    handleSubmit(validation)()
+    if(Object.keys(errors).length > 0){
+      setModalStatus(false)
+    }
+  }
   return (
   
     <OuterVenue>
@@ -25,7 +41,7 @@ const AddVenue = () => {
           </Box>
           <Box sx={{display:"flex", justifyContent:"center", gap:"1rem"}}>
           <Button event={()=>{navigate(-1)}} text="cancel" color="error" variant="contained"/>
-          <Button event={()=>{setModalStatus(true); setInnerContent(<Create/>); tester()}} text="Create" color="secondary" variant="contained"/>
+          <Button event={()=>{onCreate()}} text="Create" color="secondary" variant="contained"/>
           </Box>
         </InnerAddVenue>
     </OuterVenue>
