@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import DefaultInput from '../../../input/defaultInput'
 import Icons from '../../../icons'
 import GuestInput from '../../../input/guestInput'
@@ -6,10 +6,8 @@ import { OuterInfo } from '../index.styles'
 import { LocationInfo, OuterLocation } from '../location/index.styles'
 import { InnerEditInfo } from './index.styles'
 import AddEditContext from '../../../../context/addEditContext'
-
 const InputVenue =({venue}) => {
   const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest,  register,
-    handleSubmit,
     setValue,
     errors, } = useContext(AddEditContext)
   //adds data if edit and not create/add
@@ -31,10 +29,10 @@ const InputVenue =({venue}) => {
       setValue("price", venue.price)
       setGuest(venue.maxGuests)
       setValue("description", venue.description ? venue.description : "")
-      setValue("location.address", venue.address ? venue.address : "")
-      setValue("location.city", venue.city ? venue.city : "")
-      setValue("location.zip", venue.zip ? venue.zip : "")
-      setValue("location.country", venue.country ? venue.country : "")
+      setValue("location.address", venue.location.address ? venue.location.address : "")
+      setValue("location.city", venue.location.city ? venue.location.city : "")
+      setValue("location.zip", venue.location.zip ? venue.location.zip : "")
+      setValue("location.country", venue.location.country ? venue.location.country : "")
       setValue("media", venue.media)
       setValue("maxGuests", venue.maxGuests)
       setValue("id", venue.id ? venue.id : "")
@@ -44,15 +42,19 @@ const InputVenue =({venue}) => {
   }, [])
   useEffect(() => {
     setVenueInfo({ ...venueInfo, media });
-  }, [media, venueInfo]);
+  }, [media, venueInfo, setVenueInfo]);
   useEffect(() => {
     setValue("maxGuests", guest)
-  }, [guest]);
+  }, [guest, setValue]);
   useEffect(() => {
     setVenueInfo({ ...venueInfo, maxGuests: guest });
-  }, [guest, venueInfo]);
+  }, [guest, venueInfo, setVenueInfo]);
   
-  
+  const mapPreview = () => {
+    if (venueInfo.location.address.length > 0) {
+     
+    }
+  }
   return (
     <form >
     <OuterInfo>
@@ -72,7 +74,7 @@ const InputVenue =({venue}) => {
     </InnerEditInfo>
     <OuterLocation>
       <LocationInfo>
-        <div className='address'><DefaultInput manager={{...register("location.address")}} variant="outlined" color="secondary" text="Address" type="text" /></div>
+        <div className='address'><DefaultInput manager={{...register("location.address"), }} variant="outlined" color="secondary" text="Address" type="text" /></div>
         <div className='city'><DefaultInput manager={{...register("location.city")}} variant="outlined" color="secondary" text="City" type="text" /></div>
         <div className='zip'><DefaultInput manager={{...register("location.zip")}} variant="outlined" color="secondary" text="Zip" type="text" /></div>
         <div className='country'><DefaultInput manager={{...register("location.country")}} variant="outlined" color="secondary" text="Country" type="text" /></div>

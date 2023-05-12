@@ -2,15 +2,16 @@ import {useContext, useState} from 'react'
 import DefaultInput from '../../input/defaultInput'
 import { Typography, Button as MuiButton, Box } from '@mui/material'
 import Button from "../../Button/index"
-import {ModalContext} from '../../../context/modalContext'
 import {UserContext} from '../../../context/userContext'
 import Register from '../register'
 import { useForm } from 'react-hook-form'
+import useModalToggler from '../../../hooks/useModalToggler'
+import useSetModalContent from '../../../hooks/useSetModalContent'
 const Login = () => {
-const {setInnerContent, setModalStatus} = useContext(ModalContext)
 const {login} = useContext(UserContext)
-
+const {setModal} = useSetModalContent()
 const { register, handleSubmit, setValue} = useForm();
+const {modalOff} = useModalToggler()
  /*needs to add a hook for this*/
  const handleLogin =async (data) => {
     const response = await login({email:data.email, password:data.password})
@@ -19,7 +20,7 @@ const { register, handleSubmit, setValue} = useForm();
         //here show alert and close modal
         setValue("email", "")
         setValue("password", "")
-        setModalStatus(false)
+        modalOff()
     }
     else{
         //show error message here
@@ -34,7 +35,7 @@ const { register, handleSubmit, setValue} = useForm();
         </Box>
         <Box>
         <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
-        <MuiButton type='text' onClick={()=>{setInnerContent(<Register/>)}}>Register</MuiButton>
+        <MuiButton type='text' onClick={()=>{setModal(<Register/>)}}>Register</MuiButton>
         <Button event={handleSubmit(handleLogin)} color="secondary" variant="contained" text="Login"/>
         </Box>
     </div>

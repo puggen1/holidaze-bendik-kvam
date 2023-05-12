@@ -5,27 +5,29 @@ import Button from '../../../components/Button'
 import { Box } from '@mui/material'
 import { useContext } from 'react'
 import AddEditContext from '../../../context/addEditContext'
-import { ModalContext } from '../../../context/modalContext'
 import { useNavigate } from 'react-router-dom'
 import Create from '../../../components/modal/create'
+import useModalToggler from '../../../hooks/useModalToggler'
+import useSetModalContent from '../../../hooks/useSetModalContent'
+import useGetCords from '../../../hooks/useGetCords'
 const AddVenue = () => {
+  const {createUrl} = useGetCords()
   const navigate = useNavigate()
- const {returnAllData, handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
- const {setModalStatus, setInnerContent} = useContext(ModalContext)
-
-
-
+ const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
+  const {modalOn, modalOff} = useModalToggler()
+  const {setModal} = useSetModalContent()
  const validation = (data) => {
+  console.log(createUrl(data.location.address + " " + data.location.city + " " + data.location.zip + " " + data.location.country))
   setVenueInfo({...venueInfo, ...data, maxGuests: guest})
-  setModalStatus(true)
-  setInnerContent(<Create/>)
+  modalOn()
+  setModal(<Create/>)
   
 }
 
   const onCreate =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){
-      setModalStatus(false)
+      modalOff()
     }
   }
   return (

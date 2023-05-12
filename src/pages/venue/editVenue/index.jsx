@@ -1,5 +1,4 @@
 import {useContext} from 'react'
-import { ModalContext } from '../../../context/modalContext'
 import { InnerBooking as InnerAddVenue, InnerVenue, OuterVenue } from '../index.styles' 
 import AddEditContext from '../../../context/addEditContext'
 import InputVenue from '../../../components/venue/venueInfo/inputVenue'
@@ -10,27 +9,28 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useGetData } from '../../../hooks/useGetData'
 import { baseUrl } from '../../../utils/constants'
 import Edit from '../../../components/modal/edit'
-
+import useModalToggler from '../../../hooks/useModalToggler'
+import useSetModalContent from '../../../hooks/useSetModalContent'
 const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
- const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id)
- const {returnAllData, handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
- const {setModalStatus, setInnerContent} = useContext(ModalContext)
-
-
+  const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id)
+  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
+  const {modalOn, modalOff} = useModalToggler()
+  const {setModal} = useSetModalContent()
 
  const validation = (data) => {
+  //this might not be needed
   setVenueInfo({...venueInfo, ...data, maxGuests: guest})
-  setModalStatus(true)
-  setInnerContent(<Edit/>)
+  modalOn()
+  setModal(<Edit/>)
   
 }
 
   const onEdit =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){
-      setModalStatus(false)
+      modalOff()
     }
   }
   return (<>

@@ -1,20 +1,20 @@
 
 import { Typography, Button as MuiButton, Box } from '@mui/material'
 import Button from "../../Button/index"
-import {ModalContext} from '../../../context/modalContext'
-import {useContext} from 'react';
-import AddEditContext from '../../../context/addEditContext';
 import useSendData from '../../../hooks/useSendData';
 import { baseUrl } from '../../../utils/constants';
 import useGetAuth from '../../../hooks/useGetAuth';
 import useHandleSnackbar from '../../../hooks/useHandleSnackbar';
 import { Link, useNavigate } from 'react-router-dom';
+import useGetVenueData from '../../../hooks/useGetVenueData';
+import useModalToggler from '../../../hooks/useModalToggler';
 const Create = () => {
-    const {returnAllData} = useContext(AddEditContext)
-    const auth = useGetAuth()
+  //getting venue data from context/hook
+  const venueInfo = useGetVenueData()
+  //getting auth from context/hook
+  const {modalOff} = useModalToggler()
+  const auth = useGetAuth()
     //due to state being slow, venueInfo is an combined object of all the diffrent states.....
-    const venueInfo = returnAllData()
-    const {setModalStatus} = useContext(ModalContext)
     //send data, and give alert based on response
 const navigate = useNavigate()
     const {handleBar} = useHandleSnackbar()
@@ -22,17 +22,17 @@ const navigate = useNavigate()
   const createVenue =async () => {
     if(!auth){
        handleBar("you need to be logged in to create a venue", "error" )
-      setModalStatus(false)
+      modalOff()
       return
     }
     const result = await sender(venueInfo, baseUrl + "/venues", "POST",auth)
     if(result.id){
-      setModalStatus(false)
+      modalOff()
       handleBar(<><p>Venue added</p></>,"success")
       navigate(`/venue/${result.id}`)
     }
     else{
-      setModalStatus(false)
+      modalOff()
       handleBar(<p>something went wrong</p>, "error" )
     }
     
@@ -46,7 +46,7 @@ const navigate = useNavigate()
         <Typography textAlign="center" variant='h6' component="p">max guests: {venueInfo.maxGuests}</Typography>
         </Box>
         <Box sx={{display:"flex", gap:"2rem", marginTop:"auto"}}>
-        <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
+        <Button event={()=>{modalOff()}} color="error" variant="contained" text="Cancel"/>
         <Button event={()=>{createVenue()}} color="secondary" variant="contained" text="Create"/>
         </Box>
     </div>  )
