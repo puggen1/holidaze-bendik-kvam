@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import { InnerBooking as InnerAddVenue, InnerVenue, OuterVenue } from '../index.styles' 
 import AddEditContext from '../../../context/addEditContext'
 import InputVenue from '../../../components/venue/venueInfo/inputVenue'
@@ -11,14 +11,24 @@ import { baseUrl } from '../../../utils/constants'
 import Edit from '../../../components/modal/edit'
 import useModalToggler from '../../../hooks/useModalToggler'
 import useSetModalContent from '../../../hooks/useSetModalContent'
+import useCheckPermission from '../../../hooks/useCheckPermission'
+import useGetUserInfo from '../../../hooks/useGetUserInfo'
 const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
-  const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id)
+  const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id + "?_owner=true")
   const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()
-
+  const {checkPermission} = useCheckPermission()
+  const name = useGetUserInfo("name")
+  //checks if you are logged in and venue manager, and if you are the owner of the venue
+  useEffect(()=>{
+    if(Object.keys(data).length > 0){
+        if((!checkPermission("admin") && !checkPermission("auth")) || (name !== data.owner.name)){
+        navigate(-1)
+      }
+  }},[data])
  const validation = (data) => {
   //this might not be needed
   setVenueInfo({...venueInfo, ...data, maxGuests: guest})

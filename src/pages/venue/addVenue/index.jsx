@@ -3,15 +3,21 @@ import InputVenue from '../../../components/venue/venueInfo/inputVenue'
 import AddPictures from '../../../components/addPictures'
 import Button from '../../../components/Button'
 import { Box } from '@mui/material'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import AddEditContext from '../../../context/addEditContext'
 import { useNavigate } from 'react-router-dom'
 import Create from '../../../components/modal/create'
 import useModalToggler from '../../../hooks/useModalToggler'
 import useSetModalContent from '../../../hooks/useSetModalContent'
+import useCheckPermission from '../../../hooks/useCheckPermission'
 const AddVenue = () => {
-
   const navigate = useNavigate()
+  const {checkPermission} = useCheckPermission()
+  useEffect(()=>{
+    if(!checkPermission("admin") && !checkPermission("auth")){
+      navigate(-1)
+    }
+  },[])
  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()

@@ -36,12 +36,12 @@ const OuterCarousel = styled(Box)(({ theme }) => ({
     width: "100%",
     margin: "1rem auto",
     "& .prev": {
-      right: "50px",
+      right: "60px",
       left: "unset",
       top: "5px",
     },
     "& .next": {
-      right: "50px",
+      right: "60px",
       top: "unset",
       bottom: "5px",
     },
@@ -68,7 +68,8 @@ const CarouselNavigation = styled(Box)(({ theme }) => ({
   gap: "6.25%",
   margin: "20px auto",
   overflow: "hidden",
-  height: "auto",
+  width: "100%",
+  height: "120px",
 
   "& img": {
     borderRadius: "20px",
@@ -90,7 +91,7 @@ const CarouselNavigation = styled(Box)(({ theme }) => ({
     position: "absolute",
     right: "5%",
     flexDirection: "column",
-    width: "auto",
+    width: "100px",
     height: "100%",
     boxSizing: "border-box",
     justifyContent: "center",
@@ -110,7 +111,7 @@ const CarouselNavigation = styled(Box)(({ theme }) => ({
     flexWrap: "nowrap",
     width: "100%",
     maxWidth: "100%",
-    height: "auto",
+    height: "120px",
     justifyContent: "center",
     margin: "10px auto",
     boxSizing: "border-box",
