@@ -9,15 +9,13 @@ import { useNavigate } from 'react-router-dom'
 import Create from '../../../components/modal/create'
 import useModalToggler from '../../../hooks/useModalToggler'
 import useSetModalContent from '../../../hooks/useSetModalContent'
-import useGetCords from '../../../hooks/useGetCords'
 const AddVenue = () => {
-  const {createUrl} = useGetCords()
+
   const navigate = useNavigate()
  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()
  const validation = (data) => {
-  console.log(createUrl(data.location.address + " " + data.location.city + " " + data.location.zip + " " + data.location.country))
   setVenueInfo({...venueInfo, ...data, maxGuests: guest})
   modalOn()
   setModal(<Create/>)

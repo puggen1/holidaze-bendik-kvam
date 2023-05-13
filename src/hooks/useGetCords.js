@@ -1,13 +1,18 @@
+import { useEffect, useState } from "react"
 import { geocodingUrl } from "../utils/constants"
-const useGetCords = () => {
+import {useGetData} from "./useGetData"
+const useGetCords = (input) => {
+    const [string, setString] = useState(input)
+    const [coords, setCoords] = useState({ lat: 0, lng: 0 })
+    const {data, isError, isLoading} = useGetData(geocodingUrl + string + "&key=" + process.env.REACT_APP_API_KEY)
+    
+    useEffect(() => {
+        if (data) {
+            setCoords({ lat: data[0].lat, lng: data[0].lon })
+        }
+    }   , [data])
 
-    const createUrl = (string) => {
-        //replace + and space with %20 and %2B
-        const formattedString = string.replace(/\s/g, "%20").replace(/\+/g, "%2B")
-        const url = `${geocodingUrl}address=${formattedString}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
-        return url
-    }
-    return { createUrl }
+    return {coords}
 }
 
 
