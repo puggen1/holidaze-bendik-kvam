@@ -15,7 +15,6 @@ const OuterBooking = styled(Box)(({ theme }) => ({
     margin: "auto auto auto auto",
   },
   "@media (max-width: 950px)": {
-    flexDirection: "row",
     flexWrap: "nowrap",
     maxWidth: "100%",
     width: "100%",

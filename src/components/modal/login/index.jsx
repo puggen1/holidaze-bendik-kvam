@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react'
+import {useContext} from 'react'
 import DefaultInput from '../../input/defaultInput'
 import { Typography, Button as MuiButton, Box } from '@mui/material'
 import Button from "../../Button/index"

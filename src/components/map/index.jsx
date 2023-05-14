@@ -24,7 +24,7 @@ const Map = ({lng, lat, address, city, zip, country}) => {
         
     
     }else{
-        const tempMarker = `&markers=color:blue%7Clabel:S%7C${lng,lat}`
+        const tempMarker = `&markers=color:blue%7Clabel:S%7C${lng + "" +lat}`
         url = firstPart+lat+lng+tempMarker+lastPart
     }
     return(<>

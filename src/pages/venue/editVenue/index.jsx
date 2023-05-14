@@ -28,7 +28,7 @@ const EditVenue = () => {
         if((!checkPermission("admin") && !checkPermission("auth")) || (name !== data.owner.name)){
         navigate(-1)
       }
-  }},[data])
+  }},[data, checkPermission,name, navigate])
  const validation = (data) => {
   //this might not be needed
   setVenueInfo({...venueInfo, ...data, maxGuests: guest})

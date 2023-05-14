@@ -17,7 +17,8 @@ const {setModal} = useSetModalContent()
     const dateFormat = "DD/MM/YYYY";
     const [booked, setBooked] = useState([])
 
-    const isBookedChecker = (dates, datestring) => {
+    //warning make callback function for this
+    const isBookedChecker = (dates) => {
       if(dates === null){
           console.log("test")
           reset()
@@ -65,7 +66,7 @@ const {setModal} = useSetModalContent()
         return
       }
       isBookedChecker(pickedDates)
-    }, [booked]);
+    }, [booked, isBookedChecker, pickedDates]);
 
       const reset = () => {
         setPickedDates([]);

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetData } from '../../hooks/useGetData';
 import { baseUrl } from '../../utils/constants';
@@ -20,7 +20,7 @@ const Venue = () => {
     setVenueName(data.name)
     setPrice(data.price)
     
-  }, [data])
+  }, [data, id, setVenueId, setVenueName, setPrice])
  
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error</div>

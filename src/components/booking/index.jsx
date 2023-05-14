@@ -1,8 +1,8 @@
 import Calendar from "../calendar";
-import {useState, useRef, useContext} from 'react'
+import { useRef, useContext} from 'react'
 import GuestInput from "../input/guestInput";
 import CustomButton from "../Button";
-import { Box, Typography, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import { Guests, OuterBooking, LowerBooking } from "./index.styles";
 import useGetBookedDays from "../../hooks/useGetBookedDays";
 import { BookingContext } from "../../context/bookingContext";
