@@ -3,7 +3,15 @@ import dayjs from "dayjs"
 import { useEffect, useState } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { StyledRangePanel } from "./index.styles";
-const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
+import useModalToggler from "../../hooks/useModalToggler";
+import useSetModalContent from "../../hooks/useSetModalContent";
+import Login from "../modal/login";
+const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
+
+//hook extraction
+const {modalOn} = useModalToggler()
+const {setModal} = useSetModalContent()
+
     dayjs.extend(customParseFormat);
     const { RangePicker } = DatePicker;
     const dateFormat = "DD/MM/YYYY";
@@ -87,6 +95,12 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
      const test = (trigger) =>{
       return parent.current
       }
+      const disabledAction = () =>{
+        modalOn()
+        setModal(<Login/>)
+      }
+      //an function here for now, it will be used to open modal when user is not logged in and tries to click on the calendar
+      
   return (
     <>
     <RangePicker
@@ -101,7 +115,7 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
     getPopupContainer={test}
     //format={dateFormat}
     open={true}
-    onCalendarChange={isBookedChecker}
+    onCalendarChange={loggedIn ? isBookedChecker : disabledAction}
     disabledDate={disabled}
     mode={['date', 'date']}
     format="YYYY-MM-DD"
