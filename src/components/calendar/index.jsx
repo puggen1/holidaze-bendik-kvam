@@ -45,7 +45,7 @@ const {setModal} = useSetModalContent()
       }
       console.log(invalid)
       invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
-  }, [])
+  }, [booked, setPickedDates, reset])
     useEffect(() => {
     const checkBooked = () => {
       let booked = [];
