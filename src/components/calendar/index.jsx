@@ -8,10 +8,10 @@ import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
 const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
 
-  
-  const reset = () => {
+  const reset = useCallback(() => {
     setPickedDates([]);
-  };
+  }, [setPickedDates]);
+
 //hook extraction
 const {modalOn} = useModalToggler()
 const {setModal} = useSetModalContent()
