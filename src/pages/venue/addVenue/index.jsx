@@ -17,7 +17,7 @@ const AddVenue = () => {
     if(!checkPermission("admin") && !checkPermission("auth")){
       navigate(-1)
     }
-  },[])
+  },[checkPermission, navigate])
  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()

@@ -1,16 +1,16 @@
 
-import { Typography, Button as MuiButton, Box } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import Button from "../../Button/index"
 import useSendData from '../../../hooks/useSendData';
 import { baseUrl } from '../../../utils/constants';
-import useGetAuth from '../../../hooks/useGetUserInfo';
+import useGetUserInfo from '../../../hooks/useGetUserInfo';
 import useHandleSnackbar from '../../../hooks/useHandleSnackbar';
 import { useNavigate} from 'react-router-dom';
 import useGetVenueData from '../../../hooks/useGetVenueData';
 import useModalToggler from '../../../hooks/useModalToggler';
 const Edit = () => {
     const venueInfo  = useGetVenueData()
-    const auth = useGetAuth()
+    const auth = useGetUserInfo("accessToken")
     //due to state being slow, venueInfo is an combined object of all the diffrent states.....
     const {modalOff} = useModalToggler()
     //send data, and give alert based on response
@@ -18,7 +18,8 @@ const Edit = () => {
     const {handleBar} = useHandleSnackbar()
     const {sender} = useSendData()
     const editVenue =async () => {
-    const result = await sender(venueInfo, baseUrl + "/venues/" + venueInfo.id, "put",auth)
+    const result = await sender(venueInfo, baseUrl + "/venues/" + venueInfo.id, "put", auth)
+    console.log(result)
     if(result.id){
       modalOff()
       handleBar(<><p>Venue edited</p></>,"success")

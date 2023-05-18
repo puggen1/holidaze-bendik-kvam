@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useContext} from 'react'
 import DefaultInput from '../input/defaultInput'
 import { ImageList, ImageListItem } from '@mui/material'
 import Button from '../Button'

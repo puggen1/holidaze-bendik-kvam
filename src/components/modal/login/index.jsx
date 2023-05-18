@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react'
+import {useContext} from 'react'
 import DefaultInput from '../../input/defaultInput'
 import { Typography, Button as MuiButton, Box } from '@mui/material'
 import Button from "../../Button/index"
@@ -9,9 +9,9 @@ import useModalToggler from '../../../hooks/useModalToggler'
 import useSetModalContent from '../../../hooks/useSetModalContent'
 const Login = () => {
 const {login} = useContext(UserContext)
-const {setModal} = useSetModalContent()
 const { register, handleSubmit, setValue} = useForm();
 const {modalOff} = useModalToggler()
+const {setModal} = useSetModalContent()
  /*needs to add a hook for this*/
  const handleLogin =async (data) => {
     const response = await login({email:data.email, password:data.password})
@@ -34,7 +34,7 @@ const {modalOff} = useModalToggler()
         <DefaultInput manager={{...register("password")}} variant="outlined" color="secondary" text="Password" placeholder="Password" type="password"/>
         </Box>
         <Box>
-        <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
+        <Button event={()=>{modalOff()}} color="error" variant="contained" text="Cancel"/>
         <MuiButton type='text' onClick={()=>{setModal(<Register/>)}}>Register</MuiButton>
         <Button event={handleSubmit(handleLogin)} color="secondary" variant="contained" text="Login"/>
         </Box>

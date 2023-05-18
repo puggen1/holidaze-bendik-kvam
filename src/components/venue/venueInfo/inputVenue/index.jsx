@@ -39,7 +39,7 @@ const InputVenue =({venue}) => {
       setMedia(venue.media)
       setVenueInfo(venue)
     }
-  }, [])
+  }, [setValue, venue, setVenueInfo, setMedia, setGuest, setMeta])
   useEffect(() => {
     setVenueInfo({ ...venueInfo, media });
   }, [media, venueInfo, setVenueInfo]);
@@ -50,11 +50,11 @@ const InputVenue =({venue}) => {
     setVenueInfo({ ...venueInfo, maxGuests: guest });
   }, [guest, venueInfo, setVenueInfo]);
   
-  const mapPreview = () => {
+  /*const mapPreview = () => {
     if (venueInfo.location.address.length > 0) {
      
     }
-  }
+  }*/
   return (
     <form >
     <OuterInfo>
