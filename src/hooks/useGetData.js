@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-const useGetData = (url)=>{
+const useGetData = (url, auth=undefined)=>{
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -11,7 +11,7 @@ const useGetData = (url)=>{
       try {
         setIsLoading(true);
         setIsError(false);
-        const fetchedData = await fetch(url);
+        const fetchedData = await fetch(url, auth ? { headers: { Authorization: "Bearer " + auth } } : {});
         const json = await fetchedData.json();
         setData(json);
       } catch (error) {
