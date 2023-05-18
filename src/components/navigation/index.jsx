@@ -1,25 +1,34 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { ClearRounded, Menu } from '@mui/icons-material';
 import {NavigationDrawer, InnerDrawer} from './index.styles'
 import { Link } from 'react-router-dom';
 import {Button} from "@mui/material"
 //import button as customButton
 import CustomButton from '../Button';
-import { ModalContext } from '../../context/modalContext';
+import Login from '../modal/login';
+import Register from '../modal/register';
+import useModalToggler from '../../hooks/useModalToggler';
+import useSetModalContent from '../../hooks/useSetModalContent';
 const Navigation = ({name, venueManager, logout}) => {
+
+  //hooks
+  const {modalOn} = useModalToggler()
+  const {setModal} = useSetModalContent()
+
+  //nav state
     const [openstatus, setOpenStatus] = useState(false);
-    const { modalStatus, setModalStatus, setInnerContent } = useContext(ModalContext)
+    //toggler...
     const change = (content) => {
       if(content === ""){setOpenStatus(false); return}
-      setInnerContent(content)
-      setModalStatus(!modalStatus)
+      setModal(content)
+      modalOn()
       setOpenStatus(false)
     }
     let content = (<>
-      <Button onClick={()=>{change("login")}}  sx={{color:"white", fontWeight:"300"}} variant="text">Login</Button>
-      <Button onClick={()=>{change("register")}}  sx={{color:"white", fontWeight:"300"}} variant="text">Register</Button>
+      <Button onClick={()=>{change(<Login/>)}}  sx={{color:"white", fontWeight:"300"}} variant="text">Login</Button>
+      <Button onClick={()=>{change(<Register/>)}}  sx={{color:"white", fontWeight:"300"}} variant="text">Register</Button>
       </>)
     
     if(name){

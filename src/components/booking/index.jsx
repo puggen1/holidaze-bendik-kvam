@@ -1,28 +1,48 @@
 import Calendar from "../calendar";
-
-
-import React from 'react'
+import { useRef, useContext} from 'react'
 import GuestInput from "../input/guestInput";
-import Button from "../Button";
-import { Box, Typography } from "@mui/material";
-import { Guests } from "./index.styles";
-const Booking = () => {
-    const bookedDates = [
-        new Date("2023", "4", "05"),
-        new Date("2023", "4", "08")
-      ]
-      //here a filter / booking finder will be, to send booked dates based on the amount of guests
+import CustomButton from "../Button";
+import { Typography, Button } from "@mui/material";
+import { Guests, OuterBooking, LowerBooking } from "./index.styles";
+import useGetBookedDays from "../../hooks/useGetBookedDays";
+import { BookingContext } from "../../context/bookingContext";
+import BookingModal from "../modal/booking";
+import useCheckPermission from "../../hooks/useCheckPermission";
+import useModalToggler from "../../hooks/useModalToggler";
+import useSetModalContent from "../../hooks/useSetModalContent";
+import Login from "../modal/login";
+const Booking = ({bookedDates, max}) => {
+  const {checkPermission} = useCheckPermission()
+  const {modalOn} = useModalToggler()
+  const {setModal} = useSetModalContent()
+  const auth = checkPermission("auth")
+  const {bookingTime, setBookingTime, guests, setGuests} = useContext(BookingContext)
+    const ref = useRef(null)
+    const {allBookedDates} =  useGetBookedDays(bookedDates, guests, max)
+    const confirmation = () => {
+      if(bookingTime.length === 0){
+        return
+      }
+      modalOn()
+      setModal(<BookingModal/>)
+    }
+    const notLoggedIn = () => {
+      modalOn()
+      setModal(<Login/>)
+    };
   return (
-    <Box sx={{maxWidth:"577px"}}>
-        <Calendar bookedDates={bookedDates}/>
-        <Box sx={{display:"flex", gap:"10px", margin:"355px auto auto auto", justifyContent:"space-between"}}>
-        <Button variant="contained" color="secondary" text="Book"/>
-        <Guests>
+    <OuterBooking ref={ref}>
+        <Calendar parent={ref} bookedDates={allBookedDates} pickedDates={bookingTime} setPickedDates={setBookingTime} loggedIn={auth}/>
+        <LowerBooking>
+        <div className="book">
+        <CustomButton variant="contained" color="secondary" text={auth ? "Book" : "login"} event={auth ? confirmation : notLoggedIn}/></div>
+        <Button className="reset" variant="text" onClick={()=>{setBookingTime([]); setGuests(1)}} color="primary">Reset</Button>
+        <Guests className="guest">
         <Typography variant="p" component="p" color="primary" fontWeight="300" fontSize="1.5rem" fontFamily="Roboto">Guests</Typography>
-        <GuestInput/>
+        <GuestInput value={guests} changer={setGuests} max={max}/>
         </Guests>
-        </Box>
-    </Box>
+        </LowerBooking>
+    </OuterBooking>
   )
 }
 

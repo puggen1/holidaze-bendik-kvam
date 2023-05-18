@@ -17,39 +17,42 @@ import NotFound from "./pages/notFound";
 import Modal from "./context/modalContext";
 import OuterModal from "./components/modal";
 import { ConfigProvider } from "antd";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import "@fontsource/source-sans-pro/300.css";
 import "@fontsource/source-sans-pro/400.css";
 import "@fontsource/source-sans-pro/700.css";
-
+import AddVenue from "./pages/venue/addVenue";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ConfigProvider
-      theme={antDTheme}>
-      <BrowserRouter>
-      <Modal>
-        <OuterModal/>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/booking/:id" element={<Booking />} />
-            <Route path="/venue/:id" element={<Venue />} />
-            <Route path="/venue/:id/edit" element={<EditVenue />} />
-            <Route path="/user/:name" element={<User />} />
-            <Route path="/user/:name/bookings" element={<UserBookings />} />
-            <Route path="/user/:name/venues" element={<UserVenues />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/venues" element={<AdminPanelVenues />} />
-            <Route path="/admin/bookings" element={<AdminPanelBookings />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-        </Modal>
-      </BrowserRouter>
+      <ConfigProvider theme={antDTheme}>
+        <BrowserRouter>
+          <Modal>
+            <OuterModal />
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/booking/:id" element={<Booking />} />
+                <Route path="/venue/:id" element={<Venue />} />
+                <Route path="/venue/add" element={<AddVenue />} />
+                <Route path="/venue/:id/edit" element={<EditVenue />} />
+                <Route path="/user/:name" element={<User />} />
+                <Route path="/user/:name/bookings" element={<UserBookings />} />
+                <Route path="/user/:name/venues" element={<UserVenues />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/venues" element={<AdminPanelVenues />} />
+                <Route
+                  path="/admin/bookings"
+                  element={<AdminPanelBookings />}
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          </Modal>
+        </BrowserRouter>
       </ConfigProvider>
     </ThemeProvider>
   );

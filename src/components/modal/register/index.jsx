@@ -2,18 +2,19 @@ import {useContext, useState} from 'react'
 import DefaultInput from '../../input/defaultInput'
 import { Typography, Button as MuiButton, Box } from '@mui/material'
 import Button from "../../Button/index"
-import {ModalContext} from '../../../context/modalContext'
 import {UserContext} from '../../../context/userContext'
 import IconSwitch from '../../iconSwitch'
- 
+import Login from '../login'
+import useModalToggler from '../../../hooks/useModalToggler'
+import useSetModalContent from '../../../hooks/useSetModalContent'
 const Register = () => {
-const {setInnerContent, setModalStatus} = useContext(ModalContext)
 const [username, setUsername] = useState("")
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
 const [avatar, setAvatar] = useState("")
 const {register} = useContext(UserContext)
-
+    const {setModal} = useSetModalContent()
+    const {modalOff} = useModalToggler()
 const changeUsername = (e) => {
     setUsername(e.target.value)
 }
@@ -35,7 +36,7 @@ const handleRegister =async () => {
         setEmail("")
         setPassword("")
         setAvatar("")
-        setInnerContent("login")
+        setModal(<Login/>)
         //login at one when registered?
 
     }
@@ -60,8 +61,8 @@ const handleRegister =async () => {
         
         </Box>
         <Box>
-        <Button event={()=>{setModalStatus(false)}} color="error" variant="contained" text="Cancel"/>
-        <MuiButton type='text' onClick={()=>{setInnerContent("login")}}>Login</MuiButton>
+        <Button event={()=>{modalOff()}} color="error" variant="contained" text="Cancel"/>
+        <MuiButton type='text' onClick={()=>{setModal(<Login/>)}}>Login</MuiButton>
         <Button event={handleRegister} color="secondary" variant="contained" text="Register"/>
         </Box>
     </div>

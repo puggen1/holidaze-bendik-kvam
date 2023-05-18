@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import { OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions} from './index.styles'
 import { Typography , Box} from '@mui/material'
 import DefaultInput from '../input/defaultInput'
@@ -8,7 +8,7 @@ import Button from '../Button'
 import GuestInput from '../input/guestInput'
 const { RangePicker } = DatePicker;
 const Hero = () => {
-
+    const [guests, setGuest] = useState(1)
   return (
     <OuterHero sx={{backgroundImage:"url(/background.jpg)"}}>
         <InnerHero>
@@ -24,7 +24,7 @@ const Hero = () => {
                 <Button variant="contained" color="secondary" text="Find"/>
                 <Box className="guests" style={{display:"flex", alignItems:"center", gap:"1rem"}}>
                     <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
-                <GuestInput/>
+                <GuestInput value={guests} changer={setGuest}/>
                 </Box>
             </HeroOptions>
                 <a href="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 2rem 0"}}>

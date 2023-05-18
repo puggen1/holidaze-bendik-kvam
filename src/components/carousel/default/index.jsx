@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Carousel as AntdCarousel } from 'antd'
 import { OuterCarousel, CarouselNavigation } from './index.styles'
 import carouselLogic from '../../../utils/carouselLogic'
