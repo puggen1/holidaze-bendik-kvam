@@ -8,6 +8,10 @@ import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
 const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
 
+  
+  const reset = () => {
+    setPickedDates([]);
+  };
 //hook extraction
 const {modalOn} = useModalToggler()
 const {setModal} = useSetModalContent()
@@ -68,9 +72,6 @@ const {setModal} = useSetModalContent()
       isBookedChecker(pickedDates)
     }, [booked, isBookedChecker, pickedDates]);
 
-      const reset = () => {
-        setPickedDates([]);
-      };
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       
     //makes days in the past and days that are booked disabled
