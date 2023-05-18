@@ -1,6 +1,6 @@
 import { DatePicker } from "antd"
 import dayjs from "dayjs"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { StyledRangePanel } from "./index.styles";
 const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
@@ -9,7 +9,8 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
     const dateFormat = "DD/MM/YYYY";
     const [booked, setBooked] = useState([])
 
-    const isBookedChecker = (dates, datestring) => {
+
+    const isBookedChecker = useCallback((dates, datestring) => {
       if(dates === null){
           console.log("test")
           reset()
@@ -36,7 +37,7 @@ const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent}) => {
       }
       console.log(invalid)
       invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
-  }
+  }, [])
     useEffect(() => {
     const checkBooked = () => {
       let booked = [];
