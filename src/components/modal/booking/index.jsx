@@ -20,7 +20,7 @@ const book = async () => {
     let test = await booker(user.accessToken, type)
     if(test.id){
       modalOff()
-      navigate("/booking/" + test.id);
+      navigate(0);
       type === "new" ? handleBar("Booking successful", "success") :
       handleBar("Booking updated", "success")
     }

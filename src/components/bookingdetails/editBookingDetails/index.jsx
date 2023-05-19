@@ -16,8 +16,8 @@ import useHandleSnackbar from '../../../hooks/useHandleSnackbar'
 const EditBookingDetails = ({setEditStatus, editStatus, originalPickedDated, maxGuests, currentGuests, venueId, bookingId}) => {
   const {handleBar} = useHandleSnackbar()
   const [sameBooking, setSameBooking] = useState(false)
-  const {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + venueId + "?_bookings=true")
-  const {setBookingTime, bookingTime, setVenueId, guests, setGuests, price, setPrice, setVenueName, setBookingId} = useContext(BookingContext)
+  const {data} = useGetData(baseUrl + "/venues/" + venueId + "?_bookings=true")
+  const {setBookingTime, bookingTime, setVenueId, guests, setGuests, setPrice, setBookingId} = useContext(BookingContext)
   const {modalOn} = useModalToggler()
   const {setModal} = useSetModalContent()
   //when data, find all booked dates
@@ -34,7 +34,7 @@ const EditBookingDetails = ({setEditStatus, editStatus, originalPickedDated, max
     setVenueId(venueId)
     setPrice(Object.keys(data).length > 0 ? data.price : 0)
     setBookingId(bookingId)
-  }, [data])
+  }, [data, currentGuests, originalPickedDated, setBookingTime, setGuests, setVenueId, setPrice, setBookingId, venueId, bookingId])
   useEffect(() => {
     if(bookingTime === undefined || bookingTime[0] === undefined || bookingTime[1] === undefined){
       return
@@ -45,7 +45,7 @@ const EditBookingDetails = ({setEditStatus, editStatus, originalPickedDated, max
     else{
       setSameBooking(false)
     }
-  }, [bookingTime, guests])
+  }, [bookingTime, guests, currentGuests, originalPickedDated])
   const modalAction = () => {
     if(sameBooking){
       handleBar("You have not made any changes", "error")
@@ -57,11 +57,16 @@ const EditBookingDetails = ({setEditStatus, editStatus, originalPickedDated, max
   return (
     <InnerEditBooking ref={innerEditBookingRef}>
         <Calendar bookedDates={allBookedDates} pickedDates={bookingTime} setPickedDates={setBookingTime} parent={innerEditBookingRef} loggedIn={true} />
-        <Box justifyContent="flex-end" display="flex" flexDirection="column" gap="1rem">
+        <Box justifyContent="flex-end" display="flex" flexDirection="row" flexWrap="wrap" alignItems="flex-end" gap="1rem" alignContent="flex-end">
+          <Box display="flex" flex="1" justifyContent="flex-end">
         <GuestInput value={guests} changer={setGuests} max={maxGuests}/>
+        </Box>
+        <Box display="flex" flexWrap="wrap" gap="1rem">
         <MuiButton variant='text' color='secondary' onClick={()=>{setBookingTime([dayjs(originalPickedDated[0]), dayjs(originalPickedDated[1])]); setGuests(currentGuests)}}>Reset</MuiButton>
-        <Button variant="outlined" color="secondary" text="update" event={()=>{modalAction()}}/>
         <Button variant="outlined" color="error" text="cancel" event={()=>{setEditStatus(!editStatus)}}/>
+        <Button variant="outlined" color="secondary" text="update" event={()=>{modalAction()}}/>
+
+        </Box>
         </Box>
     </InnerEditBooking>
   )

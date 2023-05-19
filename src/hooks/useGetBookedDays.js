@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import allGuestsPerDay from "../utils/allGuestsPerDay";
 import dayjs from "dayjs";
 const useGetallBookedDates = (
@@ -10,6 +10,7 @@ const useGetallBookedDates = (
 ) => {
   const [allBookedDates, setAllBookedDates] = useState([]);
   let temp;
+  const tempBookings = useRef(temp);
   useEffect(() => {
     if (editBooking) {
       //if it is editing, exclude number of guests when checking the avalibility on original days
@@ -22,19 +23,19 @@ const useGetallBookedDates = (
         }
         return true;
       });
-      temp = allGuestsPerDay(newBookings);
+      tempBookings.current = allGuestsPerDay(newBookings);
     } else {
-      temp = allGuestsPerDay(bookings);
+      tempBookings.current = allGuestsPerDay(bookings);
     }
-    for (let day of temp) {
+    for (let day of tempBookings.current) {
       if (day.guests + guests > maxGuests) {
         day.notEnoughSpace = true;
       } else {
         day.notEnoughSpace = false;
       }
     }
-    setAllBookedDates(temp);
-  }, [bookings, guests, maxGuests]);
+    setAllBookedDates(tempBookings.current);
+  }, [bookings, guests, maxGuests, editBooking, editBookingOriginalDays]);
   return { allBookedDates };
 };
 

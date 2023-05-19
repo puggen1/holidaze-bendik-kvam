@@ -25,7 +25,7 @@ const Booking = () => {
       navigate(-1)
     }
     }
-  ,[data ,isLoading, isError, name, venueManager])
+  ,[data ,isLoading, isError, name, venueManager, navigate])
   return (
     <OuterBooking image={Object.keys(data).length > 0 ? data.venue.media[0] : null}>
       <BookingDetails data={data ? data : []}  setEditStatus={setEditStatus} editStatus={editStatus}/>
