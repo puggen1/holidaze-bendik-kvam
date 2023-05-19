@@ -2,8 +2,13 @@ import React from 'react'
 import { InnerBooking } from './index.styles'
 import { Typography, Box } from '@mui/material'
 import { ArrowForward, CalendarMonth, Payments, Person } from '@mui/icons-material'
+import useModalToggler from '../../hooks/useModalToggler'
+import useSetModalContent from '../../hooks/useSetModalContent'
 import Button from '../Button'
+import DeleteBooking from '../modal/deleteBooking'
 const BookingDetails = ({data, setEditStatus, editStatus}) => {
+    const {modalOn} = useModalToggler()
+    const {setModalContent} = useSetModalContent()
     const {venue, customer} = data
     const {guests, dateFrom, dateTo, } = data
     const from = new Date(dateFrom)
@@ -28,7 +33,7 @@ const BookingDetails = ({data, setEditStatus, editStatus}) => {
         <Typography color={"white"} variant="h5" component="h1">Total price: {venue.price * guests},-</Typography>
         </Box>
         <Box display="flex" gap="0.5rem"    justifyContent="flex-end" >
-            <Button variant="outlined" color="error" text="Cancel booking" event={() => {console.log("test")}}/>
+            <Button variant="outlined" color="error" text="Cancel booking" event={() => {modalOn(); setModalContent(<DeleteBooking bookingId={data.id}/>)}}/>
             <Button variant="outlined" color="secondary" text="Edit" event={() => {setEditStatus(!editStatus)}}/>
         </Box>
     </InnerBooking>
