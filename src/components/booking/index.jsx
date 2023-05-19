@@ -24,7 +24,7 @@ const Booking = ({bookedDates, max}) => {
         return
       }
       modalOn()
-      setModal(<BookingModal/>)
+      setModal(<BookingModal type="new"/>)
     }
     const notLoggedIn = () => {
       modalOn()

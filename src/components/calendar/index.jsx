@@ -7,7 +7,6 @@ import useModalToggler from "../../hooks/useModalToggler";
 import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
 const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
-
   const reset = useCallback(() => {
     setPickedDates([]);
   }, [setPickedDates]);
@@ -47,7 +46,6 @@ const {setModal} = useSetModalContent()
               invalid = true
           }
       }
-      console.log(invalid)
       invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
   }, [booked, setPickedDates, reset])
     useEffect(() => {
