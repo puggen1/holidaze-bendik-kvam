@@ -58,13 +58,12 @@ const {setModal} = useSetModalContent()
       return
     })
     setBooked(booked)
-
     }
     checkBooked()
-
-    },[bookedDates])
+    },[bookedDates, booked, setBooked])
+    /*this runs forever because of the callbackfunction*/
     useEffect(() => {
-      if(pickedDates=== undefined){
+      if(pickedDates === undefined){
         return
       }
       isBookedChecker(pickedDates)
