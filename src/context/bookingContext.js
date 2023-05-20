@@ -13,7 +13,6 @@ const Booking = ({ children }) => {
   const [bookingId, setBookingId] = useState("");
   const { sender } = useSendData();
   const booker = async (auth, type) => {
-    console.log(auth);
     const body = {
       dateFrom: bookingTime[0],
       dateTo: bookingTime[1],

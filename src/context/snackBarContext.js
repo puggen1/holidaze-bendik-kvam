@@ -20,7 +20,7 @@ const Snackbar = ({ children }) => {
     >
       <MUISnackbar
         open={open}
-        autoHideDuration={10000}
+        autoHideDuration={5000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >

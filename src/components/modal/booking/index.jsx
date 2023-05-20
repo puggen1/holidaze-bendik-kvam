@@ -20,13 +20,12 @@ const book = async () => {
     let test = await booker(user.accessToken, type)
     if(test.id){
       modalOff()
-      navigate(0);
-      type === "new" ? handleBar("Booking successful", "success") :
-      handleBar("Booking updated", "success")
+      type === "new" ? navigate("/booking/" + test.id): navigate(0);
+      type === "new" ? handleBar("Booking successful", "success") : handleBar("Booking updated", "success")
     }
     else{
-      handleBar("Something went wrong", "error")
       modalOff()
+      handleBar("Something went wrong", "error")
     }
 
     // give apropriate error message or success message

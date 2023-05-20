@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material'
 import Button from "../../Button/index"
 import useSendData from '../../../hooks/useSendData';
 import { baseUrl } from '../../../utils/constants';
-import useGetAuth from '../../../hooks/useGetUserInfo';
+import useGetUserInfo from '../../../hooks/useGetUserInfo';
 import useHandleSnackbar from '../../../hooks/useHandleSnackbar';
 import { useNavigate } from 'react-router-dom';
 import useGetVenueData from '../../../hooks/useGetVenueData';
@@ -13,7 +13,7 @@ const Create = () => {
   const venueInfo = useGetVenueData()
   //getting auth from context/hook
   const {modalOff} = useModalToggler()
-  const auth = useGetAuth()
+  const auth = useGetUserInfo("accessToken")
     //due to state being slow, venueInfo is an combined object of all the diffrent states.....
     //send data, and give alert based on response
 const navigate = useNavigate()
@@ -28,8 +28,9 @@ const navigate = useNavigate()
     const result = await sender(venueInfo, baseUrl + "/venues", "POST",auth)
     if(result.id){
       modalOff()
-      handleBar(<><p>Venue added</p></>,"success")
       navigate(`/venue/${result.id}`)
+      handleBar("Venue added","success")
+
     }
     else{
       modalOff()
