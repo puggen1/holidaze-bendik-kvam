@@ -11,7 +11,7 @@ import useGetUserInfo from '../../hooks/useGetUserInfo';
 import VenueAdminOptions from '../../components/venueAdminOptions';
 const Venue = () => {
   const { id } = useParams();
-  const {guests, setGuests, setVenueId,venueId, setVenueName, setPrice} = useContext(BookingContext)
+  const {guests, setGuests, setVenueId, setVenueName, setPrice} = useContext(BookingContext)
   const { data, isLoading, isError } = useGetData(baseUrl + "/venues/" + id + "?_owner=true&_bookings=true")
   const name = useGetUserInfo("name")
   //added into useEffect to prevent setting state on something that is loading...
