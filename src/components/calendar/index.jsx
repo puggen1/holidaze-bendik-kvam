@@ -1,12 +1,12 @@
 import { DatePicker } from "antd"
 import dayjs from "dayjs"
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { StyledRangePanel } from "./index.styles";
 import useModalToggler from "../../hooks/useModalToggler";
 import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
-const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false, guests}) => {
+const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
   const reset = useCallback(() => {
     setPickedDates([]);
   }, [setPickedDates]);
@@ -21,7 +21,7 @@ const {setModal} = useSetModalContent()
     const [booked, setBooked] = useState([])
 
 
-    const isBookedChecker = useCallback((dates) => {
+    const isBookedChecker = useCallback((dates, datestring) => {
       if(dates === null){
           console.log("test")
           reset()
@@ -48,30 +48,31 @@ const {setModal} = useSetModalContent()
       }
       invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
   }, [booked, setPickedDates, reset])
-    
+    useEffect(() => {
+    const checkBooked = () => {
+      let booked = [];
+      bookedDates.forEach(day => {
+      if(day.notEnoughSpace){
+        booked.push(dayjs(day.date));
+      }
+      return
+    })
+    setBooked(booked)
+    }
+    checkBooked()
+    },[bookedDates, setBooked])
     /*this runs forever because of the callbackfunction*/
-    //needs to stop run when nothing is wrong
+    const previousPickedDateReference = useRef()
     useEffect(() => {
-      if(pickedDates === undefined || pickedDates.length === 0 ){
+      if(pickedDates === undefined){
         return
       }
-   
-      isBookedChecker(pickedDates)
-    }, [guests, booked]);
-    useEffect(() => {
-      const checkBooked = () => {
-        let newBooked = [];
-        bookedDates.forEach(day => {
-        if(day.notEnoughSpace){
-          newBooked.push(dayjs(day.date));
-        }
-        return
-      })
-      setBooked(newBooked)
+      if(previousPickedDateReference.current !== pickedDates){
+        isBookedChecker(pickedDates)
+        previousPickedDateReference.current === pickedDates
       }
-      checkBooked()
-      },[setBooked, guests, bookedDates])
-  
+    }, [booked, isBookedChecker, pickedDates]);
+
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       
     //makes days in the past and days that are booked disabled
