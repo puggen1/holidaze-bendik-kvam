@@ -6,6 +6,7 @@ import useModalToggler from '../../hooks/useModalToggler'
 import useSetModalContent from '../../hooks/useSetModalContent'
 import Button from '../Button'
 import DeleteBooking from '../modal/deleteBooking'
+import calculateDuration from '../../utils/calculateDuration'
 const BookingDetails = ({data, setEditStatus, editStatus}) => {
     const {modalOn} = useModalToggler()
     const {setModal} = useSetModalContent()
@@ -13,6 +14,7 @@ const BookingDetails = ({data, setEditStatus, editStatus}) => {
     const {guests, dateFrom, dateTo, } = data
     const from = new Date(dateFrom)
     const to = new Date(dateTo)
+    let duration = calculateDuration(from, to)
     const day = 1000 * 60 * 60 * 24
     const daysUntil = Math.round(Math.abs((new Date(dateFrom) - new Date()) / day))
     if(Object.keys(data).length > 0){
@@ -30,7 +32,7 @@ const BookingDetails = ({data, setEditStatus, editStatus}) => {
         </Box>
         <Box display="flex" gap="0.5rem">
         <Payments sx={{color:"white"}}/>
-        <Typography color={"white"} variant="h5" component="h1">Total price: {venue.price * guests},-</Typography>
+        <Typography color={"white"} variant="h5" component="h1">Total price: {venue.price * duration},-</Typography>
         </Box>
         <Box display="flex" gap="0.5rem"    justifyContent="flex-end" >
             <Button variant="outlined" color="error" text="Cancel booking" event={() => {modalOn(); setModal(<DeleteBooking bookingId={data.id}/>)}}/>
