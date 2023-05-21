@@ -1,5 +1,5 @@
 import Calendar from "../calendar";
-import { useRef, useContext} from 'react'
+import { useRef, useContext, useEffect} from 'react'
 import GuestInput from "../input/guestInput";
 import CustomButton from "../Button";
 import { Typography, Button } from "@mui/material";
@@ -30,9 +30,10 @@ const Booking = ({bookedDates, max}) => {
       modalOn()
       setModal(<Login/>)
     };
+   
   return (
     <OuterBooking ref={ref}>
-        <Calendar parent={ref} bookedDates={allBookedDates} pickedDates={bookingTime} setPickedDates={setBookingTime} loggedIn={auth}/>
+        <Calendar parent={ref} bookedDates={allBookedDates} pickedDates={bookingTime} setPickedDates={setBookingTime} loggedIn={auth} guests={guests}/>
         <LowerBooking>
         <div className="book">
         <CustomButton variant="contained" color="secondary" text={auth ? "Book" : "login"} event={auth ? confirmation : notLoggedIn}/></div>

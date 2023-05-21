@@ -11,13 +11,15 @@ const useGetallBookedDates = (
   const [allBookedDates, setAllBookedDates] = useState([]);
   let temp;
   const tempBookings = useRef(temp);
+  const [editBookingTest] = useState(editBooking)
+  const [editBookingOriginalDaysTest] = useState(editBookingOriginalDays)
   useEffect(() => {
-    if (editBooking) {
+    if (editBookingTest && editBookingOriginalDaysTest.length > 0) {
       //if it is editing, exclude number of guests when checking the avalibility on original days
       const newBookings = bookings.filter((booking) => {
         if (
-          dayjs(booking.dateFrom).isSame(editBookingOriginalDays[0]) &&
-          dayjs(booking.dateTo).isSame(editBookingOriginalDays[1])
+          dayjs(booking.dateFrom).isSame(editBookingOriginalDaysTest[0]) &&
+          dayjs(booking.dateTo).isSame(editBookingOriginalDaysTest[1])
         ) {
           return false;
         }
@@ -35,7 +37,7 @@ const useGetallBookedDates = (
       }
     }
     setAllBookedDates(tempBookings.current);
-  }, [bookings, guests, maxGuests, editBooking, editBookingOriginalDays]);
+  }, [bookings, guests, maxGuests, editBookingTest, editBookingOriginalDaysTest]);
   return { allBookedDates };
 };
 

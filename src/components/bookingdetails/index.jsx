@@ -20,9 +20,9 @@ const BookingDetails = ({data, setEditStatus, editStatus}) => {
         <Typography color={"white"} variant="h5"  component="h1">Your stay at <Typography display="inline" color={"secondary"}>{venue.name}</Typography> is in {daysUntil} days <Typography  display="inline" color={"error"}>{customer.name}</Typography>!</Typography>
         <Box display="flex" gap="0.5rem">
         <CalendarMonth sx={{color:"white"}}/>
-        <Typography color={"white"} variant="h5" component="h1">From: {from.getDate()}.{from.getMonth()}</Typography>
+        <Typography color={"white"} variant="h5" component="h1">From: {from.getDate()}.{from.getMonth() + 1}</Typography>
         <ArrowForward sx={{color:'white'}}/>
-        <Typography color={"white"} variant="h5" component="h1">To: {to.getDate()}.{to.getMonth()}</Typography>
+        <Typography color={"white"} variant="h5" component="h1">To: {to.getDate()}.{to.getMonth() + 1}</Typography>
         </Box>
         <Box display="flex" gap="0.5rem">
         <Person sx={{color:"white"}}/>  

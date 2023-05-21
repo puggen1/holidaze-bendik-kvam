@@ -6,7 +6,7 @@ import { StyledRangePanel } from "./index.styles";
 import useModalToggler from "../../hooks/useModalToggler";
 import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
-const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
+const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false, guests}) => {
   const reset = useCallback(() => {
     setPickedDates([]);
   }, [setPickedDates]);
@@ -21,7 +21,7 @@ const {setModal} = useSetModalContent()
     const [booked, setBooked] = useState([])
 
 
-    const isBookedChecker = useCallback((dates, datestring) => {
+    const isBookedChecker = useCallback((dates) => {
       if(dates === null){
           console.log("test")
           reset()
@@ -48,27 +48,30 @@ const {setModal} = useSetModalContent()
       }
       invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
   }, [booked, setPickedDates, reset])
-    useEffect(() => {
-    const checkBooked = () => {
-      let booked = [];
-      bookedDates.forEach(day => {
-      if(day.notEnoughSpace){
-        booked.push(dayjs(day.date));
-      }
-      return
-    })
-    setBooked(booked)
-    }
-    checkBooked()
-    },[bookedDates, booked, setBooked])
+    
     /*this runs forever because of the callbackfunction*/
+    //needs to stop run when nothing is wrong
     useEffect(() => {
-      if(pickedDates === undefined){
+      if(pickedDates === undefined || pickedDates.length === 0 ){
         return
       }
+   
       isBookedChecker(pickedDates)
-    }, [booked, isBookedChecker, pickedDates]);
-
+    }, [guests, booked]);
+    useEffect(() => {
+      const checkBooked = () => {
+        let newBooked = [];
+        bookedDates.forEach(day => {
+        if(day.notEnoughSpace){
+          newBooked.push(dayjs(day.date));
+        }
+        return
+      })
+      setBooked(newBooked)
+      }
+      checkBooked()
+      },[setBooked, guests, bookedDates])
+  
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       
     //makes days in the past and days that are booked disabled

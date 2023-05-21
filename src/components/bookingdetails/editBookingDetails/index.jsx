@@ -23,7 +23,6 @@ const EditBookingDetails = ({setEditStatus, editStatus, originalPickedDated, max
   //when data, find all booked dates
   const {allBookedDates} = useGetallBookedDates(Object.keys(data).length > 0 ? data.bookings : [], guests, maxGuests,true, originalPickedDated)
   
-
 //for the calendar
   const innerEditBookingRef = useRef(null)
 
