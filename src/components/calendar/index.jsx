@@ -1,6 +1,6 @@
 import { DatePicker } from "antd"
 import dayjs from "dayjs"
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { StyledRangePanel } from "./index.styles";
 import useModalToggler from "../../hooks/useModalToggler";
@@ -62,16 +62,13 @@ const {setModal} = useSetModalContent()
     checkBooked()
     },[bookedDates, setBooked])
     /*this runs forever because of the callbackfunction*/
-    const previousPickedDateReference = useRef()
     useEffect(() => {
-      if(pickedDates === undefined){
+      if(pickedDates === undefined || pickedDates.length === 0 ){
         return
       }
-      if(previousPickedDateReference.current !== pickedDates){
         isBookedChecker(pickedDates)
-        previousPickedDateReference.current === pickedDates
-      }
-    }, [booked, isBookedChecker, pickedDates]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
+    }, [booked, isBookedChecker ]);
 
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       
