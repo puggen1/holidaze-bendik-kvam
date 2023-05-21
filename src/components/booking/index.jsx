@@ -1,5 +1,5 @@
 import Calendar from "../calendar";
-import { useRef, useContext, useEffect} from 'react'
+import { useRef, useContext} from 'react'
 import GuestInput from "../input/guestInput";
 import CustomButton from "../Button";
 import { Typography, Button } from "@mui/material";
