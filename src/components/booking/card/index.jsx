@@ -12,7 +12,7 @@ const BookingCard = ({name, from, to, guests, price, id}) => {
     const dateTo = new Date(to)
   return (
     <OuterCard>
-        <Typography gridArea="title" fontWeight="100" variant="h5">at {name} in {daysUntil} </Typography>
+        <Typography gridArea="title" fontWeight="100" variant="h5">at {name} in {daysUntil} days </Typography>
         <Typography gridArea="guests" display="flex" justifyContent="flex-end" alignItems="center" variant="body1">Guests: <Guests>{guests}</Guests> </Typography>
         <Typography gridArea="fromto" fontWeight="100" variant="body1">From: {dateFrom.getDate()}.{dateFrom.getMonth() + 1}  to {dateTo.getDate()}.{dateTo.getMonth() + 1}</Typography>
         <Typography gridArea="price" fontWeight="100" variant="body1">Total price: {price * duration},-</Typography>
