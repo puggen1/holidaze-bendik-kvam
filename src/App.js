@@ -34,23 +34,23 @@ function App() {
             <Layout>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/booking/:id" element={<Booking />} />
-                <Route path="/venue/:id" element={<Venue />} />
-                <Route path="/venue/add" element={<AddVenue />} />
-                <Route path="/venue/:id/edit" element={<EditVenue />} />
-                <Route path="/profile/:name" element={<Profile />} />
+                <Route path="booking/:id" element={<Booking />} />
+                <Route path="venue/:id" element={<Venue />} />
+                <Route path="venue/add" element={<AddVenue />} />
+                <Route path="venue/:id/edit" element={<EditVenue />} />
+                <Route path="profile/:name" element={<Profile />} />
                 <Route
-                  path="/profile/:name/bookings"
+                  path="profile/:name/bookings"
                   element={<Profile type="bookings" />}
                 />
                 <Route
-                  path="/profile/:name/venues"
+                  path="profile/:name/venues"
                   element={<Profile type="venues" />}
                 />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/admin/venues" element={<AdminPanelVenues />} />
+                <Route path="admin" element={<Admin />} />
+                <Route path="admin/venues" element={<AdminPanelVenues />} />
                 <Route
-                  path="/admin/bookings"
+                  path="admin/bookings"
                   element={<AdminPanelBookings />}
                 />
                 <Route path="*" element={<NotFound />} />
