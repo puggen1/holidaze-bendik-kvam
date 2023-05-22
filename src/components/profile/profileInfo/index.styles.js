@@ -16,4 +16,24 @@ const InnerProfileInfo = styled(Box)(({ theme }) => ({
   gridArea: "profileInfo",
 }));
 
-export { InnerProfileInfo };
+const OuterAvatar = styled(Box)(({ theme }) => ({
+  ".edit": {
+    position: "absolute",
+    top: "15%",
+    right: "15%",
+    zIndex: "1",
+    backgroundColor: theme.palette.primary.main,
+    border: "2px solid" + theme.palette.secondary.main,
+    height: "3rem",
+    width: "3rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "50%",
+    ":hover": {
+      cursor: "pointer",
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
+}));
+export { InnerProfileInfo, OuterAvatar };
