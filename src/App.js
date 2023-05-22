@@ -33,7 +33,7 @@ function App() {
             <OuterModal />
             <Layout>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route index element={<Home />} />
                 <Route path="booking/:id" element={<Booking />} />
                 <Route path="venue/:id" element={<Venue />} />
                 <Route path="venue/add" element={<AddVenue />} />
