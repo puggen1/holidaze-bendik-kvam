@@ -8,6 +8,16 @@ const OuterCard = styled(Box)(({ theme }) => ({
   borderRadius: "20px",
   color: "white",
   padding: "1rem",
+  "@media screen and (max-width: 900px)":{
+    gridTemplateAreas:`"title title" "fromto guests" "price action"`,
+    gap:"1.2rem"
+  },
+  "@media screen and (max-width: 750px)":{
+    gridTemplateAreas: `"title guests" "fromto ." "price action"`,
+  },
+  "@media screen and (max-width: 480px)":{
+    gridTemplateAreas:`"title title" "fromto guests" "price action"`,
+  },
 }));
 const Guests = styled(Box)(({ theme }) => ({
   gridArea: "guests",
