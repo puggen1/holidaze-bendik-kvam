@@ -22,8 +22,8 @@ const Edit = () => {
     console.log(result)
     if(result.id){
       modalOff()
-      handleBar(<><p>Venue edited</p></>,"success")
       navigate(`/venue/${result.id}`)
+      handleBar(<><p>Venue edited</p></>,"success")
     }
     else{
       modalOff()

@@ -10,16 +10,22 @@ const Booking = ({ children }) => {
   const [guests, setGuests] = useState(1);
   const [price, setPrice] = useState(0);
   const [venueName, setVenueName] = useState("");
+  const [bookingId, setBookingId] = useState("");
   const { sender } = useSendData();
-  const booker = async (auth) => {
-    console.log(auth);
+  const booker = async (auth, type) => {
     const body = {
-      venueId,
       dateFrom: bookingTime[0],
       dateTo: bookingTime[1],
       guests,
     };
-    const response = await sender(body, baseUrl + "/bookings", "POST", auth);
+    type === "new" && (body.venueId = venueId);
+    const url = type === "new" ? "/bookings" : `/bookings/${bookingId}`;
+    const response = await sender(
+      body,
+      baseUrl + url,
+      type === "new" ? "POST" : "PUT",
+      auth
+    );
 
     return response;
   };
@@ -37,6 +43,8 @@ const Booking = ({ children }) => {
         venueName,
         setVenueName,
         booker,
+        bookingId,
+        setBookingId,
       }}
     >
       {children}

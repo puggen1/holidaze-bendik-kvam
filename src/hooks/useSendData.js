@@ -7,10 +7,12 @@ const useSendData = ()=>{
                     "Authorization": auth ? "Bearer " + auth : ""
                 },
                 method: method,
-                body: JSON.stringify(dataToSend),
             };
+            if(dataToSend) options.body = JSON.stringify(dataToSend);
+           
             try {
                 const fetchedData = await fetch(url, options);
+                if(method === "DELETE") return fetchedData
                 const json = await fetchedData.json();
                 return json
                 } catch (error) {

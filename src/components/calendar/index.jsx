@@ -7,7 +7,6 @@ import useModalToggler from "../../hooks/useModalToggler";
 import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
 const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
-
   const reset = useCallback(() => {
     setPickedDates([]);
   }, [setPickedDates]);
@@ -47,7 +46,6 @@ const {setModal} = useSetModalContent()
               invalid = true
           }
       }
-      console.log(invalid)
       invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
   }, [booked, setPickedDates, reset])
     useEffect(() => {
@@ -60,17 +58,17 @@ const {setModal} = useSetModalContent()
       return
     })
     setBooked(booked)
-
     }
     checkBooked()
-
-    },[bookedDates])
+    },[bookedDates, setBooked])
+    /*this runs forever because of the callbackfunction*/
     useEffect(() => {
-      if(pickedDates=== undefined){
+      if(pickedDates === undefined || pickedDates.length === 0 ){
         return
       }
-      isBookedChecker(pickedDates)
-    }, [booked, isBookedChecker, pickedDates]);
+        isBookedChecker(pickedDates)
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
+    }, [booked, isBookedChecker ]);
 
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       

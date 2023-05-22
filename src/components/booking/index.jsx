@@ -24,15 +24,16 @@ const Booking = ({bookedDates, max}) => {
         return
       }
       modalOn()
-      setModal(<BookingModal/>)
+      setModal(<BookingModal type="new"/>)
     }
     const notLoggedIn = () => {
       modalOn()
       setModal(<Login/>)
     };
+   
   return (
     <OuterBooking ref={ref}>
-        <Calendar parent={ref} bookedDates={allBookedDates} pickedDates={bookingTime} setPickedDates={setBookingTime} loggedIn={auth}/>
+        <Calendar parent={ref} bookedDates={allBookedDates} pickedDates={bookingTime} setPickedDates={setBookingTime} loggedIn={auth} guests={guests}/>
         <LowerBooking>
         <div className="book">
         <CustomButton variant="contained" color="secondary" text={auth ? "Book" : "login"} event={auth ? confirmation : notLoggedIn}/></div>

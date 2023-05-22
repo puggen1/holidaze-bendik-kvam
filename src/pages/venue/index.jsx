@@ -31,7 +31,7 @@ const Venue = () => {
       <VenueInfo venue={data}/>
       </InnerVenue>
       <InnerBooking>
-      {data.owner.name !== name ?<Booking guests={guests} changeGuests={setGuests} bookedDates={data.bookings} max={data.maxGuests}/> : <VenueAdminOptions/>}
+      {data.owner.name !== name ?<Booking guests={guests} changeGuests={setGuests} bookedDates={data.bookings} max={data.maxGuests}/> : <VenueAdminOptions venueId={id}/>}
       </InnerBooking>
     </OuterVenue>)
 }
