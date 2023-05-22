@@ -1,6 +1,6 @@
 import React from 'react'
 import { OuterCard, Guests } from './index.styles'
-import { Typography, Box } from '@mui/material'
+import { Typography } from '@mui/material'
 import calculateDuration from '../../../utils/calculateDuration'
 import Button from '../../Button'
 import { Link } from 'react-router-dom'

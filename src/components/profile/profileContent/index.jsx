@@ -18,7 +18,7 @@ const ProfileContent = ({venues, bookings, type, own}) => {
         {type === "regular" ? venueLink : backLink}
 
         <Box gridColumn="1/3" gap="1rem" display="flex" flexDirection="row" flexWrap="wrap"justifyContent="space-between">
-        {venues.length > 0 ? venues.map((venue, i) =>{ if(i === 2 && type==="regular"){return} return(<Card venueId={venue.id} firstImage={venue.media[0] ? venue.media[0] : ""} name={venue.name} price={venue.price} maxGuests={venue.maxGuests} meta={venue.meta}/>)}) : <div>no content</div>}
+        {venues.length > 0 ? venues.map((venue, i) =>{ if(i === 2 && type==="regular"){return null } return(<Card venueId={venue.id} firstImage={venue.media[0] ? venue.media[0] : ""} name={venue.name} price={venue.price} maxGuests={venue.maxGuests} meta={venue.meta}/>)}) : <div>no content</div>}
         </Box>
     </Box>}
     {((type === "regular" || type==="bookings") && own) &&
@@ -26,7 +26,7 @@ const ProfileContent = ({venues, bookings, type, own}) => {
     <Typography gridColumn="1/2" variant='h6' fontWeight="100"> Bookings</Typography>
         {type === "regular" ? bookingLink : backLink}
         <Box gridColumn="1/3" gap="1rem" display="flex" flexDirection="column">
-            {bookings.length > 0 ? bookings.map((booking, i) =>{ if(i === 3 && type==="regular"){return} return <BookingCard key={booking.id} name={booking.venue.name} from={booking.dateFrom} to={booking.dateTo} guests={booking.guests} price={booking.venue.price} id={booking.id} />}) : <div>No bookings</div>}
+            {bookings.length > 0 ? bookings.map((booking, i) =>{ if(i === 3 && type==="regular"){return null} return <BookingCard key={booking.id} name={booking.venue.name} from={booking.dateFrom} to={booking.dateTo} guests={booking.guests} price={booking.venue.price} id={booking.id} />}) : <div>No bookings</div>}
         </Box>
     </Box> }
     </Box>
