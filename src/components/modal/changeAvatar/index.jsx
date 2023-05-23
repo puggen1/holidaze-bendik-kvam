@@ -1,18 +1,22 @@
 import Button from "../../Button"
 import DefaultInput from "../../input/defaultInput"
 import {useForm} from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { yupResolver } from "@hookform/resolvers/yup"
 import avatarSchema from "../../../utils/schemas/avatarSchema"
 import { Typography } from "@mui/material"
 import Avatar from "../../avatar"
 import { useState } from "react"
-import useSendData from "../../../hooks/useSendData"
-import useGetUserInfo from "../../../hooks/useGetUserInfo"
-import { baseUrl } from "../../../utils/constants"
+import { useContext } from "react"
+import { UserContext } from "../../../context/userContext"
+import useModalToggler from "../../../hooks/useModalToggler"
+import useHandleSnackbar from "../../../hooks/useHandleSnackbar"
 const ChangeAvatar = ({oldAvatar, username}) => {
-    const {sender} = useSendData()
+const Navigate = useNavigate()
+const {modalOff} = useModalToggler()
+const {handleBar} = useHandleSnackbar()
+  const {changeAvatar, updateUser} = useContext(UserContext)
     const [currentAvatar, setCurrentAvatar] = useState(oldAvatar)
-    const auth = useGetUserInfo("accessToken")
     const {
         handleSubmit,
         setValue,
@@ -25,19 +29,18 @@ const ChangeAvatar = ({oldAvatar, username}) => {
             //precausion
           setCurrentAvatar(data.url)
           setValue("url", "")
-          const dataToSend = {
-            avatar: currentAvatar,
+          const response = await changeAvatar(currentAvatar)
+          if(response.success){
+            updateUser({...response.content});
+            modalOff()
+            Navigate(0)
+            handleBar("Avatar changed successfully", "success")
+
           }
-            const response = await sender(dataToSend, baseUrl + "/profiles/" + username + "/media", "PUT", auth)
-            console.log(response)
-            if(response.avatar === currentAvatar) {
-                console.log("success")
-            }
-            else {
-                console.log("failed")
-            }
+          else{
+            handleBar(response.message, "error")
+          }
         }
-        console.log(data.url)
       };
 
   return (
