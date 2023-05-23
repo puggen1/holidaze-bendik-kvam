@@ -41,7 +41,7 @@ const onChange = (dates, dateStrings) => {
       }
         onChange(pickedDates)
         // eslint-disable-next-line react-hooks/exhaustive-deps 
-    }, [booked, onChange ]);
+    }, [booked]);
 
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       

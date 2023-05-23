@@ -1,4 +1,4 @@
-import {useState, useContext, useEffect} from 'react'
+import {useState, useContext, useEffect, useCallback} from 'react'
 import { OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions} from './index.styles'
 import { Typography , Box} from '@mui/material'
 import { ArrowForward, ExpandMore } from '@mui/icons-material'
@@ -18,42 +18,49 @@ const Hero = () => {
     const Navigate = useNavigate()
     const {onCalendarChange} = useOnCalendarChange()
     const {guests, setGuests, bookingTime, setBookingTime} = useContext(BookingContext)
-    const reset = () => {
+    const reset = useCallback(() => {
         setBookingTime([])
-    }
+    }, [setBookingTime])
     //declaring the searchInput controlled state
     const [value, setValue] = useState(null)
     const [inputValue, setInputValue] = useState("")
     const [booked, setBooked] = useState([])
     const {checkBooked} = useCheckBooked()
     const {checkDisabled} = useDisabledDates()
-    const {allBookedDates} = useGetallBookedDates(value ? value.bookings: [], guests, value ? value.maxGuests : 1)
+    const noBookings = []
+    const {allBookedDates} = useGetallBookedDates((value && value.type === "venue") ? value.bookings: noBookings, guests, value ? value.maxGuests : 1)    
+    const button = <Button event={() =>{(value && value.type === "venue") &&  Navigate("/venue/" + value.id)}} text={((value && value.type === "venue") ? "view": "find")} variant="contained" color="secondary"/>
     useEffect(() => {
         setBooked(checkBooked(allBookedDates))
-        },[allBookedDates, setBooked, checkBooked])
+        },[allBookedDates, checkBooked, guests, value, setBooked])
+
     useEffect(() => {
         if(value === null){
             return
         }
         if(value.type === "venue"){
             if(value.maxGuests < guests){
-                setGuests(value.maxGuests)
+                setValue(null)
+                setGuests(1)
             }
         }
         else{
         }
     }, [value, guests, setGuests])
 
-    const onChange = (dates, dateStrings) => {
+    //used on onchange, to update the bookingTime state, also checks if the date is disabled
+    const onChange = useCallback((dates, dateStrings) => {
         onCalendarChange(dates, setBookingTime, reset, booked)
-      };
+      }, [onCalendarChange, setBookingTime, reset, booked]);
+      
+      //useeffect to update the bookingTime if a date is disabled
       useEffect(() => {
         if(bookingTime === undefined || bookingTime.length === 0 ){
           return
         }
           onChange(bookingTime)
           // eslint-disable-next-line react-hooks/exhaustive-deps 
-      }, [booked, onChange ]);
+      }, [booked]);
   return (<form>
     <OuterHero sx={{backgroundImage:"url(/background.jpg)"}}>
         <InnerHero>
@@ -66,7 +73,7 @@ const Hero = () => {
                 <RangePicker  value={bookingTime} onCalendarChange={onChange} disabledDate={(current)=>{return checkDisabled(current, booked)}} separator={<ArrowForward sx={{color:"white"}}/>}/>
             </HeroDate>
             <HeroOptions>
-                <Button variant="contained" color="secondary" text="Find" event={()=>{(value.type && value.type === "venue") && Navigate("/venue/" + value.id)}}/>
+                {button}
                 <Box className="guests" style={{display:"flex", alignItems:"center", gap:"1rem"}}>
                     <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
                 <GuestInput value={guests} changer={setGuests}/>
