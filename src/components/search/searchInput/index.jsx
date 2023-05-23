@@ -5,6 +5,7 @@ const SearchInput = () => {
     const  {allSearchOptions} = useContext(SearchFilterContext)
     
   return (
+   
     <Autocomplete
     sx={{borderRadius:"30px"}}
     disablePortal
