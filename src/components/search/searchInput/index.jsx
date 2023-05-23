@@ -1,16 +1,21 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { SearchFilterContext } from '../../../context/searchFilterContext'
 import { Autocomplete, TextField } from '@mui/material'
 const SearchInput = () => {
-    const  {allSearchOptions} = useContext(SearchFilterContext)
-    
-  return (
-   
+const  {allSearchOptions, search, setSearch } = useContext(SearchFilterContext)
+ const [ searchInput, setSearchInput] = useState("");
+  return (   
     <Autocomplete
     sx={{borderRadius:"30px"}}
     disablePortal
     id="combo-box-demo"
-    
+    inputValue={searchInput}
+    onInputChange={(event, newInputValue) => {setSearchInput(newInputValue)}}
+    value={search}
+    onChange={(event, newValue) => {
+        setSearch(newValue);
+        console.log(newValue)
+    }}
     options={allSearchOptions}
     isOptionEqualToValue={(option, value) => option.label === value.label}
     renderOption={(props, option) => {
@@ -34,3 +39,8 @@ value={search}
       search, setSearch, searchInput, setSearchInput
     }}
 */
+
+/**
+ * if a venue. get bookings based on guests, when using the input field show booked days.
+ * if a location, get coordinates, show nearest venues, filter based on guests.
+ */

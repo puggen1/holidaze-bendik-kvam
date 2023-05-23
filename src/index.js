@@ -12,13 +12,13 @@ root.render(
   <React.StrictMode>
     <AddEdit>
       <Snackbar>
-        <SearchFilter>
-          <User>
+        <User>
+          <SearchFilter>
             <Booking>
               <App />
             </Booking>
-          </User>
-        </SearchFilter>
+          </SearchFilter>
+        </User>
       </Snackbar>
     </AddEdit>
   </React.StrictMode>

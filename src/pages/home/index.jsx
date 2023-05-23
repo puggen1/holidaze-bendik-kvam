@@ -11,6 +11,7 @@ export const Home = () => {
     setAllOptions(data)
   }, [data, setAllOptions])
   return(
+    
   <div>
     <Hero/>
     {/*<Filters/>*/}
