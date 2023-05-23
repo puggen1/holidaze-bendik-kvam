@@ -2,8 +2,6 @@ import { createContext, useState } from "react";
 export const SearchFilterContext = createContext();
 
 const SearchFilter = ({ children }) => {
-  const [search, setSearch] = useState(null);
-  const [searchInput, setSearchInput] = useState("");
   const [allSearchOptions, setAllSearchOptions] = useState([]);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
@@ -26,10 +24,6 @@ const SearchFilter = ({ children }) => {
         data,
         allSearchOptions,
         setAllSearchOptions,
-        search,
-        setSearch,
-        searchInput,
-        setSearchInput,
       }}
     >
       {children}
