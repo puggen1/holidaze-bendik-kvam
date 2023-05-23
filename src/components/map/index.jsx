@@ -9,7 +9,8 @@ const Map = ({lng, lat, address, city, zip, country}) => {
         height: 'auto',
         maxHeight: '250px',
         maxWidth: '100%',
-        borderRadius: '20px'
+        borderRadius: '20px',
+        margin:"0 auto"
     }
     let url
     if((!lat || !lng) && (address !== "" && city !== "" && zip !== "" && country !== "")){

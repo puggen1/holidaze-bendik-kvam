@@ -8,7 +8,7 @@ const Card = ({venueId, firstImage, name, price, maxGuests, meta={}}) => {
     const {pets, wifi, parking, breakfeast} = meta;
     
   return (
-    <VenueCard>
+    <VenueCard className='venueCard'>
         <VenueCardMedia component="img" image={firstImage ? firstImage : "https://placehold.co/400"}/>
         <VenueCardContent className='content'>
             <Box className="top">

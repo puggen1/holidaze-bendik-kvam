@@ -12,7 +12,6 @@ import Register from '../modal/register';
 import useModalToggler from '../../hooks/useModalToggler';
 import useSetModalContent from '../../hooks/useSetModalContent';
 const Navigation = ({name, venueManager, logout}) => {
-
   //hooks
   const {modalOn} = useModalToggler()
   const {setModal} = useSetModalContent()
@@ -34,11 +33,11 @@ const Navigation = ({name, venueManager, logout}) => {
     if(name){
       content = (
         <>
-        <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to="/profile">Profile</Link></Button>
-        <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to="/profile/bookings">Bookings</Link></Button>
+        <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to={"/profile/" + name}>Profile</Link></Button>
+        <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to={"/profile/" + name + "/bookings"}>Bookings</Link></Button>
         {venueManager ?
         <>
-        <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to="/profile/venues">Venues</Link></Button>
+        <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to={"/profile/"+ name + "/venues"}>Venues</Link></Button>
         <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant="text"><Link style={{ textDecoration:"none", color:"inherit"}} to="/admin">AdminPanel</Link></Button>
         </>
         : null}

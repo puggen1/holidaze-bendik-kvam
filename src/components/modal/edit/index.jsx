@@ -19,11 +19,10 @@ const Edit = () => {
     const {sender} = useSendData()
     const editVenue =async () => {
     const result = await sender(venueInfo, baseUrl + "/venues/" + venueInfo.id, "put", auth)
-    console.log(result)
     if(result.id){
       modalOff()
       navigate(`/venue/${result.id}`)
-      handleBar(<><p>Venue edited</p></>,"success")
+      handleBar("Venue edited","success")
     }
     else{
       modalOff()

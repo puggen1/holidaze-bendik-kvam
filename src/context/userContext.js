@@ -47,11 +47,16 @@ const User = ({ children }) => {
   };
   //to change avatar
   const changeAvatar = async (avatar) => {
+    console.log(avatar);
     const url = baseUrl + `/profiles/${user.name}/media`;
-    const dataToSend = { avatar };
+    const dataToSend = { avatar: avatar };
     const response = await sender(dataToSend, url, "PUT", user.accessToken);
     if (response.avatar === avatar) {
-      return { success: true, message: "Avatar Changed Successfully" };
+      return {
+        success: true,
+        message: "Avatar Changed Successfully",
+        content: response,
+      };
     } else {
       return { success: false, message: response.errors[0].message };
     }
@@ -61,9 +66,13 @@ const User = ({ children }) => {
     setUser({});
     return { success: true, message: "Logout Successful" };
   };
+  const updateUser = (data) => {
+    localStorage.setItem("userInfo", JSON.stringify({ ...user, ...data }));
+    setUser({ ...user, ...data });
+  };
   return (
     <UserContext.Provider
-      value={{ login, register, changeAvatar, logout, user }}
+      value={{ login, register, changeAvatar, logout, user, updateUser }}
     >
       {children}
     </UserContext.Provider>
