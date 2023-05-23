@@ -5,7 +5,7 @@ import { baseUrl } from "../../utils/constants"
 import useCreateAllSearchOptions from "../../hooks/useCreateAllSearchOptions"
 import { useEffect } from "react"
 export const Home = () => {
-  const {data} = useGetData(baseUrl + "/venues")
+  const {data} = useGetData(baseUrl + "/venues?_bookings=true")
   const {setAllOptions} = useCreateAllSearchOptions()
   useEffect(() => {
     setAllOptions(data)

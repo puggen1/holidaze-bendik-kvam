@@ -34,6 +34,8 @@ const useCreateAllSearchOptions = (searchOptions) => {
               value: option.name,
               id: option.id,
               type: "venue",
+              bookings: option.bookings,
+              maxGuests: option.maxGuests,
             }
           );
         } else {
@@ -42,6 +44,9 @@ const useCreateAllSearchOptions = (searchOptions) => {
             value: option.name,
             id: option.id,
             type: "venue",
+            bookings: option.bookings,
+            maxGuests: option.maxGuests,
+
           });
         }
       }

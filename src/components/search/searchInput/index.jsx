@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { SearchFilterContext } from '../../../context/searchFilterContext'
-import { Autocomplete, TextField } from '@mui/material'
+import { Autocomplete, TextField, Typography } from '@mui/material'
 
 /**
  * if a venue. get bookings based on guests, when using the input field show booked days.
@@ -22,7 +22,7 @@ const  {allSearchOptions} = useContext(SearchFilterContext)
     options={allSearchOptions}
     isOptionEqualToValue={(option, value) => option.label === value.label}
     renderOption={(props, option) => {
-        return(<li{...props}  key={option.id} >{option.label}</li>)
+        return(<li{...props}  style={{display:"flex", justifyContent:"space-between"}} key={option.id}><Typography>{option.label}</Typography><Typography>{option.type}</Typography></li>)
     }}
     renderInput={(params) => <TextField sx={{backgroundColor:"white", borderRadius:"30px"}} className='search' variant="outlined" color="secondary" placeholder="find a venue or search by location" {...params} />}
     /> 
