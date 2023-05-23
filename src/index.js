@@ -6,16 +6,19 @@ import User from "./context/userContext";
 import Booking from "./context/bookingContext";
 import { AddEdit } from "./context/addEditContext";
 import Snackbar from "./context/snackBarContext";
+import SearchFilter from "./context/searchFilterContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AddEdit>
       <Snackbar>
-        <User>
-          <Booking>
-            <App />
-          </Booking>
-        </User>
+        <SearchFilter>
+          <User>
+            <Booking>
+              <App />
+            </Booking>
+          </User>
+        </SearchFilter>
       </Snackbar>
     </AddEdit>
   </React.StrictMode>
