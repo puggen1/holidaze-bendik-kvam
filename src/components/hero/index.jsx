@@ -13,6 +13,7 @@ const Hero = () => {
     const Navigate = useNavigate()
     const {search} = useGetSearch()
     const [guests, setGuest] = useState(1)
+    //declaring the searchInput controlled state
     const [value, setValue] = useState(null)
     const [inputValue, setInputValue] = useState("")
   return (<form>
