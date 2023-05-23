@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { SearchFilterContext } from '../../../context/searchFilterContext'
 import { Autocomplete, TextField } from '@mui/material'
 
