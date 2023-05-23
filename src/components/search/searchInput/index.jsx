@@ -1,6 +1,11 @@
 import { useContext, useState } from 'react'
 import { SearchFilterContext } from '../../../context/searchFilterContext'
 import { Autocomplete, TextField } from '@mui/material'
+
+/**
+ * if a venue. get bookings based on guests, when using the input field show booked days.
+ * if a location, get coordinates, show nearest venues, filter based on guests.
+ */
 const SearchInput = () => {
 const  {allSearchOptions, search, setSearch } = useContext(SearchFilterContext)
  const [ searchInput, setSearchInput] = useState("");
@@ -14,7 +19,6 @@ const  {allSearchOptions, search, setSearch } = useContext(SearchFilterContext)
     value={search}
     onChange={(event, newValue) => {
         setSearch(newValue);
-        console.log(newValue)
     }}
     options={allSearchOptions}
     isOptionEqualToValue={(option, value) => option.label === value.label}
@@ -40,7 +44,3 @@ value={search}
     }}
 */
 
-/**
- * if a venue. get bookings based on guests, when using the input field show booked days.
- * if a location, get coordinates, show nearest venues, filter based on guests.
- */
