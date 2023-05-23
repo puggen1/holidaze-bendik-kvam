@@ -12,9 +12,10 @@ import useDisabledDates from '../../hooks/useDisabledDates'
 import useCheckBooked from '../../hooks/useCheckBooked'
 import useGetallBookedDates from '../../hooks/useGetBookedDays'
 import useOnCalendarChange from '../../hooks/useOnCalendarChange'
+import useFilterAvalibleVenues from '../../hooks/useFilterAvalibleVenues'
 const { RangePicker } = DatePicker;
-const Hero = () => {
-  
+const Hero = ({venues}) => {
+    const {filter} = useFilterAvalibleVenues()
     const Navigate = useNavigate()
     const {onCalendarChange} = useOnCalendarChange()
     const {guests, setGuests, bookingTime, setBookingTime} = useContext(BookingContext)
@@ -29,7 +30,7 @@ const Hero = () => {
     const {checkDisabled} = useDisabledDates()
     const noBookings = []
     const {allBookedDates} = useGetallBookedDates((value && value.type === "venue") ? value.bookings: noBookings, guests, value ? value.maxGuests : 1)    
-    const button = <Button event={() =>{(value && value.type === "venue") &&  Navigate("/venue/" + value.id)}} text={((value && value.type === "venue") ? "view": "find")} variant="contained" color="secondary"/>
+    const button = <Button event={() =>{(value && value.type === "venue") ? Navigate("/venue/" + value.id): filter(venues)}} text={((value && value.type === "venue") ? "view": "find")} variant="contained" color="secondary"/>
     useEffect(() => {
         setBooked(checkBooked(allBookedDates))
         },[allBookedDates, checkBooked, guests, value, setBooked])

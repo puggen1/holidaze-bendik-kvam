@@ -10,10 +10,12 @@ export const Home = () => {
   useEffect(() => {
     setAllOptions(data)
   }, [data, setAllOptions])
+
+  //here i need an context for venues, and filtered venues. filtered can be in filter context.....
   return(
     
   <div>
-    <Hero/>
+    <Hero venues={data}/>
     {/*<Filters/>*/}
     <AllVenues venues={data}/>
   </div>)
