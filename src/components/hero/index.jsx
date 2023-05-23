@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import { OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions} from './index.styles'
 import { Typography , Box} from '@mui/material'
 import { ArrowForward, ExpandMore } from '@mui/icons-material'
@@ -8,11 +8,12 @@ import GuestInput from '../input/guestInput'
 import SearchInput from '../search/searchInput'
 import useGetSearch from '../../hooks/useGetSearch'
 import { useNavigate } from 'react-router'
+import {BookingContext} from '../../context/bookingContext'
 const { RangePicker } = DatePicker;
 const Hero = () => {
     const Navigate = useNavigate()
+    const {guests, setGuests} = useContext(BookingContext)
     const {search} = useGetSearch()
-    const [guests, setGuest] = useState(1)
     //declaring the searchInput controlled state
     const [value, setValue] = useState(null)
     const [inputValue, setInputValue] = useState("")
@@ -28,10 +29,10 @@ const Hero = () => {
                 <RangePicker separator={<ArrowForward sx={{color:"white"}}/>}/>
             </HeroDate>
             <HeroOptions>
-                <Button variant="contained" color="secondary" text="Find" event={()=>{search.type === "venue" && Navigate("/venue/" + search.id)}}/>
+                <Button variant="contained" color="secondary" text="Find" event={()=>{(value.type && value.type === "venue") && Navigate("/venue/" + value.id)}}/>
                 <Box className="guests" style={{display:"flex", alignItems:"center", gap:"1rem"}}>
                     <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
-                <GuestInput value={guests} changer={setGuest}/>
+                <GuestInput value={guests} changer={setGuests}/>
                 </Box>
             </HeroOptions>
                 <a href="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 2rem 0"}}>
