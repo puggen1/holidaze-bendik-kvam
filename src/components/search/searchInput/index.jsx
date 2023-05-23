@@ -1,5 +1,4 @@
-import React from 'react'
-import {useContext } from 'react'
+import { useContext } from 'react'
 import { SearchFilterContext } from '../../../context/searchFilterContext'
 import { Autocomplete, TextField } from '@mui/material'
 const SearchInput = () => {
@@ -10,13 +9,13 @@ const SearchInput = () => {
     sx={{borderRadius:"30px"}}
     disablePortal
     id="combo-box-demo"
-    value={searchInput}
+    value={search}
     onChange={(event, newValue) => {
-        setSearchInput(newValue);
+        setSearch(newValue);
     }}
-    inputValue={search}
+    inputValue={searchInput}
     onInputChange={(event, newInputValue) => {
-      setSearch(newInputValue);
+      setSearchInput(newInputValue);
     }}
 
     options={allSearchOptions}

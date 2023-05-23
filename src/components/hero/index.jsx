@@ -1,16 +1,13 @@
-import {useState, useContext} from 'react'
+import {useState} from 'react'
 import { OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions} from './index.styles'
-import { Typography , Box, Autocomplete, TextField} from '@mui/material'
-import DefaultInput from '../input/defaultInput'
-import { ArrowForward, ExpandMore, Search } from '@mui/icons-material'
+import { Typography , Box} from '@mui/material'
+import { ArrowForward, ExpandMore } from '@mui/icons-material'
 import { DatePicker } from 'antd'
 import Button from '../Button'
 import GuestInput from '../input/guestInput'
 import SearchInput from '../search/searchInput'
-import { SearchFilterContext } from '../../context/searchFilterContext'
 const { RangePicker } = DatePicker;
 const Hero = () => {
-    const {search} = useContext(SearchFilterContext)
     const [guests, setGuest] = useState(1)
   return (<form>
     <OuterHero sx={{backgroundImage:"url(/background.jpg)"}}>
@@ -24,7 +21,7 @@ const Hero = () => {
                 <RangePicker separator={<ArrowForward sx={{color:"white"}}/>}/>
             </HeroDate>
             <HeroOptions>
-                <Button variant="contained" color="secondary" event={()=>{console.log(search)}} text="Find"/>
+                <Button variant="contained" color="secondary" text="Find"/>
                 <Box className="guests" style={{display:"flex", alignItems:"center", gap:"1rem"}}>
                     <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
                 <GuestInput value={guests} changer={setGuest}/>

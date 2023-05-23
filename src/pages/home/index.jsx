@@ -9,7 +9,7 @@ export const Home = () => {
   const {setAllOptions} = useCreateAllSearchOptions()
   useEffect(() => {
     setAllOptions(data)
-  }, [data, useCreateAllSearchOptions])
+  }, [data, setAllOptions])
   return(
   <div>
     <Hero/>

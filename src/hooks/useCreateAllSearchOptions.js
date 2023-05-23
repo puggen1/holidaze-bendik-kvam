@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import { SearchFilterContext } from "../context/searchFilterContext";
 const useCreateAllSearchOptions = (searchOptions) => {
-  const { allSearchOptions, setAllSearchOptions } =
-    useContext(SearchFilterContext);
+  const { setAllSearchOptions } = useContext(SearchFilterContext);
   //need to make autocorrect array with all venues, pluss all places
 
   const setAllOptions = (data) => {
