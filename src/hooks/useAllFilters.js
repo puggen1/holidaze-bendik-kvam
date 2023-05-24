@@ -5,7 +5,7 @@ const useAllFilters = () => {
   const { venues, setFilteredVenues, filter, setFilter, defaultFilter } =
     useContext(VenueContext);
 
-  const filterVenues = (venues) => {
+  const filterAllVenues = (venues) => {
     const { guestRange, priceRange, meta, guests } = filter;
     const { wifi, breakfast, parking, pets } = meta;
     const filteredVenues = venues.filter((venue) => {
@@ -36,7 +36,7 @@ const useAllFilters = () => {
     setFilter(defaultFilter);
     setFilteredVenues(venues);
   };
-  return { filterVenues, reset };
+  return { filterAllVenues, reset };
 };
 
 export default useAllFilters;

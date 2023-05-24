@@ -2,21 +2,40 @@ import Hero from "../../components/hero"
 import AllVenues from "../../components/venue/allVenues"
 import { useGetData } from "../../hooks/useGetData"
 import { baseUrl } from "../../utils/constants"
-import { useEffect, useContext } from "react"
+import { useEffect, useContext, useState } from "react"
 import {VenueContext} from "../../context/venueContext"
 import Filters from "../../components/filters"
 export const Home = () => {
-  const {data} = useGetData(baseUrl + "/venues?_bookings=true")
+  
+  const [sort, setSort] = useState("nameA")
+  const [sortString, setSortString] = useState("")
+  useEffect(() => {
+    if(sort === "priceLow"){
+      setSortString("&sort=price&sortOrder=asc")
+    }
+    if(sort === "priceHigh"){
+      setSortString("&sort=price&sortOrder=desc")
+    }
+    if(sort === "nameA"){
+      setSortString("&sort=name&sortOrder=asc")
+    }
+    if(sort === "nameZ"){
+      setSortString("&sort=name&sortOrder=desc")
+    }
+  },[sort])
+  const {data} = useGetData(baseUrl + "/venues?_bookings=true" + sortString)
   const {setVenues, filteredVenues} = useContext(VenueContext)
+
   useEffect(() => {
     setVenues(data)
   }, [data, setVenues])
-  //here i need an context for venues, and filtered venues. filtered can be in filter context.....
+  
+
   return(
     
   <div>
     <Hero />
-    <Filters/>
+    <Filters sort={sort} setSort={setSort}/>
     <AllVenues venues={filteredVenues}/>
   </div>)
 
