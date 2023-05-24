@@ -1,7 +1,7 @@
-import React from 'react'
+import {memo} from 'react'
 import Card from '../card'
 import {OuterAllVenues} from './index.styles.js'
-const AllVenues = ({venues}) => {
+const AllVenues = memo(({venues}) => {
   return (
     <OuterAllVenues id='venues'>
         {venues.map((venue) => {
@@ -12,6 +12,6 @@ const AllVenues = ({venues}) => {
         })}
         </OuterAllVenues>
   )
-}
+})
 
 export default AllVenues

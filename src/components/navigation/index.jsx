@@ -50,7 +50,7 @@ const Navigation = ({name, venueManager, logout}) => {
     <Box width="20%">
     <Menu className='iconButton' fontSize='large' sx={{color:"white", padding:"1rem"}} onClick={() => setOpenStatus(true)}/>
     </Box>
-    <NavigationDrawer anchor='left' open={openstatus} onClose={()=>{setOpenStatus(false)}} onOpen={()=>{setOpenStatus(true)}}>
+    <NavigationDrawer anchor='left' open={openstatus} onClose={()=>{setOpenStatus(false)}}>
     <InnerDrawer>
       <ClearRounded onClick={()=>{setOpenStatus(false)}} className='iconButton' sx={{color:"white", margin:"0 0 0 auto", padding:"1rem"}} fontSize='large'/>
       <Button onClick={()=>{change("")}} sx={{color:"white", fontWeight:"300"}} variant='text'><Link style={{ textDecoration:"none", color:"inherit"}} to="/">Home</Link></Button>

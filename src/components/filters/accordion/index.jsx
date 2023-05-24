@@ -1,6 +1,6 @@
-import { AccordionDetails, AccordionSummary, Typography } from '@mui/material'
+import {AccordionSummary, Typography } from '@mui/material'
 import React from 'react'
-import { FilterAccordion } from './index.styles';
+import { FilterAccordion, AccordionDetails } from './index.styles';
 import { KeyboardDoubleArrowDown } from '@mui/icons-material';
 const OuterFilterAccordion = ({children}) => {
   return (

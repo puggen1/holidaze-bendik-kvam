@@ -6,87 +6,47 @@ import { StyledRangePanel } from "./index.styles";
 import useModalToggler from "../../hooks/useModalToggler";
 import useSetModalContent from "../../hooks/useSetModalContent";
 import Login from "../modal/login";
+import useCheckBooked from "../../hooks/useCheckBooked";
+import useDisabledDates from "../../hooks/useDisabledDates";
+import useOnCalendarChange from "../../hooks/useOnCalendarChange";
 const Calendar = ({bookedDates = [], pickedDates, setPickedDates, parent, loggedIn=false}) => {
+  const {onCalendarChange} = useOnCalendarChange()
   const reset = useCallback(() => {
     setPickedDates([]);
   }, [setPickedDates]);
-
+  const {checkBooked} = useCheckBooked()
+  const {checkDisabled} = useDisabledDates()
 //hook extraction
 const {modalOn} = useModalToggler()
 const {setModal} = useSetModalContent()
 
     dayjs.extend(customParseFormat);
     const { RangePicker } = DatePicker;
-    const dateFormat = "DD/MM/YYYY";
     const [booked, setBooked] = useState([])
 
 
-    const isBookedChecker = useCallback((dates, datestring) => {
-      if(dates === null){
-          console.log("test")
-          reset()
-          return
-      }
-      const start = dates[0]
-      const end = dates[1]
-      if(start === undefined || start === null || end === null || end === undefined){
-          reset()
-          return
-      }
-      if(start.isSame(end)){
-        setPickedDates(undefined, undefined)
-          return 
-      }
-      // if any of them are between set
-      let invalid = false
-      for(let day of booked){
-          let after = (day.isAfter(start) || day.isSame(start))
-          let before = (day.isBefore(end) || day.isSame(end)) 
-          if(after && before){
-              invalid = true
-          }
-      }
-      invalid  ? setPickedDates(undefined, undefined) : setPickedDates([start, end])
-  }, [booked, setPickedDates, reset])
+  
+const onChange = (dates, dateStrings) => {
+  onCalendarChange(dates, setPickedDates, reset, booked)
+};
+
+
     useEffect(() => {
-    const checkBooked = () => {
-      let booked = [];
-      bookedDates.forEach(day => {
-      if(day.notEnoughSpace){
-        booked.push(dayjs(day.date));
-      }
-      return
-    })
-    setBooked(booked)
-    }
-    checkBooked()
-    },[bookedDates, setBooked])
+    setBooked(checkBooked(bookedDates))
+    },[bookedDates, setBooked, checkBooked])
     /*this runs forever because of the callbackfunction*/
     useEffect(() => {
       if(pickedDates === undefined || pickedDates.length === 0 ){
         return
       }
-        isBookedChecker(pickedDates)
+        onChange(pickedDates)
         // eslint-disable-next-line react-hooks/exhaustive-deps 
-    }, [booked, isBookedChecker ]);
+    }, [booked]);
 
       //this function is runned when date is picked, loops trough the booked dates, checks if each booked date if between the two ranges
       
     //makes days in the past and days that are booked disabled
-      const disabled = (current) => {
-
-        let now = dayjs()
-        if(current === undefined){
-            return false
-        }
-        else if(now.format(dateFormat) === current.format(dateFormat)){
-            return false
-        }
-        else if(booked.find((date)=>{return date.format(dateFormat) === current.format(dateFormat)})){
-          return true
-        }
-        return current.isBefore(now);
-      };
+  
       const panelRenderer = (panelNode)=>{
             return(<StyledRangePanel>
             {panelNode}
@@ -98,9 +58,9 @@ const {setModal} = useSetModalContent()
       const disabledAction = () =>{
         modalOn()
         setModal(<Login/>)
+        return
       }
       //an function here for now, it will be used to open modal when user is not logged in and tries to click on the calendar
-      
   return (
     <>
     <RangePicker
@@ -115,8 +75,8 @@ const {setModal} = useSetModalContent()
     getPopupContainer={test}
     //format={dateFormat}
     open={true}
-    onCalendarChange={loggedIn ? isBookedChecker : disabledAction}
-    disabledDate={disabled}
+    onCalendarChange={loggedIn ? onChange : disabledAction}
+    disabledDate={(current)=>{return checkDisabled(current, booked)}}
     mode={['date', 'date']}
     format="YYYY-MM-DD"
   />

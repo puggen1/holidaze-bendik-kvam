@@ -1,6 +1,6 @@
 import React from 'react'
 import { OuterCard, Guests } from './index.styles'
-import { Typography } from '@mui/material'
+import { Typography ,Box} from '@mui/material'
 import calculateDuration from '../../../utils/calculateDuration'
 import Button from '../../Button'
 import { Link } from 'react-router-dom'
@@ -13,7 +13,7 @@ const BookingCard = ({name, from, to, guests, price, id}) => {
   return (
     <OuterCard>
         <Typography gridArea="title" fontWeight="100" variant="h5">at {name} in {daysUntil} days </Typography>
-        <Typography gridArea="guests" display="flex" justifyContent="flex-end" alignItems="center" variant="body1">Guests: <Guests>{guests}</Guests> </Typography>
+        <Box display="flex" justifyContent="flex-end"  gridArea="guests"><Typography  display="flex" justifyContent="flex-end" alignItems="center" variant="body1">Guests: </Typography><Guests component="p">{guests}</Guests> </Box>
         <Typography gridArea="fromto" fontWeight="100" variant="body1">From: {dateFrom.getDate()}.{dateFrom.getMonth() + 1}  to {dateTo.getDate()}.{dateTo.getMonth() + 1}</Typography>
         <Typography gridArea="price" fontWeight="100" variant="body1">Total price: {price * duration},-</Typography>
         <Link style={{gridArea:"action", display:"flex",justifyContent:"flex-end", textDecoration:"none"}} to={"/booking/" + id}><Button variant="contained" color="secondary" text="View"/></Link>
