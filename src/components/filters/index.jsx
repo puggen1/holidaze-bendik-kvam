@@ -7,7 +7,6 @@ import DefaultInput from '../input/defaultInput'
 import OuterFilterAccordion from './accordion'
 import { useContext } from 'react'
 import { VenueContext } from '../../context/venueContext'
-import getRange from '../../utils/getPriceRange'
 import Button from '../Button'
 import useAllFilters from '../../hooks/useAllFilters'
 const Filters = ({sort, setSort}) => {
@@ -35,10 +34,7 @@ const InnerFilters = ({sort, setSort}) => {
 
 
     //priceRange
-    const [minMaxRange, setMinMaxRange] = useState([0, 100000])
-    useEffect(() => {
-            setMinMaxRange(getRange(venues, "price"))
-    }, [venues])
+    const [minMaxRange] = useState([0, 100000])
 //the state for the price range input
     const [priceRange, setPriceRange] = useState([0, 100000])
     const initiateFilter = () => {
@@ -47,16 +43,12 @@ const InnerFilters = ({sort, setSort}) => {
 
 
 //guestRange
-const [minMaxGuests, setMinMaxGuests] = useState([1, 100]);
-useEffect(() => {
-    setMinMaxGuests(getRange(venues, "maxGuests"))
-}, [venues])
+const [minMaxGuests] = useState([1, 100]);
 //the state for the guest range input
 const [guestRange, setGuestRange] = useState([1, 100])
 
 const sortBy = (e) => {
     setSort(e.target.value)
-    console.log(e.target.value)
 }
 //useEffect to update filters: 
 useEffect(() => {
@@ -66,13 +58,13 @@ useEffect(() => {
         <>
         <Icons type="filter" />
         <Ranges>
-        <Box>
+        <Box className="price">
         <Typography variant='p' component='p' color='white' fontWeight='300' fontSize='1rem' fontFamily='Roboto'>Price</Typography>
         <RangeInput start={minMaxRange[0]} end={minMaxRange[1]} range={priceRange} setRange={setPriceRange}/>
         </Box>
-        <Box>
+        <Box className="guests">
         <Typography variant='p' component='p' color='white' fontWeight='300' fontSize='1rem' fontFamily='Roboto'>Guests</Typography>
-        <RangeInput start={minMaxGuests[0]} end={minMaxGuests[1]} range={guestRange} setRange={setGuestRange}/>
+        <RangeInput  start={minMaxGuests[0]} end={minMaxGuests[1]} range={guestRange} setRange={setGuestRange}/>
         </Box>
         </Ranges>
         <SortSearch>
@@ -93,7 +85,7 @@ useEffect(() => {
         <Typography variant='p' component='p' color='white' fontWeight='300' fontSize='1rem' fontFamily='Roboto'>Search</Typography>
         <DefaultInput variant="outlined"  placeholder="Search for a venue or a place"/>
         </SortSearch>
-        <Box>
+        <Box className="actions">
         <Button text="Filter" variant="contained" color="secondary" event={()=>{initiateFilter()}}/>
         <Button text="Reset" variant="outlined" color="secondary" event={()=>{reset(); setPriceRange([0, 100000]); setGuestRange([1, 100])}}/>
         </Box>

@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import getPriceRange from "../utils/getPriceRange";
 export const VenueContext = createContext();
 
 const Venue = ({ children }) => {
@@ -46,9 +45,6 @@ const Venue = ({ children }) => {
   //updates filtered venues, but keeps the original venues for reset
   useEffect(() => {
     setFilteredVenues(venues);
-    setFilter((prev) => {
-      return { ...prev, priceRange: getPriceRange(venues, "price") };
-    });
   }, [venues]);
   return (
     <VenueContext.Provider

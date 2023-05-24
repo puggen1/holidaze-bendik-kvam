@@ -25,7 +25,7 @@ const EditVenue = () => {
   //checks if you are logged in and venue manager, and if you are the owner of the venue
   useEffect(()=>{
     if(Object.keys(data).length > 0){
-        if((!checkPermission("admin") && !checkPermission("auth")) || (name !== data.owner.name)){
+        if((!checkPermission("admin") || !checkPermission("auth")) || (name !== data.owner.name)){
         navigate(-1)
       }
   }},[data, checkPermission,name, navigate])

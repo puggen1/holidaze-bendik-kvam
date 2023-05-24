@@ -8,7 +8,6 @@ padding:"2rem 0",
 width:"100%",
 height:"20vh",
 backgroundColor:theme.palette.primary.main,
-
 }));
 
 const Ranges = styled(Box)(({ theme }) => ({
@@ -17,6 +16,9 @@ const Ranges = styled(Box)(({ theme }) => ({
     gap:"2rem",
     justifyContent:"center",
     flexDirection:"column",
+    "@media (max-width: 700px)": {
+        padding:"0.5rem 1rem",
+        boxSizing:"border-box",},
 }));
 
 const SortSearch = styled(Box)(({ theme }) => ({
@@ -25,5 +27,10 @@ const SortSearch = styled(Box)(({ theme }) => ({
     display:"flex",
     flexDirection:"column",
     justifyContent:"space-between",
+    "@media (max-width: 700px)": {
+        width:"100%",
+        padding:"0.5rem 1rem",
+        boxSizing:"border-box",
+    },
 }));
 export {OuterFilters, Ranges, SortSearch}

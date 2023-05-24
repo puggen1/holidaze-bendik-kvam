@@ -9,6 +9,7 @@ import useCreateAllSearchOptions from "../../hooks/useCreateAllSearchOptions"
 export const Home = () => {
   const {setAllOptions} = useCreateAllSearchOptions()
   const [sort, setSort] = useState("nameA")
+  const [offset] = useState(0)
   const [sortString, setSortString] = useState("")
   useEffect(() => {
     if(sort === "priceLow"){
@@ -24,7 +25,7 @@ export const Home = () => {
       setSortString("&sort=name&sortOrder=desc")
     }
   },[sort])
-  const {data} = useGetData(baseUrl + "/venues?_bookings=true" + sortString)
+  const {data} = useGetData(baseUrl + "/venues?_bookings=true" + sortString + "&limit=" + 50 + "&offset=" + offset)
   const {setVenues, filteredVenues} = useContext(VenueContext)
 
   useEffect(() => {

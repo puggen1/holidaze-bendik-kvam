@@ -10,14 +10,17 @@ import Create from '../../../components/modal/create'
 import useModalToggler from '../../../hooks/useModalToggler'
 import useSetModalContent from '../../../hooks/useSetModalContent'
 import useCheckPermission from '../../../hooks/useCheckPermission'
+import useHandleSnackbar from '../../../hooks/useHandleSnackbar'
 const AddVenue = () => {
+  const {handleBar} = useHandleSnackbar()
   const navigate = useNavigate()
   const {checkPermission} = useCheckPermission()
   useEffect(()=>{
-    if(!checkPermission("admin") && !checkPermission("auth")){
+    if(!checkPermission("admin") || !checkPermission("auth")){
       navigate(-1)
+      handleBar("You need to be an logged in admin to access this page", "error")
     }
-  },[checkPermission, navigate])
+  },[checkPermission, navigate, handleBar])
  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()

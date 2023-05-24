@@ -13,6 +13,9 @@ const IconBox = styled(Box)(({ theme }) => ({
         borderRadius:"10px",
         backgroundColor: theme.palette.primary.main,
     },
+    "@media (max-width: 700px)": {
+        justifyContent:"space-evenly",
+    },
 }));
 
 
