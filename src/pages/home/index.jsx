@@ -30,7 +30,7 @@ export const Home = () => {
   useEffect(() => {
     setVenues(data)
     setAllOptions(data)
-  }, [data, setVenues])
+  }, [data, setVenues, setAllOptions])
   
 
   return(
