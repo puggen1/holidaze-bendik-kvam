@@ -18,7 +18,7 @@ const Profile = ({type="regular"}) => {
     <OuterUser>
       {isLoading && <div>Loading...</div>}
       {isError && <div>Something went wrong...</div>}
-      {Object.keys(data).length > 0 && (<><ProfileInfo own={data.name === storedName} stats={data._count} name={data.name} img={data.avatar}/> {storedName === data.name ? <ProfileActions isAdmin={isAdmin}/> :  null} <ProfileContent  own={storedName === data.name} type={type} venues={data.venues} bookings={data.bookings}/> </>)}
+      {Object.keys(data).length > 0 && (<><ProfileInfo isAdmin={isAdmin} own={data.name === storedName} stats={data._count} name={data.name} img={data.avatar}/> {storedName === data.name ? <ProfileActions isAdmin={isAdmin}/> :  null} <ProfileContent isAdmin={isAdmin} own={storedName === data.name} type={type} venues={data.venues} bookings={data.bookings}/> </>)}
     </OuterUser>
   )
 }

@@ -5,7 +5,7 @@ import BookingCard from '../../booking/card'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Button from '../../Button'
 import { OuterContent } from './index.styles'
-const ProfileContent = ({venues, bookings, type, own}) => {
+const ProfileContent = ({venues, bookings, type, own, isAdmin}) => {
     const location = useLocation()
     const navigate = useNavigate()
     const bookingLink=<Link style={{gridColumn:"2/3", margin:"0 0 0 auto"}} to={location.pathname + "/bookings"}> <Button text="See all Bookings" variant="contained" color="secondary"/> </Link>
@@ -13,7 +13,7 @@ const ProfileContent = ({venues, bookings, type, own}) => {
     const backLink=<Box gridColumn="2/3" margin="0 0 0 auto"><Button text="Back" variant="contained" color="secondary" event={()=>{navigate(-1)}}/></Box>
   return (
     <OuterContent >
-        {(type === "regular" || type==="venues") &&
+        {((type === "regular" || type==="venues") && isAdmin) &&
         <Box display="grid" gridTemplateColumns="1fr 1fr" gap="1rem" >
         <Typography gridColumn="1/2" variant='h6' fontWeight="100"> Venues</Typography>
         {type === "regular" ? venueLink : backLink}
