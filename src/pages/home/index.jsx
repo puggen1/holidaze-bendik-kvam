@@ -5,8 +5,9 @@ import { baseUrl } from "../../utils/constants"
 import { useEffect, useContext, useState } from "react"
 import {VenueContext} from "../../context/venueContext"
 import Filters from "../../components/filters"
+import useCreateAllSearchOptions from "../../hooks/useCreateAllSearchOptions"
 export const Home = () => {
-  
+  const {setAllOptions} = useCreateAllSearchOptions()
   const [sort, setSort] = useState("nameA")
   const [sortString, setSortString] = useState("")
   useEffect(() => {
@@ -28,13 +29,14 @@ export const Home = () => {
 
   useEffect(() => {
     setVenues(data)
+    setAllOptions(data)
   }, [data, setVenues])
   
 
   return(
     
   <div>
-    <Hero />
+    <Hero  venues={filteredVenues}/>
     <Filters sort={sort} setSort={setSort}/>
     <AllVenues venues={filteredVenues}/>
   </div>)

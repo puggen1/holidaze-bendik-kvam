@@ -30,7 +30,7 @@ const Filters = ({sort, setSort}) => {
 }
 
 const InnerFilters = ({sort, setSort}) => {
-    const {venues, setFilter, setFilteredVenues, filteredVenues} = useContext(VenueContext)
+    const {venues, setFilter} = useContext(VenueContext)
     const {filterAllVenues, reset} = useAllFilters()
 
 
