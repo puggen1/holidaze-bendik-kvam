@@ -4,7 +4,7 @@ import { VenueCard, VenueCardMedia, VenueCardContent } from './index.styles'
 import Icons from '../../icons';
 import Button from '../../Button';
 import { Link } from 'react-router-dom';
-const Card = ({venueId, firstImage, name, price, maxGuests, meta={}}) => {
+const Card = ({link, firstImage, name, price, maxGuests, meta={}}) => {
     const {pets, wifi, parking, breakfast} = meta;
     
   return (
@@ -17,7 +17,7 @@ const Card = ({venueId, firstImage, name, price, maxGuests, meta={}}) => {
             <Icons type='card' pets={pets} parking={parking} wifi={wifi} breakfast={breakfast}/>
             <Typography className='guests' fontFamily={"roboto, sans-serif"} variant='p' m={0} mt={3} mb={0} component="h4">max guests: {maxGuests}</Typography>
             </Box>
-            <Link to={`/venue/${venueId}`}><Button text="View" color="secondary" variant="contained"/></Link>
+            <Link to={link}><Button text="View" color="secondary" variant="contained"/></Link>
         </VenueCardContent>
     </VenueCard>
   )
