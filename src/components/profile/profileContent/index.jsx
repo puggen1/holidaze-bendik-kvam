@@ -27,7 +27,7 @@ const ProfileContent = ({venues, bookings, type, own, isAdmin}) => {
     <Typography gridColumn="1/2" variant='h6' fontWeight="100"> Bookings</Typography>
         {type === "regular" ? bookingLink : backLink}
         <Box gridColumn="1/3" gap="1rem" display="flex" flexDirection="column">
-            {bookings.length > 0 ? bookings.map((booking, i) =>{ if(i >= 3 && type ==="regular"){return null} return <BookingCard key={booking.id} name={booking.venue.name} from={booking.dateFrom} to={booking.dateTo} guests={booking.guests} price={booking.venue.price} id={booking.id} />}) : <div>No bookings</div>}
+            {bookings.length > 0 ? bookings.map((booking, i) =>{ if(i >= 3 && type ==="regular"){return null} return <BookingCard key={booking.id} name={booking.venue.name} from={booking.dateFrom} to={booking.dateTo} guests={booking.guests} price={booking.venue.price} link={"/booking/" + booking.id} />}) : <div>No bookings</div>}
         </Box>
     </Box> }
     </OuterContent>

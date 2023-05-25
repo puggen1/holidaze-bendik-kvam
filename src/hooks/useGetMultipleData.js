@@ -20,7 +20,7 @@ const useGetMultipleData = (ids, subUrl, params) => {
       setdata(allData);
     }
     getAllData();
-  }, [ids]);
+  }, [ids, subUrl, params]);
   return { data };
 };
 

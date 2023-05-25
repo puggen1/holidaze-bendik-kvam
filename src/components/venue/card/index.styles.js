@@ -5,6 +5,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 const VenueCard = styled(Card)(({theme})=>({
     width:"350px",
+    minWidth:"350px",
     height:"250px",
     position:"relative",
     borderRadius:"10px",

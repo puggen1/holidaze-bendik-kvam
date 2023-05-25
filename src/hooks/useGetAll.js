@@ -1,6 +1,7 @@
+import { useCallback } from "react";
 import calculateDuration from "../utils/calculateDuration";
 const useGetAll = () => {
-  const getAllVenueBookings = (allVenues) => {
+  const getAllVenueBookings = useCallback((allVenues) => {
     if (allVenues.length > 0) {
       const bookings = allVenues.map((venue) => {
         const venueBookings = [];
@@ -14,7 +15,7 @@ const useGetAll = () => {
 
       return bookings.flat();
     }
-  };
+  }, []);
   return { getAllVenueBookings };
 };
 

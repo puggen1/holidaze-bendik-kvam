@@ -6,7 +6,7 @@ import useSendData from '../../../hooks/useSendData'
 import { baseUrl } from '../../../utils/constants'
 import useGetUserInfo from '../../../hooks/useGetUserInfo'
 import useHandleSnackbar from '../../../hooks/useHandleSnackbar'
-const DeleteVenue = ({venueId}) => {
+const DeleteVenue = ({venueId, type="venue"}) => {
     const auth = useGetUserInfo("accessToken")
     const navigate = useNavigate()
     const {handleBar} = useHandleSnackbar()
@@ -16,7 +16,7 @@ const DeleteVenue = ({venueId}) => {
         const response = await sender(false, baseUrl + "/venues/" + venueId, "DELETE", auth)
         if(response.ok){
             modalOff()
-            navigate("/")
+            navigate(type === "admin" ? 0 : "/")
             handleBar("venue deleted", "success")
 
         }

@@ -32,11 +32,15 @@ const Admin = () => {
       setIds(data.venues.map(venue=>{return venue.id}))
     }
   }, [data])
-  const {data: allVenues} = useGetMultipleData(ids,"/venues/","?_bookings=true")
+  const [subUrl] = useState("/venues/")
+  const [params] = useState("?_bookings=true");
+  const {data: allVenues} = useGetMultipleData(ids,subUrl,params)
   //gets all bookings and sets them to state
  useEffect(() => {
-    setAllBookings(getAllVenueBookings(allVenues))
- }, [allVenues, getAllVenueBookings])
+    const venueBookings = getAllVenueBookings(allVenues)
+    setAllBookings(venueBookings)
+ }, [allVenues, getAllVenueBookings, setAllBookings])
+
 /*getting all bookings from all venues*/
   return (
     <OuterDashboard>
@@ -47,7 +51,7 @@ const Admin = () => {
         <Box>
         <Button text="Exit" color="secondary" variant="contained" event={()=>{navigate("/")}}/>
         </Box>
-        <Typography variant="h5" component="h1" textAlign="center">{name}'s Dashboard</Typography>
+        <Typography variant="h5" component="h1" textalign="center">{name}'s Dashboard</Typography>
         <GuestStats bookings={allBookings}/>
         <RevenueStats bookings={allBookings}/>
         <AdminVenues venues={allVenues}/>
