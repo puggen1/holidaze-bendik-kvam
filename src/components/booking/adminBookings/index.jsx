@@ -16,7 +16,7 @@ const AdminBookings = ({bookings}) => {
     }, [filter, bookings])
   return (
     <OuterAdminBooking >
-        <Typography variant="h5" gridColumn="1/4" textalign="center">Bookings</Typography>
+        <Typography variant="h5" gridColumn="1/4" sx={{textAlign:"center"}}>Bookings</Typography>
         <Box gridColumn="1/4" display="flex" justifyContent="space-evenly">
         <Button variant="text" color="secondary" onClick={()=>{setFilter("old")}}>old</Button>
         <Button variant="text" color="secondary" onClick={()=>{setFilter("current")}}>current</Button>

@@ -13,6 +13,7 @@ import useGetMultipleData from "../../hooks/useGetMultipleData";
 import { useState, useEffect } from "react";
 import getAll from "../../hooks/useGetAll";
 import AdminVenues from "../../components/venue/adminVenues";
+import GuestChart from "../../components/stats/guestChart";
 const Admin = () => {
   const {getAllVenueBookings} = getAll()
   const {checkPermission} = useCheckPermission()
@@ -51,8 +52,9 @@ const Admin = () => {
         <Box>
         <Button text="Exit" color="secondary" variant="contained" event={()=>{navigate("/")}}/>
         </Box>
-        <Typography variant="h5" component="h1" textalign="center">{name}'s Dashboard</Typography>
+        <Typography variant="h5" component="h1" sx={{textAlign:"center"}}>{name}'s Dashboard</Typography>
         <GuestStats bookings={allBookings}/>
+        <GuestChart bookings={allBookings}/>
         <RevenueStats bookings={allBookings}/>
         <AdminVenues venues={allVenues}/>
       </>)}

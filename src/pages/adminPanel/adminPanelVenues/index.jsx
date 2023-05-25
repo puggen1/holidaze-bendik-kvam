@@ -23,7 +23,7 @@ const AdminPanelVenues = () => {
       {isLoading && <div>Loading...</div>}
       {isError && <div>Something went wrong...</div>}
     {Object.keys(data).length > 0 && <>
-    <Typography component="h1" variant='h5' textalign="center" padding="1rem" gridColumn="1/4">Your Venues</Typography>
+    <Typography component="h1" variant='h5' sx={{textAlign:"center"}} padding="1rem" gridColumn="1/4">Your Venues</Typography>
       <AdminVenueList venues={data.venues} current={currentVenue} changer={setCurrentVenue}/>
       <AdminVenueInfo venue={currentVenue ? currentVenue : data.venues[0].id} />
       </>}
