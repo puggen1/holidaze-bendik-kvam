@@ -85,9 +85,9 @@ const VenueCardContent = styled(CardContent)(({theme})=>({
         "& h3": {
             fontWeight: 300,
             whiteSpace:"break-spaces",
-            width:"75%"          },
+            width:"60%"          },
           "& .price": {
-            width:"25%",
+            width:"40%",
             textAlign: "end",
             fontWeight: 300,
           },

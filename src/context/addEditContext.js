@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addEditSchema from "../utils/schemas/addEdit";
 const AddEditContext = createContext();
@@ -38,6 +38,22 @@ export const AddEdit = ({ children }) => {
   const returnAllData = () => {
     return { ...venueInfo, media, meta: meta, maxGuests: guest };
   };
+  const resetContext = () => {
+    setMedia([]);
+    setMeta({ wifi: false, pets: false, breakfast: false, parking: false });
+    setGuest(1);
+    setVenueInfo({ name: "", id: "", price: 0, maxGuests: 1, description: "", meta: { ...meta }, media: [], location: { address: "", city: "", zip: 0, country: "" } });
+    setValue("name", "");
+    setValue("price", 0);
+    setValue("maxGuests", 1);
+    setValue("description", "");
+    setValue("location.address", "");
+    setValue("location.city", "");
+    setValue("location.zip", 0);
+    setValue("location.country", "");
+    setValue("media", []);
+
+  };
   return (
     <AddEditContext.Provider
       value={{
@@ -54,6 +70,7 @@ export const AddEdit = ({ children }) => {
         handleSubmit,
         setValue,
         errors,
+        resetContext
       }}
     >
       {children}

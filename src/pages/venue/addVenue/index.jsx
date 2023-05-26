@@ -15,13 +15,15 @@ const AddVenue = () => {
   const {handleBar} = useHandleSnackbar()
   const navigate = useNavigate()
   const {checkPermission} = useCheckPermission()
+  const {handleSubmit, venueInfo, guest, setVenueInfo, errors, resetContext} = useContext(AddEditContext)
+  //useEffect with cleanupfunction to reset context
+
   useEffect(()=>{
     if(!checkPermission("admin") || !checkPermission("auth")){
       navigate(-1)
       handleBar("You need to be an logged in admin to access this page", "error")
     }
   },[checkPermission, navigate, handleBar])
- const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()
  const validation = (data) => {
@@ -30,7 +32,10 @@ const AddVenue = () => {
   setModal(<Create/>)
   
 }
-
+useEffect(()=>{return ()=>{
+  resetContext()
+  
+}},[])
   const onCreate =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){

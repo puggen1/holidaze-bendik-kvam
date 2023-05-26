@@ -83,7 +83,7 @@ useEffect(() => {
         <MenuItem value={"nameZ"}>Name Z to A</MenuItem>
        </Select>
         <Typography variant='p' component='p' color='white' fontWeight='300' fontSize='1rem' fontFamily='Roboto'>Search</Typography>
-        <DefaultInput variant="outlined"  placeholder="Search for a venue or a place"/>
+        <DefaultInput variant="outlined"   placeholder="Search for a venue or a place"/>
         </SortSearch>
         <Box className="actions">
         <Button text="Filter" variant="contained" color="secondary" event={()=>{initiateFilter()}}/>

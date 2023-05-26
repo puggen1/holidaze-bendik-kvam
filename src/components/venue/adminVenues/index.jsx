@@ -12,7 +12,7 @@ const AdminVenues = ({venues}) => {
         <Typography variant="h3" component="h3" textAlign="center">Venues</Typography>
         <Box display="flex" gap="1rem">
         <Link to="/admin/venues"><Button text="view all" variant="contained" color="secondary"/></Link>
-        <Link to="/venues/add"><Button text="add venue" variant="contained" color="primary"/></Link>
+        <Link to="/venue/add"><Button text="add venue" variant="contained" color="primary"/></Link>
         </Box>
         </Box>
     <Box className="allAdminVenues" display="flex" gap="1rem" flexWrap="wrap" padding="2rem 0" >
