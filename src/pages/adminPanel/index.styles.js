@@ -18,7 +18,9 @@ const OuterDashboard = styled(Box)(({ theme }) => ({
         },
     ".venues": {
         maxWidth:"100%",
+        
     },
+
    "@media (max-width: 768px)": {
    
         gridTemplateColumns:"1fr 2fr",
@@ -39,7 +41,9 @@ const OuterDashboard = styled(Box)(({ theme }) => ({
             gridRow:"4/5",
             boxSizing:"border-box",
             overflow:"auto",
-        },
+                    },
+       
+         
    },
 "@media (max-width: 580px)": {
     gridTemplateColumns:"1fr",
@@ -57,6 +61,8 @@ const OuterDashboard = styled(Box)(({ theme }) => ({
     ".venues": {
         gridColumn:"1/2",
         gridRow:"6/7",
+        ".topButtons": {
+            justifyContent:"center !important",},
     },
     "h1": {
         gridColumn:"1/2",
