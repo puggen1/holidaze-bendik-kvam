@@ -7,7 +7,6 @@ import useSetModalContent from '../../hooks/useSetModalContent'
 import Button from '../Button'
 import DeleteBooking from '../modal/deleteBooking'
 import calculateDuration from '../../utils/calculateDuration'
-import { set } from 'react-hook-form'
 const BookingDetails = ({data, setEditStatus, editStatus, adminView}) => {
     const {modalOn} = useModalToggler()
     const {setModal} = useSetModalContent()
@@ -29,7 +28,7 @@ const BookingDetails = ({data, setEditStatus, editStatus, adminView}) => {
         setMessage(message)
     }
     //if the booking is currently active, also last day
-    else if(daysUntil + duration === 0 || daysUntil < 0 && daysUntil > duration){
+    else if(daysUntil + duration === 0 || (daysUntil < 0 && daysUntil > duration)){
         const message = `${adminView ? customer.name: "You"} are currently staying at ${venue.name}!`
         setMessage(message)
     }
