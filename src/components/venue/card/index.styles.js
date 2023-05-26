@@ -9,6 +9,7 @@ const VenueCard = styled(Card)(({theme})=>({
     height:"250px",
     position:"relative",
     borderRadius:"10px",
+    margin:"0 auto",
     '& .guests':{
         opacity:0,
         transition: "opacity 1s ease",

@@ -6,49 +6,16 @@ const useCreateAllSearchOptions = (searchOptions) => {
     (data) => {
       const allOptions = [];
       for (let option of data) {
-        if (option.location.address !== "Unknown") {
-          //regex for removing Unkonwn from all options or if empty or the string: string
-          const regex = /Unknown|string|^$/g;
-          //test if the string matches the regex, if yes add it
-          const string =
-            option.location.address +
-            " " +
-            option.location.city +
-            " " +
-            option.location.zip +
-            " " +
-            option.location.country;
-          const formatedString = string.replace(regex, "").trim();
-          if (formatedString === "") {
-            continue;
-          }
-          allOptions.push(
-            {
-              label: formatedString,
-              value: formatedString,
-              id: option.id + "location",
-              type: "location",
-            },
-            {
-              label: option.name,
-              value: option.name,
-              id: option.id,
-              type: "venue",
-              bookings: option.bookings,
-              maxGuests: option.maxGuests,
-            }
-          );
-        } else {
+        if(option.name.length === 0){
+          continue;
+        }
           allOptions.push({
             label: option.name,
             value: option.name,
             id: option.id,
-            type: "venue",
             bookings: option.bookings,
             maxGuests: option.maxGuests,
-
           });
-        }
       }
       setAllSearchOptions(allOptions);
     },

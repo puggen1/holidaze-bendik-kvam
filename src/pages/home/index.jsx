@@ -6,11 +6,13 @@ import { useEffect, useContext, useState } from "react"
 import {VenueContext} from "../../context/venueContext"
 import Filters from "../../components/filters"
 import useCreateAllSearchOptions from "../../hooks/useCreateAllSearchOptions"
+import useSetOffset from "../../hooks/useSetOffset"
 export const Home = () => {
   const {setAllOptions} = useCreateAllSearchOptions()
   const [sort, setSort] = useState("nameA")
-  const [offset] = useState(0)
+  const [offset, setOffset] = useState(0)
   const [sortString, setSortString] = useState("")
+
   useEffect(() => {
     if(sort === "priceLow"){
       setSortString("&sort=price&sortOrder=asc")
@@ -24,22 +26,23 @@ export const Home = () => {
     if(sort === "nameZ"){
       setSortString("&sort=name&sortOrder=desc")
     }
+    setOffset(0)
   },[sort])
-  const {data} = useGetData(baseUrl + "/venues?_bookings=true" + sortString + "&limit=" + 50 + "&offset=" + offset)
+  const {data, isLoading, isError} = useGetData(baseUrl + "/venues?_bookings=true" + sortString + "&limit=" + 52 + "&offset=" + offset)
   const {setVenues, filteredVenues} = useContext(VenueContext)
+
+  const {prev, next} = useSetOffset(offset, data, setOffset)
 
   useEffect(() => {
     setVenues(data)
     setAllOptions(data)
   }, [data, setVenues, setAllOptions])
-  
-
   return(
     
   <div>
-    <Hero  venues={filteredVenues}/>
+    <Hero venues={filteredVenues}/>
     <Filters sort={sort} setSort={setSort}/>
-    <AllVenues venues={filteredVenues}/>
+    <AllVenues next={next} prev={prev} venues={filteredVenues} loading={isLoading} error={isError}/>
   </div>)
 
 }

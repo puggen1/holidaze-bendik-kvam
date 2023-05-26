@@ -24,22 +24,8 @@ const  {allSearchOptions} = useContext(SearchFilterContext)
     renderOption={(props, option) => {
         return(<li{...props}  style={{display:"flex", justifyContent:"space-between"}} key={option.id}><Typography>{option.label}</Typography><Typography>{option.type}</Typography></li>)
     }}
-    renderInput={(params) => <TextField sx={{backgroundColor:"white", borderRadius:"30px"}} className='search' variant="outlined" color="secondary" placeholder="find a venue or search by location" {...params} />}
+    renderInput={(params) => <TextField sx={{backgroundColor:"white", borderRadius:"30px"}} className='search' variant="outlined" color="secondary" placeholder="search for a venue" {...params} />}
     /> 
   )
   }
 export default SearchInput
-
-/*
-value={search}
-    onChange={(event, newValue) => {
-        setSearch(newValue);
-    }}
-    inputValue={searchInput}
-    onInputChange={(event, newInputValue) => {
-      setSearchInput(newInputValue);
-
-      search, setSearch, searchInput, setSearchInput
-    }}
-*/
-
