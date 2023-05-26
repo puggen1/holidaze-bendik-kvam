@@ -35,7 +35,7 @@ const AddVenue = () => {
 useEffect(()=>{return ()=>{
   resetContext()
   
-}},[])
+}},[resetContext])
   const onCreate =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){
