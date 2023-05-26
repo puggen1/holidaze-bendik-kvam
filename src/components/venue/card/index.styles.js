@@ -78,19 +78,18 @@ const VenueCardContent = styled(CardContent)(({theme})=>({
         flexDirection:"row",
         gap:"10px 0",
         justifyContent:"space-between",
-        alignItems:"center",
+        alignItems:"flex-start",
         width:"100%",
         flexWrap:"wrap",
-        '& h3':{
-            flex:"70% 0 0",
-            fontWeight:300,
-        },
-        '& .price':{
-            flex:"0 0 30%",
-            textAlign:"end",
-            fontWeight:300,
-
-        },
+        "& h3": {
+            fontWeight: 300,
+            whiteSpace:"break-spaces",
+            width:"75%"          },
+          "& .price": {
+            width:"25%",
+            textAlign: "end",
+            fontWeight: 300,
+          },
         '& .icons':{
             display:"flex",
             gap:"0 10px",

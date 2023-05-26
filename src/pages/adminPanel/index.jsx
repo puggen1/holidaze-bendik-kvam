@@ -52,10 +52,14 @@ const Admin = () => {
         <Box>
         <Button text="Exit" color="secondary" variant="contained" event={()=>{navigate("/")}}/>
         </Box>
-        <Typography variant="h5" component="h1" sx={{textAlign:"center"}}>{name}'s Dashboard</Typography>
+        <Typography variant="h5" gridColumn="2/4" component="h1" sx={{textAlign:"center"}}>{name}'s Dashboard</Typography>
+        <Box className="guestStats" gridColumn="1/2">
         <GuestStats bookings={allBookings}/>
+        </Box>
         <GuestChart bookings={allBookings}/>
+        <Box className="revenueStats" gridColumn="4/5">
         <RevenueStats bookings={allBookings}/>
+        </Box>
         <AdminVenues venues={allVenues}/>
       </>)}
     </OuterDashboard>
