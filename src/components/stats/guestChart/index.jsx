@@ -1,4 +1,4 @@
-import { Chart as ChartJS, Bar, ArcElement, Tooltip, Legend, Utils } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import "chart.js/auto"
 import createChartData from '../../../utils/createChartData';

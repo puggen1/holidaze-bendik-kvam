@@ -14,15 +14,17 @@ const Booking = () => {
   const auth = useGetUserInfo("accessToken")
   const {data, isLoading, isError} = useGetData(baseUrl + "/bookings/" + id + "?_customer=true&_venue=true", auth)
   const name = useGetUserInfo("name")
-
   const venueManager = useGetUserInfo("venueManager")
   useEffect(()=>{
     //since we only can check if it the guest, im going to let every venuemanager see the booking if the somehow get the id
-    if((!isLoading && !isError) && (data.customer?.name !== name || !venueManager) ){
-      //navigate(-1)
+    if((Object.keys(data).length > 0) && (data.customer?.name !== name) ){
+      if(!venueManager){
+        navigate(-1)
+      }
+      
     }
     else if(isError){
-      //navigate(-1)
+      navigate(-1)
     }
     }
   ,[data ,isLoading, isError, name, venueManager, navigate])
@@ -30,7 +32,7 @@ const Booking = () => {
   if(isError) return (<h1>Something went wrong...{data.message} </h1>)
   return (
     <OuterBooking image={(Object.keys(data).length > 0 && data.id) ? data.venue.media[0] : null}>
-      <BookingDetails data={data.id ? data : []}  setEditStatus={setEditStatus} editStatus={editStatus}/>
+      <BookingDetails data={data.id ? data : []}  setEditStatus={setEditStatus} adminView={data.customer?.name !== name && venueManager} editStatus={editStatus}/>
       {editStatus && <EditBookingDetails bookingId={id} venueId={data.venue.id} currentGuests={data.guests} maxGuests={Object.keys(data).length > 0 ? data.venue.maxGuests : 100} setEditStatus={setEditStatus} editStatus={editStatus} originalPickedDated={Object.keys(data).length > 0 ? [new Date(data.dateFrom), new Date(data.dateTo)] : []}/>}
     </OuterBooking>
   )
