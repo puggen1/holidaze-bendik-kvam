@@ -2,18 +2,18 @@ import {styled, Box } from "@mui/material"
 
 
 const OuterAllVenues = styled(Box)(({ theme }) => ({
-    width:"100%",
     margin:"2rem auto",
+    width:"auto",
     boxSizing:"border-box",
-    display:"flex",
-    flexDirection:"row",
+    display:"grid",
+    //auto columns
+    gridTemplateColumns:"repeat(auto-fill, minmax(350px, 1fr))",
     flexWrap:"wrap",
-    justifyContent:"space-around",
     gap:"1rem",
-
     "@media screen and (max-width: 716px)": {
         flexDirection:"column",
-    }
+    },
+
 }));
 
 

@@ -39,14 +39,13 @@ const Hero = ({venues}) => {
         if(value === null){
             return
         }
-        if(value.type === "venue"){
+        else{
             if(value.maxGuests < guests){
                 setValue(null)
                 setGuests(1)
             }
         }
-        else{
-        }
+     
     }, [value, guests, setGuests])
 
     //used on onchange, to update the bookingTime state, also checks if the date is disabled

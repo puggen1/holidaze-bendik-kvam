@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyledInput } from './index.styles'
-const DefaultInput = ({variant, color, text, placeholder, type, manager}) => {
+const DefaultInput = ({variant, color, text, placeholder, type, manager, multiLine}) => {
   return (
-    <StyledInput {...manager} type={type ? type :"text"} variant={variant} color={color} label={text} placeholder={placeholder ? placeholder : ""}/>
+    <StyledInput {...manager} multiline={multiLine} rows={multiLine ? 4 : 0} type={type ? type :"text"} variant={variant} color={color} label={text} placeholder={placeholder ? placeholder : ""}/>
   )
 }
 

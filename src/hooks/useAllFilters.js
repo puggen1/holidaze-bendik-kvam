@@ -31,8 +31,6 @@ const useAllFilters = () => {
     setFilteredVenues(filteredVenues);
   };
   const reset = () => {
-    console.log("reset");
-    console.log(defaultFilter);
     setFilter(defaultFilter);
     setFilteredVenues(venues);
   };

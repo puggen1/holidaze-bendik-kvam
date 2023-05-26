@@ -5,9 +5,11 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 const VenueCard = styled(Card)(({theme})=>({
     width:"350px",
+    minWidth:"350px",
     height:"250px",
     position:"relative",
     borderRadius:"10px",
+    margin:"0 auto",
     '& .guests':{
         opacity:0,
         transition: "opacity 1s ease",
@@ -77,19 +79,18 @@ const VenueCardContent = styled(CardContent)(({theme})=>({
         flexDirection:"row",
         gap:"10px 0",
         justifyContent:"space-between",
-        alignItems:"center",
+        alignItems:"flex-start",
         width:"100%",
         flexWrap:"wrap",
-        '& h3':{
-            flex:"70% 0 0",
-            fontWeight:300,
-        },
-        '& .price':{
-            flex:"0 0 30%",
-            textAlign:"end",
-            fontWeight:300,
-
-        },
+        "& h3": {
+            fontWeight: 300,
+            whiteSpace:"break-spaces",
+            width:"60%"          },
+          "& .price": {
+            width:"40%",
+            textAlign: "end",
+            fontWeight: 300,
+          },
         '& .icons':{
             display:"flex",
             gap:"0 10px",

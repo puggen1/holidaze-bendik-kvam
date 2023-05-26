@@ -49,6 +49,7 @@ function App() {
                 />
                 <Route path="admin" element={<Admin />} />
                 <Route path="admin/venues" element={<AdminPanelVenues />} />
+                <Route path="admin/venues/:id" element={<AdminPanelVenues />} />
                 <Route
                   path="admin/bookings"
                   element={<AdminPanelBookings />}

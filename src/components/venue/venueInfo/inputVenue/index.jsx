@@ -9,7 +9,7 @@ import AddEditContext from '../../../../context/addEditContext'
 const InputVenue =({venue}) => {
   const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest,  register,
     setValue,
-    errors, } = useContext(AddEditContext)
+    errors} = useContext(AddEditContext)
   //adds data if edit and not create/add
   const priceInput = (name) => register(name, {
     setValue: (value) => {
@@ -68,7 +68,7 @@ const InputVenue =({venue}) => {
       <div className='guests'><GuestInput value={guest} changer={setGuest}/>
       <p>{errors.maxGuests?.message}</p>
       </div>
-      <div className='desc'><DefaultInput manager={{...register("description")}} variant="outlined" color={ errors.description? "error" : "secondary"} text="Description" type="text"/>
+      <div className='desc'><DefaultInput multiLine={true} manager={{...register("description")}} variant="outlined" color={ errors.description? "error" : "secondary"} text="Description" type="text"/>
       <p>{errors.description?.message}</p>
       </div>
     </InnerEditInfo>
