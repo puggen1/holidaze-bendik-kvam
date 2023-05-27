@@ -32,10 +32,10 @@ const AddVenue = () => {
   setModal(<Create/>)
   
 }
-useEffect(()=>{return ()=>{
+/*useEffect(()=>{return ()=>{
   resetContext()
   
-}},[resetContext])
+}},[resetContext])*/
   const onCreate =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){

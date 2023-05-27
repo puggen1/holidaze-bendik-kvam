@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import {UserContext} from '../../../context/userContext'
 import { BookingContext } from '../../../context/bookingContext'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import calculateDuration from '../../../utils/calculateDuration'
 import Button from '../../Button'
 import { useNavigate } from 'react-router-dom'
@@ -33,15 +33,18 @@ const book = async () => {
     //if errror show error message
     //hook for checking if auth is expired, prompt to login again
 }
-const message = type === "new" ?  "want to book " + venueName : "want to update your booking for " + venueName
+const message = type === "new" ?  "want to book " + venueName : "want to update your booking for " + venueName + "?"
   return (
-    <div style={{display:"flex", flexDirection:"column", alignItems:"center", height:"100%", margin:"1rem auto"}}>
-        <Typography variant="h4" component="h4" color="primary" fontWeight="300" fontSize="2rem" fontFamily="Roboto">{message}</Typography>
+    <div style={{display:"flex", gap:"1rem", flexDirection:"column", alignItems:"center", height:"100%", width:"80%", minHeight:"30vh", margin:"0 auto"}}>
+        <Typography variant="h4" textAlign="center" component="h4" color="primary" fontWeight="300" fontSize="2rem" fontFamily="Roboto">{message}</Typography>
+        <Box display="flex" flexDirection="column" alignItems="center">
         <Typography variant="h5" component="h5" color="primary" fontWeight="300" fontSize="1.5rem" fontFamily="Roboto">from {start} to {end}</Typography>
         <Typography variant="h5" component="h5" color="primary" fontWeight="300" fontSize="1.5rem" fontFamily="Roboto">cost for {duration} nights: {duration * price},- kr</Typography>
+        </Box>
+        <Box display="flex" width="80%" justifyContent="space-evenly">
         <Button event={() => modalOff()} text="Cancel" color="error" variant="contained" width="100%" height="3rem" margin="1rem 0"/>
         <Button event={book} text={type === "new" ? "Book" : "Update"} color="secondary" variant="contained" width="100%" height="3rem" margin="1rem 0"/>
-
+        </Box>
     </div>
   )
 }

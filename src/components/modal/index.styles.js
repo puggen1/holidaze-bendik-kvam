@@ -10,6 +10,8 @@ const InnerModal = styled(Box)(({ theme }) => ({
   width: "600px",
   borderRadius: "20px",
   margin: "auto",
+  display: "flex",
+  alignItems: "center",
 }));
 
 export { InnerModal, DefaultModal };
