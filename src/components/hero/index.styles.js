@@ -72,6 +72,9 @@ const HeroSearch = styled(Box)(({ theme }) => ({
   "@media (max-width: 550px)": {
     width: "90%",
   },
+  ".MuiOutlinedInput-notchedOutline":{
+    borderRadius: "30px !important",
+  }
 }));
 
 const HeroDate = styled(Box)(({ theme }) => ({

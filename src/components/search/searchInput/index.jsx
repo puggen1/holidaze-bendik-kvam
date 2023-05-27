@@ -12,7 +12,6 @@ const  {allSearchOptions} = useContext(SearchFilterContext)
     <Autocomplete
     sx={{borderRadius:"30px"}}
     disablePortal
-    id="combo-box-demo"
     inputValue={inputValue}
     onInputChange={(event, newInputValue) => {setInputValue(newInputValue)}}
     value={value}
