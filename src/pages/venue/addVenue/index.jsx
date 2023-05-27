@@ -15,7 +15,7 @@ const AddVenue = () => {
   const {handleBar} = useHandleSnackbar()
   const navigate = useNavigate()
   const {checkPermission} = useCheckPermission()
-  const {handleSubmit, venueInfo, guest, setVenueInfo, errors, resetContext} = useContext(AddEditContext)
+  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
   //useEffect with cleanupfunction to reset context
 
   useEffect(()=>{
@@ -32,10 +32,7 @@ const AddVenue = () => {
   setModal(<Create/>)
   
 }
-/*useEffect(()=>{return ()=>{
-  resetContext()
-  
-}},[resetContext])*/
+
   const onCreate =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){
