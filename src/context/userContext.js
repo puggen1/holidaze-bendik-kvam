@@ -27,18 +27,19 @@ const User = ({ children }) => {
   const register = async ({
     email,
     password,
-    username,
+    name,
     avatar = null,
     venueManager = false,
   }) => {
     const dataToSend = {
       email,
       password,
-      name: username,
+      name: name,
       avatar,
       venueManager,
     };
     const response = await sender(dataToSend, registerUrl, "POST");
+    console.log(response);
     if (response.email) {
       return { success: true, message: "Registration Successful" };
     } else {
