@@ -51,7 +51,7 @@ const {handleBar} = useHandleSnackbar()
         <form onChange={(e)=>{setCurrentAvatar(e.target.value)}} style={{display:"grid", gap:"1rem"}} onSubmit={handleSubmit(changer)}>
         <Typography textAlign="center" variant='h4' component="p">Change avatar</Typography>
         <Avatar type="big" username={username} src={currentAvatar}/>
-        <Box width="80%">
+        <Box width="100%" margin="0 auto">
         <DefaultInput variant="outlined" color={errors.url ? "error" : "secondary"} placeholder={oldAvatar ? oldAvatar : "Paste Avatar url here"} type="url"  manager={{...register("url")}}/>
         <Typography variant="body1" minHeight="2rem" color="error">{errors.url?.message}</Typography>
         </Box>

@@ -38,7 +38,7 @@ export const AddEdit = ({ children }) => {
   const returnAllData = useCallback(()=> {
     return { ...venueInfo, media, meta: meta, maxGuests: guest };
   }, [venueInfo, media, meta, guest]);
-  const resetContext = useCallback(() => {
+  const resetContext =() => {
     setMedia([]);
     setMeta({ wifi: false, pets: false, breakfast: false, parking: false });
     setGuest(1);
@@ -53,7 +53,7 @@ export const AddEdit = ({ children }) => {
     setValue("location.country", "");
     setValue("media", []);
 
-  }, []);
+  }
   return (
     <AddEditContext.Provider
       value={{

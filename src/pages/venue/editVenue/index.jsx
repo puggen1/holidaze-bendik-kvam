@@ -45,7 +45,7 @@ const EditVenue = () => {
   //cleanup
   useEffect(()=>{
     return () => {
-      resetContext()
+        resetContext()
     }
   },[resetContext])
   return (<>

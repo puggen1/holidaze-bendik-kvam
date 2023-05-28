@@ -41,7 +41,6 @@ const AddVenue = () => {
 //cleanup
   useEffect(()=>{
     return () => {
-
       resetContext()
     }
   },[resetContext])
