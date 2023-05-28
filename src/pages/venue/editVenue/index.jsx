@@ -47,7 +47,7 @@ const EditVenue = () => {
     return () => {
         resetContext()
     }
-  },[resetContext])
+  },[])
   return (<>
     {isLoading && <div>loading</div>}
     {isError && <div>error</div>}

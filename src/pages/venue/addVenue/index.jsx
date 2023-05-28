@@ -43,7 +43,7 @@ const AddVenue = () => {
     return () => {
       resetContext()
     }
-  },[resetContext])
+  },[])
   return (
   
     <OuterVenue>
