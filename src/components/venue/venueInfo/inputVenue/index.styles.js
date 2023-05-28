@@ -6,6 +6,7 @@ import { styled } from "@mui/material";
 const InnerEditInfo = styled(InnerInfo)(({ theme }) => ({
     gridTemplateRows: "auto auto auto 1fr 1fr",
     ".price, .guests":{
+        display:"grid",
         backgroundColor: "#ffffff",
     },
     ".price":{

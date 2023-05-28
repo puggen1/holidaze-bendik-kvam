@@ -6,6 +6,7 @@ import { OuterInfo } from '../index.styles'
 import { LocationInfo, OuterLocation } from '../location/index.styles'
 import { InnerEditInfo } from './index.styles'
 import AddEditContext from '../../../../context/addEditContext'
+import { Typography } from '@mui/material'
 const InputVenue =({venue}) => {
   const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest,  register,
     setValue,
@@ -59,17 +60,24 @@ const InputVenue =({venue}) => {
     <form >
     <OuterInfo>
     <InnerEditInfo>
-      <div className='name'><DefaultInput manager={{...register("name")}} variant="outlined" color={ errors.name? "error" : "secondary"} text="Venue Name" type="text"/>
-      <p>{errors.name?.message}</p></div>
-      <div className='icons'><Icons meta={meta} changer={setMeta} type="addEdit"/></div>
-      <div className='price'><DefaultInput manager={{...priceInput("price")}} variant="outlined" color={ errors.price? "error" : "secondary"} text="price" type="number" />
-      <p>{errors.price?.message}</p>
+      <div className='name'>
+        <DefaultInput manager={{...register("name")}} variant="outlined" color={ errors.name? "error" : "secondary"} text="Venue Name" type="text"/>
+        <Typography minHeight="1.5rem" color="primary">{errors.name?.message}</Typography>
+        </div>
+      <div className='icons'>
+        <Icons meta={meta} changer={setMeta} type="addEdit"/>
+        </div>
+      <div className='price'>
+        <DefaultInput manager={{...priceInput("price")}} variant="outlined" color={ errors.price? "error" : "secondary"} text="price" type="number" />
+        <Typography minHeight="1.5rem" color="primary">{errors.price?.message}</Typography>
       </div>
-      <div className='guests'><GuestInput value={guest} changer={setGuest}/>
-      <p>{errors.maxGuests?.message}</p>
+      <div className='guests'>
+        <GuestInput value={guest} changer={setGuest}/>
+        <Typography minHeight="1.5rem" color="primary">{errors.maxGuests?.message}</Typography>
       </div>
-      <div className='desc'><DefaultInput multiLine={true} manager={{...register("description")}} variant="outlined" color={ errors.description? "error" : "secondary"} text="Description" type="text"/>
-      <p>{errors.description?.message}</p>
+      <div className='desc'>
+        <DefaultInput multiLine={true} manager={{...register("description")}} variant="outlined" color={ errors.description? "error" : "secondary"} text="Description" type="text"/>
+        <Typography minHeight="1.5rem" color="primary">{errors.description?.message}</Typography>
       </div>
     </InnerEditInfo>
     <OuterLocation>

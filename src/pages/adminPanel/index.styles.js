@@ -9,12 +9,14 @@ const OuterDashboard = styled(Box)(({ theme }) => ({
     padding:"2rem 0",
     gap:"1rem 0",
     ".allAdminVenues": {
-        flexWrap:"nowrap",
-        flexDirection:"row",
-        justifyContent:"space-between",
+        display:"flex",
+        justifyContent:"flex-start",
         alignItems:"center",
         overflow:"auto",
         whiteSpace:"nowrap",
+        ".venueCard": {
+            margin:"0 0"
+        },
         },
     ".venues": {
         maxWidth:"100%",
