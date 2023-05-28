@@ -17,7 +17,7 @@ const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
   const  {data, isLoading, isError} = useGetData(baseUrl + "/venues/" + id + "?_owner=true")
-  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
+  const {handleSubmit, venueInfo, guest, setVenueInfo, errors, resetContext} = useContext(AddEditContext)
   const {modalOn, modalOff} = useModalToggler()
   const {setModal} = useSetModalContent()
   const {checkPermission} = useCheckPermission()
@@ -36,13 +36,18 @@ const EditVenue = () => {
   setModal(<Edit/>)
   
 }
-
-  const onEdit =()=>{
+    const onEdit =()=>{
     handleSubmit(validation)()
     if(Object.keys(errors).length > 0){
       modalOff()
     }
   }
+  //cleanup
+  useEffect(()=>{
+    return () => {
+      resetContext()
+    }
+  },[resetContext])
   return (<>
     {isLoading && <div>loading</div>}
     {isError && <div>error</div>}

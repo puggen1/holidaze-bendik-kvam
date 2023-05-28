@@ -8,6 +8,11 @@ const OuterContent = styled(Box)(({
      "@media screen and (max-width:750px)":{
         width:"100%"
      },
+     ".profileVenue":{
+      ".venueCard":{
+         margin:"0 0"
+      },
+     }
     
 }))
 

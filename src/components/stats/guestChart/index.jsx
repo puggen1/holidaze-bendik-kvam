@@ -14,7 +14,7 @@ const GuestChart = ({bookings}) => {
       }
     }, [bookings])
   const data = {
-    labels: chartData.map(data=>{ console.log(data);return new Date(data.date).getDate()}),
+    labels: chartData.map(data=>{return new Date(data.date).getDate()}),
     datasets: [
       {
         type: 'line',

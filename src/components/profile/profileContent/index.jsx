@@ -17,8 +17,7 @@ const ProfileContent = ({venues, bookings, type, own, isAdmin}) => {
         <Box display="grid" gridTemplateColumns="1fr 1fr" gap="1rem" >
         <Typography gridColumn="1/2" variant='h6' fontWeight="100"> Venues</Typography>
         {type === "regular" ? venueLink : backLink}
-
-        <Box gridColumn="1/3" gap="1rem" display="flex" flexDirection="row" flexWrap="wrap"justifyContent="space-between">
+        <Box className="profileVenue" gridColumn="1/3"  display="flex" flexDirection="row" flexWrap="wrap"justifyContent="space-between">
         {venues.length > 0 ? venues.map((venue, i) =>{ if(i === 2 && type==="regular"){return null } return(<Card key={venue.id} link={"/venue/"+ venue.id} firstImage={venue.media[0] ? venue.media[0] : ""} name={venue.name} price={venue.price} maxGuests={venue.maxGuests} meta={venue.meta}/>)}) : <div>no content</div>}
         </Box>
     </Box>}

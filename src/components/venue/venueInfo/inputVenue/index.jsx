@@ -8,7 +8,7 @@ import { InnerEditInfo } from './index.styles'
 import AddEditContext from '../../../../context/addEditContext'
 import { Typography } from '@mui/material'
 const InputVenue =({venue}) => {
-  const { setVenueInfo, setMedia,media, venueInfo, meta, setMeta,setGuest, guest,  register,
+  const { setVenueInfo, setMedia,media, meta, setMeta,setGuest, guest,  register,
     setValue,
     errors} = useContext(AddEditContext)
   //adds data if edit and not create/add
@@ -42,14 +42,15 @@ const InputVenue =({venue}) => {
     }
   }, [setValue, venue, setVenueInfo, setMedia, setGuest, setMeta])
   useEffect(() => {
-    setVenueInfo({ ...venueInfo, media });
-  }, [media, venueInfo, setVenueInfo]);
+    setVenueInfo((prev) => ({ ...prev, media }));
+  }, [media, setVenueInfo]);
+
   useEffect(() => {
     setValue("maxGuests", guest)
   }, [guest, setValue]);
   useEffect(() => {
-    setVenueInfo({ ...venueInfo, maxGuests: guest });
-  }, [guest, venueInfo, setVenueInfo]);
+    setVenueInfo((prev)=> ({ ...prev, maxGuests: guest }));
+  }, [guest, setVenueInfo]);
   
   /*const mapPreview = () => {
     if (venueInfo.location.address.length > 0) {
@@ -62,22 +63,23 @@ const InputVenue =({venue}) => {
     <InnerEditInfo>
       <div className='name'>
         <DefaultInput manager={{...register("name")}} variant="outlined" color={ errors.name? "error" : "secondary"} text="Venue Name" type="text"/>
-        <Typography minHeight="1.5rem" color="primary">{errors.name?.message}</Typography>
+        <Typography minHeight="1.5rem" color="error">{errors.name?.message}</Typography>
         </div>
       <div className='icons'>
         <Icons meta={meta} changer={setMeta} type="addEdit"/>
         </div>
       <div className='price'>
         <DefaultInput manager={{...priceInput("price")}} variant="outlined" color={ errors.price? "error" : "secondary"} text="price" type="number" />
-        <Typography minHeight="1.5rem" color="primary">{errors.price?.message}</Typography>
+        <Typography minHeight="1.5rem" color="error">{errors.price?.message}</Typography>
       </div>
       <div className='guests'>
+        <Typography variant="body1" color="primary" textAlign="center">Max Guests</Typography>
         <GuestInput value={guest} changer={setGuest}/>
-        <Typography minHeight="1.5rem" color="primary">{errors.maxGuests?.message}</Typography>
+        <Typography minHeight="1.5rem" color="error">{errors.maxGuests?.message}</Typography>
       </div>
       <div className='desc'>
         <DefaultInput multiLine={true} manager={{...register("description")}} variant="outlined" color={ errors.description? "error" : "secondary"} text="Description" type="text"/>
-        <Typography minHeight="1.5rem" color="primary">{errors.description?.message}</Typography>
+        <Typography minHeight="1.5rem" color="error">{errors.description?.message}</Typography>
       </div>
     </InnerEditInfo>
     <OuterLocation>
