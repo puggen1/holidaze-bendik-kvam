@@ -1,29 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import User from "./context/userContext";
-import Booking from "./context/bookingContext";
-import { AddEdit } from "./context/addEditContext";
-import Snackbar from "./context/snackBarContext";
-import SearchFilter from "./context/searchFilterContext";
-import Venue from "./context/venueContext";
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AddEdit>
-      <Venue>
-        <Snackbar>
-          <User>
-            <SearchFilter>
-              <Booking>
-                <App />
-              </Booking>
-            </SearchFilter>
-          </User>
-        </Snackbar>
-      </Venue>
-    </AddEdit>
+    <App />
   </React.StrictMode>
 );
 
