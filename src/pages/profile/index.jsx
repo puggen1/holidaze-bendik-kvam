@@ -7,6 +7,8 @@ import ProfileInfo from "../../components/profile/profileInfo"
 import ProfileActions from "../../components/profile/profileActions"
 import ProfileContent from "../../components/profile/profileContent"
 import useCheckPermission from "../../hooks/useCheckPermission"
+import Loader from "../../components/loading"
+import { Box } from "@mui/material"
 const Profile = ({type="regular"}) => {
   const {checkPermission} = useCheckPermission()
   const {name} = useParams()
@@ -16,7 +18,7 @@ const Profile = ({type="regular"}) => {
   const {data, isLoading, isError} = useGetData(`${baseUrl}/profiles/${name}?_venues=true&_bookings=true`, auth)
   return (
     <OuterUser>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Box margin="2rem auto" gridColumn="1/3"><Loader/></Box>}
       {isError && <div>Something went wrong...</div>}
       {Object.keys(data).length > 0 && (<><ProfileInfo isAdmin={isAdmin} own={data.name === storedName} stats={data._count} name={data.name} img={data.avatar}/> {storedName === data.name ? <ProfileActions isAdmin={isAdmin}/> :  null} <ProfileContent isAdmin={isAdmin} own={storedName === data.name} type={type} venues={data.venues} bookings={data.bookings}/> </>)}
     </OuterUser>

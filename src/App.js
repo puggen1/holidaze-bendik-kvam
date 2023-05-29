@@ -11,7 +11,6 @@ import Booking from "./pages/booking";
 
 import Admin from "./pages/adminPanel";
 import AdminPanelVenues from "./pages/adminPanel/adminPanelVenues";
-import AdminPanelBookings from "./pages/adminPanel/adminPanelBookings";
 import NotFound from "./pages/notFound";
 import Modal from "./context/modalContext";
 import OuterModal from "./components/modal";
@@ -55,10 +54,7 @@ function App() {
                     path="admin/venues/:id"
                     element={<AdminPanelVenues />}
                   />
-                  <Route
-                    path="admin/bookings"
-                    element={<AdminPanelBookings />}
-                  />
+                 
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Layout>

@@ -4,7 +4,7 @@ const OuterLoader = styled(Box)(({ theme }) => ({
     borderRadius: "50%",
     width: "100px",
     height: "100px",
-    margin: "auto",
+    margin: "0 auto",
     border:`solid 5px ${theme.palette.primary.main}`,
     borderLeft: "solid 5px transparent",
     animation: "spin 1.5s linear infinite",

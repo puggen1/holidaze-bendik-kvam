@@ -13,6 +13,7 @@ import useModalToggler from '../../../hooks/useModalToggler'
 import useSetModalContent from '../../../hooks/useSetModalContent'
 import useCheckPermission from '../../../hooks/useCheckPermission'
 import useGetUserInfo from '../../../hooks/useGetUserInfo'
+import Loader from '../../../components/loading'
 const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
@@ -50,7 +51,7 @@ const EditVenue = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   },[])
   return (<>
-    {isLoading && <div>loading</div>}
+    {isLoading && <Box><Loader/></Box>}
     {isError && <div>error</div>}
     {Object.keys(data).length > 0 && 
       <OuterVenue>

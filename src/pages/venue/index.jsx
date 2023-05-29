@@ -9,6 +9,8 @@ import Booking from '../../components/booking';
 import { BookingContext } from '../../context/bookingContext';
 import useGetUserInfo from '../../hooks/useGetUserInfo';
 import VenueAdminOptions from '../../components/venueAdminOptions';
+import Loader from '../../components/loading';
+import { Box } from '@mui/material';
 const Venue = () => {
   const { id } = useParams();
   const {guests, setGuests, setVenueId, setVenueName, setPrice} = useContext(BookingContext)
@@ -25,7 +27,7 @@ const Venue = () => {
     }
   }, [data, id, setVenueId, setVenueName, setPrice, setGuests, guests])
  
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return<Box margin="2rem"><Loader/></Box>
   if (isError) return <div>Error</div>
   return (
     <OuterVenue>

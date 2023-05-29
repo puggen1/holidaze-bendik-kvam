@@ -13,6 +13,7 @@ import useSetModalContent from "../../../hooks/useSetModalContent"
 import DeleteVenue from "../../modal/deleteVenue"
 import { Link } from "react-router-dom"
 import Button from "../../Button"
+import Loader from "../../loading"
 const AdminVenueInfo = ({venue}) => {
   const {modalOn} = useMOdalToggler()
   const {setModal} = useSetModalContent()
@@ -27,7 +28,7 @@ const AdminVenueInfo = ({venue}) => {
   }, [data, getAllVenueBookings])
   return (<OuterVenueInfo>
   <Card className="aroundInfo" style={{padding:"2rem", borderRadius:"30px", boxShadow:"0px 0px 5px 1px rgba(29, 43, 56, 0.5)"}}>
-    {isLoading && <div>Loading...</div>}
+    {isLoading && <Loader/>}
     {isError && <div>Something went wrong...</div>}
     <InnerVenueInfo>
     {Object.keys(data).length > 0 && <>

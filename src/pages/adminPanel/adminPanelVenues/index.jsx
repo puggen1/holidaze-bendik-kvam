@@ -7,6 +7,8 @@ import AdminVenueInfo from '../../../components/venue/adminVenueInfo'
 import { baseUrl } from '../../../utils/constants'
 import { useEffect, useState } from 'react'
 import { Typography } from '@mui/material'
+import Loader from '../../../components/loading'
+import { Box } from '@mui/material'
 const AdminPanelVenues = () => {
   const name = useGetUserInfo("name")
   const auth = useGetUserInfo("accessToken")
@@ -20,7 +22,7 @@ const AdminPanelVenues = () => {
   }, [data, id])
   return (
     <OuterAdminVenues>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Box margin="2rem auto" gridColumn="1/5"><Loader/></Box>}
       {isError && <div>Something went wrong...</div>}
     {Object.keys(data).length > 0 && <>
     <Typography component="h1" variant='h5' sx={{textAlign:"center"}} padding="1rem" gridColumn="1/4">Your Venues</Typography>

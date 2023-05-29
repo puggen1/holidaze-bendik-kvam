@@ -8,9 +8,9 @@ const AllVenues = memo(({venues, next, prev, loading, error}) => {
   return (<>
     <OuterAllVenues id='venues'>
        {loading &&
-        <>
+        <Box gridColumn="1/5">
         <Loader/>
-        </>}
+        </Box>}
         {error && <h1>Error...</h1>}
         {(!loading && !error) && venues.map((venue) => {
             const {id, name, media, price, maxGuests, meta} = venue;
