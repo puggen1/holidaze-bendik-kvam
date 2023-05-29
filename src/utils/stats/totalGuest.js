@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {Array} bookings all the bookings
+ * @description gets the total number of guests
+ * @returns the total number of guests
+ */
 const totalGuest = (bookings) => {
   const totalGuest = bookings.reduce((acc, booking) => {
     const bookingEnd = new Date(booking.dateTo);

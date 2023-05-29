@@ -1,6 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import allGuestsPerDay from "../utils/allGuestsPerDay";
 import dayjs from "dayjs";
+/**
+ *
+ * @param {Array} bookings all the bookings
+ * @param {Number} guests selected number of guests
+ * @param {*} maxGuests max number of guests for the venue
+ * @param {*} editBooking if it is editing
+ * @param {*} editBookingOriginalDays the original days edit booking
+ * @returns all the booked dates
+ */
 const useGetallBookedDates = (
   bookings,
   guests,

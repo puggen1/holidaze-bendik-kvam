@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-
+/**
+ *
+ * @param {string} url - url to fetch
+ * @param {string} auth - auth token
+ * @description - custom hook to fetch data
+ * @returns {object} - data, isLoading, isError
+ */
 const useGetData = (url, auth = false) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

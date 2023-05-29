@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {Array} bookings all the bookings
+ * @description gets the current number of guests
+ * @returns the current number of guests
+ */
 const currentGuest = (bookings) => {
   //here is a function or someting to go trough all bookings, find the one that is checked in and use a reduce to get the total number of guests
   const currentGuest = bookings.reduce((acc, booking) => {

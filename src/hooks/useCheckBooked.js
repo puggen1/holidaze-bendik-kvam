@@ -1,5 +1,10 @@
 import dayjs from "dayjs";
 import { useCallback } from "react";
+
+/**
+ * @description This hook is used to check what days are booked
+ * @returns a function to check if a date is booked
+ */
 const useCheckBooked = () => {
   const checkBooked = useCallback((bookedDates) => {
     let booked = [];

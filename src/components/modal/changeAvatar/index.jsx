@@ -58,7 +58,7 @@ const {handleBar} = useHandleSnackbar()
         <Box width="60%" >
         <Typography variant="body1" minHeight="2rem" color="error">{isError ? message : ""}</Typography>
         </Box>
-        <Box display="flex" justifyContent="space-evenly" width="80%">
+        <Box display="flex" justifyContent="space-evenly">
         <Button color="error" type="button" variant="contained" text="Cancel"/>
         <Button type="submit" color="secondary" variant="contained" text="Change" event={handleSubmit(changer)}/>
         </Box>

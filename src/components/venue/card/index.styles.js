@@ -86,7 +86,6 @@ const VenueCardContent = styled(CardContent)(({ theme }) => ({
       width: "60%",
     },
     "& .price": {
-      width: "40%",
       textAlign: "end",
       fontWeight: 300,
     },

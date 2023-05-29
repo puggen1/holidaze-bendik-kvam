@@ -31,14 +31,14 @@ const Filters = ({sort, setSort}) => {
     </>
     )
 }
-
 const InnerFilters = ({sort, setSort}) => {
+    const [searchValue, setSearchValue] = useState(""); 
     const {checkDisabled} = useDisabledDates()
     const {onCalendarChange} = useOnCalendarChange()
     const { RangePicker } = DatePicker;
     const {venues, setFilter} = useContext(VenueContext)
-    const {bookingTime, setBookingTime} = useContext(BookingContext)
-    const {filterAllVenues, reset} = useAllFilters()
+    const {bookingTime, setBookingTime} = useContext(BookingContext);
+    const {filterAllVenues, reset, filterBySearch} = useAllFilters()
 
 
     //priceRange
@@ -60,6 +60,11 @@ const sortBy = (e) => {
 }
 const resetRange = () => {
     setBookingTime([])
+}
+const search = (e) => {
+    setSearchValue(e)
+    filterBySearch(e)
+
 }
 //useEffect to update filters: 
 useEffect(() => {
@@ -96,7 +101,7 @@ useEffect(() => {
         <MenuItem value={"nameZ"}>Name Z to A</MenuItem>
        </Select>
         <Typography variant='p' component='p' color='white' fontWeight='300' fontSize='1rem' fontFamily='Roboto'>Search</Typography>
-        <DefaultInput variant="outlined"   placeholder="Search for a venue or a place"/>
+        <DefaultInput variant="outlined" value={searchValue} event={search} placeholder="Search for a venue or a place"/>
         </SortSearch>
         <Box className="actions">
         <Button text="Reset" variant="outlined" color="secondary" event={()=>{reset(); setPriceRange([0, 100000]); setGuestRange([1, 100])}}/>

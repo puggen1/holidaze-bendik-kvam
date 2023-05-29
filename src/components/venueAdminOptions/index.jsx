@@ -13,7 +13,7 @@ const VenueAdminOptions = ({venueId}) => {
 
   return (<Box sx={{display:"flex", gap:"1rem", bottom:"10%", height:"100%", justifyContent:"center", margin:"auto 0 0 0"}}>
     <Button text="Delete" color="error" variant="contained" event={()=>{modalOn(); setModal(<Delete venueId={venueId}/>)}}/>
-    <Button text="Manage this venue" color="primary" variant="contained" event={()=>{navigate("/admin/venues")}}/>
+    <Button text="Manage this venue" color="primary" variant="contained" event={()=>{navigate("/admin/venues/" + venueId)}}/>
     <Button text="Edit" color="secondary" variant="contained" event={()=>{navigate(location.pathname + "/edit")}}/>
     </Box>
   )

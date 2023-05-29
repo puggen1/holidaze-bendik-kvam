@@ -16,6 +16,11 @@ const OuterVenueList = styled("div")(({ theme }) => ({
         overflow:"auto",
         whiteSpace:"nowrap"
     },
+    "@media (max-width: 600px)": {
+        ".adminVenue":{
+            minWidth:"300px!important",
+        }
+    },
 }));
 
 

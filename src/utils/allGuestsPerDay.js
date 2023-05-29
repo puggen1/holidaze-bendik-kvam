@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {array} bookings all the bookings
+ * @description gets the number of guests per day
+ * @returns the number of guests per day
+ */
 const allGuestsPerDay = (bookings) => {
   let result = {};
   for (let booking of bookings) {

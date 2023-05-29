@@ -6,6 +6,7 @@ const OuterHero = styled(Box)(({ theme }) => ({
   display: "flex",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+  alignItems: "space-between",
 }));
 
 const InnerHero = styled(Box)(({ theme }) => ({
@@ -73,7 +74,7 @@ const HeroDate = styled(Box)(({ theme }) => ({
 }));
 const HeroOptions = styled(Box)(({ theme }) => ({
   display: "flex",
-  padding: "2rem 0",
+  padding: "1rem 0",
   width: "60%",
   justifyContent: "space-between",
   "@media (max-width: 1024px)": {

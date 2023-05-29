@@ -42,26 +42,32 @@ const Register = () => {
     }
 }
   return (
-    <form onChange={()=>{setIsError(false)}} onSubmit={handleSubmit(handleRegister)} style={{display:"flex", flexDirection:"column", alignItems:"center", height:"100%", margin:"1rem auto"}}>
+    <form onChange={()=>{setIsError(false)}} onSubmit={handleSubmit(handleRegister)} style={{display:"flex", flexDirection:"column", alignItems:"center", width:"100%", height:"100%", margin:"1rem 0"}}>
+        <Box display="flex" flexDirection="column">
         <Typography textAlign="center" variant='h4' component="p">Register</Typography>
         <Box sx={{width:"80%", display:"grid", gap:"1rem", margin:"1rem auto"}}>
+        </Box>
+        <Box display="flex" flexDirection="column">
+        <DefaultInput manager={{...register("name")}} variant="outlined" color={errors.name ? "error":"secondary"} text="Username*" placeholder="Username" type="text"/>
+        <Typography variant="body1" minHeight="2rem" component="p" color="error">{errors.name?.message}</Typography>
+        </Box>
+        <Box display="flex" flexDirection="column">
+        <DefaultInput  manager={{...register("email")}} variant="outlined" color={errors.email ? "error":"secondary"} text="Email*" placeholder="Email" type="email"/>
+        <Typography variant="body1" minHeight="2rem" component="p" color="error">{errors.email?.message}</Typography>
+        </Box>
+        <Box display="flex" flexDirection="column">
 
-        <DefaultInput manager={{...register("name")}} variant="outlined" color={errors.username ? "error":"primary"} text="Username*" placeholder="Username" type="text"/>
-        <Typography variant="body1" minHeight="2rem" component="body1" color="error">{errors.username?.message}</Typography>
-
-        <DefaultInput  manager={{...register("email")}} variant="outlined" color={errors.email ? "error":"primary"} text="Email*" placeholder="Email" type="email"/>
-        <Typography variant="body1" minHeight="2rem" component="body1" color="error">{errors.email?.message}</Typography>
-
-        <DefaultInput manager={{...register("password")}} variant="outlined" color={errors.password ? "error":"primary"} text="Password*" placeholder="Password" type="password"/>
-        <Typography variant="body1" minHeight="2rem" component="body1" color="error">{errors.password?.message}</Typography>
-
-        <DefaultInput manager={{...register("avatar")}} variant="outlined" color={errors.avatar ? "error":"primary"} text="Avatar Url" placeholder="Avatar url" type="text"/>
-        
-        <Box sx={{display:"grid", alignItems:"center", gridTemplateColumns:"1fr auto", width:"40%"}}>
+        <DefaultInput manager={{...register("password")}} variant="outlined" color={errors.password ? "error":"secondary"} text="Password*" placeholder="Password" type="password"/>
+        <Typography variant="body1" minHeight="2rem" component="p" color="error">{errors.password?.message}</Typography>
+        </Box>
+        <Box display="flex" flexDirection="column">
+        <DefaultInput manager={{...register("avatar")}} variant="outlined" color={errors.avatar ? "error":"secondary"} text="Avatar Url" placeholder="Avatar url" type="text"/>
+        </Box>
+        <Box sx={{display:"grid", alignItems:"center", gridTemplateColumns:"1fr auto"}}>
         <IconSwitch event={()=>{setAdmin(!admin)}} checked={admin} outlined={false}/>
         <Typography variant="body1" component="p">Venue Manager</Typography>
         </Box>
-        <Typography variant="body1" minHeight="2rem" component="body1" color="error">{isError ? message : ""}</Typography>
+        <Typography variant="body1" minHeight="2rem" component="p" color="error">{isError ? message : ""}</Typography>
         </Box>
         <Box>
         <Button type='button' event={()=>{modalOff()}} color="error" variant="contained" text="Cancel"/>
