@@ -47,6 +47,7 @@ const EditVenue = () => {
     return () => {
         resetContext()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   },[])
   return (<>
     {isLoading && <div>loading</div>}
