@@ -4,32 +4,28 @@ const InnerInfo = styled(Box)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "repeat(5, 1fr)",
   gridTemplateRows: "1fr auto auto",
+  gridTemplateAreas: `"name name name host host" "icons icons price price guests" "desc desc desc desc desc"`,
   gap: "1rem",
   ".name": {
-    gridColumn: "1 / 4",
-    gridRow: "1 / 2",
+    gridArea: "name",
   },
   ".host": {
-    gridColumn: "4/6",
+    gridArea: "host",
     display: "flex",
-    gridRow: "1 / 2",
     justifyContent: "flex-end",
     alignItems: "center",
     gap: "10px",
     color: theme.palette.primary.main,
   },
   ".desc": {
-    gridColumn: "1 / 6",
-    gridRow: "3 / 4",
+    gridArea: "desc",
   },
   ".icons": {
-    gridColumn: "1 / 3",
-    gridRow: "2 / 3",
+    gridArea: "icons",
     gap: "1rem ",
   },
   ".guests": {
-    gridColumn: "5 / 6",
-    gridRow: "2 / 3",
+    gridArea: "guests",
     backgroundColor: theme.palette.primary.main,
     color: "white",
     borderRadius: "10px",
@@ -38,14 +34,16 @@ const InnerInfo = styled(Box)(({ theme }) => ({
     alignItems: "center",
   },
   ".price": {
-    gridRow: "2 / 3",
-    gridColumn: "3 / 5",
+    gridArea: "price",
     backgroundColor: theme.palette.primary.main,
     color: "white",
     borderRadius: "10px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  "@media screen and (max-width: 1250px)": {
+    gridTemplateAreas: `"name name name name name" "icons icons icons host host" "price price price guests guests" "desc desc desc desc desc"`,
   },
   "@media (max-width: 591px)": {
     display: "flex",
@@ -59,6 +57,7 @@ const InnerInfo = styled(Box)(({ theme }) => ({
     },
     ".icons": {
       flex: "1 1 100%",
+      justifyContent: "flex-start",
     },
     ".guests": {
       flex: "1 1 auto",

@@ -12,10 +12,11 @@ import useDisabledDates from '../../hooks/useDisabledDates'
 import useCheckBooked from '../../hooks/useCheckBooked'
 import useGetallBookedDates from '../../hooks/useGetBookedDays'
 import useOnCalendarChange from '../../hooks/useOnCalendarChange'
-import useFilterAvalibleVenues from '../../hooks/useFilterAvalibleVenues'
+import useAllFilters from '../../hooks/useAllFilters'
+import PanelRenderHomePage from '../calendar/panelRenderHomePage'
 const { RangePicker } = DatePicker;
 const Hero = ({venues}) => {
-    const {filter} = useFilterAvalibleVenues()
+    const {filterAllVenues} = useAllFilters()
     const Navigate = useNavigate()
     const {onCalendarChange} = useOnCalendarChange()
     const {guests, setGuests, bookingTime, setBookingTime} = useContext(BookingContext)
@@ -29,8 +30,13 @@ const Hero = ({venues}) => {
     const {checkBooked} = useCheckBooked()
     const {checkDisabled} = useDisabledDates()
     const noBookings = []
-    const {allBookedDates} = useGetallBookedDates((value && value.type === "venue") ? value.bookings: noBookings, guests, value ? value.maxGuests : 1)    
-    const button = <Button event={() =>{(value && value.type === "venue") ? Navigate("/venue/" + value.id): filter(venues)}} text={((value && value.type === "venue") ? "view": "find")} variant="contained" color="secondary"/>
+    const {allBookedDates} = useGetallBookedDates(value ? value.bookings : noBookings, guests,value ? value.maxGuests : 1, false, bookingTime)
+
+    const filterVenues = ()=>{
+        filterAllVenues(venues)
+    }
+    const button = <Button event={() =>{value  ? Navigate("/venue/" + value.id): filterVenues()}} text={(value ? "view": "find")} variant="contained" color="secondary"/>
+
     useEffect(() => {
         setBooked(checkBooked(allBookedDates))
         },[allBookedDates, checkBooked, guests, value, setBooked])
@@ -70,10 +76,10 @@ const Hero = ({venues}) => {
             </HeroSearch>
             <HeroDate>
                 <Typography className='when' variant="p" component="p" color="white" fontWeight="300" fontSize="1rem" fontFamily="Roboto">When</Typography>
-                <RangePicker  value={bookingTime} onCalendarChange={onChange} disabledDate={(current)=>{return checkDisabled(current, booked)}} separator={<ArrowForward sx={{color:"white"}}/>}/>
+                <RangePicker panelRender={PanelRenderHomePage}  value={bookingTime} onCalendarChange={onChange} disabledDate={(current)=>{return checkDisabled(current, booked)}} separator={<ArrowForward sx={{color:"white"}}/>}/>
             </HeroDate>
             <HeroOptions>
-                {button}
+                <a href="#venues">{button}</a>
                 <Box className="guests" style={{display:"flex", alignItems:"center", gap:"1rem"}}>
                     <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">Number of guests</Typography>
                 <GuestInput value={guests} changer={setGuests}/>

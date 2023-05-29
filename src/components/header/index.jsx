@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { UserContext } from '../../context/userContext'
 
 export const Header = () => {
+  
   const {user, logout} = useContext(UserContext)
   const {name, avatar, venueManager = false,} = user
   return (

@@ -15,9 +15,8 @@ const AddVenue = () => {
   const {handleBar} = useHandleSnackbar()
   const navigate = useNavigate()
   const {checkPermission} = useCheckPermission()
-  const {handleSubmit, venueInfo, guest, setVenueInfo, errors} = useContext(AddEditContext)
+  const {handleSubmit, venueInfo, guest, setVenueInfo, errors, resetContext} = useContext(AddEditContext)
   //useEffect with cleanupfunction to reset context
-
   useEffect(()=>{
     if(!checkPermission("admin") || !checkPermission("auth")){
       navigate(-1)
@@ -39,6 +38,13 @@ const AddVenue = () => {
       modalOff()
     }
   }
+//cleanup
+  useEffect(()=>{
+    return () => {
+      resetContext()
+    }
+            // eslint-disable-next-line react-hooks/exhaustive-deps 
+  },[])
   return (
   
     <OuterVenue>

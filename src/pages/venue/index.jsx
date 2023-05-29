@@ -20,7 +20,10 @@ const Venue = () => {
     setVenueName(data.name)
     setPrice(data.price)
     
-  }, [data, id, setVenueId, setVenueName, setPrice])
+    if(Object.keys(data).length > 0 && data.maxGuests < guests){
+      setGuests(data.maxGuests)
+    }
+  }, [data, id, setVenueId, setVenueName, setPrice, setGuests, guests])
  
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error</div>

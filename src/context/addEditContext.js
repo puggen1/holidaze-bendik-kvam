@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addEditSchema from "../utils/schemas/addEdit";
@@ -35,10 +35,10 @@ export const AddEdit = ({ children }) => {
     },
   });
 
-  const returnAllData = () => {
+  const returnAllData = useCallback(()=> {
     return { ...venueInfo, media, meta: meta, maxGuests: guest };
-  };
-  const resetContext = () => {
+  }, [venueInfo, media, meta, guest]);
+  const resetContext =() => {
     setMedia([]);
     setMeta({ wifi: false, pets: false, breakfast: false, parking: false });
     setGuest(1);
@@ -53,7 +53,7 @@ export const AddEdit = ({ children }) => {
     setValue("location.country", "");
     setValue("media", []);
 
-  };
+  }
   return (
     <AddEditContext.Provider
       value={{

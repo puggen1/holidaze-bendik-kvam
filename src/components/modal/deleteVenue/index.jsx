@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import Button from '../../Button'
 import useModalToggler from '../../../hooks/useModalToggler'
-import { Typography } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import useSendData from '../../../hooks/useSendData'
 import { baseUrl } from '../../../utils/constants'
 import useGetUserInfo from '../../../hooks/useGetUserInfo'
@@ -26,12 +26,15 @@ const DeleteVenue = ({venueId, type="venue"}) => {
 
     }
   return (
-    <div style={{display:"flex", flexDirection:"column", alignItems:"center", height:"100%", margin:"1rem auto"}}>
+    <div style={{display:"flex", flexDirection:"column", width:"80%", alignItems:"center", height:"100%", minHeight:"25vh",  margin:"0rem auto"}}>
+      <Box display="flex" justifyContent="center" alignItems="center" gap="0.5rem" flexDirection="column">
     <Typography variant="h4" component="h4" color="primary" fontWeight="300" fontSize="2rem" fontFamily="Roboto">Delete venue?</Typography>
     <Typography component="p" variant="body1" color="primary">This cannot be undone!</Typography>
+    </Box>
+    <Box display="flex" justifyContent="space-evenly" width="80%">
     <Button event={() => modalOff()} text="No take me back!" color="error" variant="contained" width="100%" height="3rem" margin="1rem 0"/>
     <Button event={DeleteVenue} text="Delete" color="secondary" variant="contained" width="100%" height="3rem" margin="1rem 0"/>
-
+    </Box>
 </div>
   )
 }

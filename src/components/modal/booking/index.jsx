@@ -35,7 +35,7 @@ const book = async () => {
 }
 const message = type === "new" ?  "want to book " + venueName : "want to update your booking for " + venueName + "?"
   return (
-    <div style={{display:"flex", gap:"1rem", flexDirection:"column", alignItems:"center", height:"100%", width:"80%", minHeight:"30vh", margin:"0 auto"}}>
+    <div style={{display:"flex", gap:"1rem", flexDirection:"column", alignItems:"center", height:"100%", width:"80%", justifyContent:"space-between", minHeight:"25vh", margin:"0 auto"}}>
         <Typography variant="h4" textAlign="center" component="h4" color="primary" fontWeight="300" fontSize="2rem" fontFamily="Roboto">{message}</Typography>
         <Box display="flex" flexDirection="column" alignItems="center">
         <Typography variant="h5" component="h5" color="primary" fontWeight="300" fontSize="1.5rem" fontFamily="Roboto">from {start} to {end}</Typography>

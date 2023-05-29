@@ -5,7 +5,10 @@ import { styled } from "@mui/material";
 
 const InnerEditInfo = styled(InnerInfo)(({ theme }) => ({
     gridTemplateRows: "auto auto auto 1fr 1fr",
+    gridTemplateColumns: "1fr 1fr 1fr 1fr 1.5fr",
+    alignItems: "start",
     ".price, .guests":{
+        display:"grid",
         backgroundColor: "#ffffff",
     },
     ".price":{
@@ -14,6 +17,7 @@ const InnerEditInfo = styled(InnerInfo)(({ theme }) => ({
     },
     ".guests":{
         gridRow: "3/4", 
+        gridColumn: "5/6",
     },
     ".desc":{
         gridRow: "4/6",

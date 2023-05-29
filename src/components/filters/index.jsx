@@ -7,12 +7,16 @@ import DefaultInput from '../input/defaultInput'
 import OuterFilterAccordion from './accordion'
 import { useContext } from 'react'
 import { VenueContext } from '../../context/venueContext'
+import ScreenContext from '../../context/screencontext'
 import Button from '../Button'
 import useAllFilters from '../../hooks/useAllFilters'
+import { DatePicker } from 'antd'
+import useOnCalendarChange from '../../hooks/useOnCalendarChange'
+import { BookingContext } from '../../context/bookingContext'
+import useDisabledDates from '../../hooks/useDisabledDates'
+import PanelRenderHomePage from '../calendar/panelRenderHomePage'
 const Filters = ({sort, setSort}) => {
-   
-    const width = window.innerWidth
-
+   const {width} = useContext(ScreenContext)
   return (
     <>
     {width > 700 ?
@@ -29,7 +33,11 @@ const Filters = ({sort, setSort}) => {
 }
 
 const InnerFilters = ({sort, setSort}) => {
+    const {checkDisabled} = useDisabledDates()
+    const {onCalendarChange} = useOnCalendarChange()
+    const { RangePicker } = DatePicker;
     const {venues, setFilter} = useContext(VenueContext)
+    const {bookingTime, setBookingTime} = useContext(BookingContext)
     const {filterAllVenues, reset} = useAllFilters()
 
 
@@ -50,6 +58,9 @@ const [guestRange, setGuestRange] = useState([1, 100])
 const sortBy = (e) => {
     setSort(e.target.value)
 }
+const resetRange = () => {
+    setBookingTime([])
+}
 //useEffect to update filters: 
 useEffect(() => {
     setFilter(prev => ({...prev, priceRange: [priceRange[0], priceRange[1]], guestRange: [guestRange[0], guestRange[1]]}))
@@ -67,9 +78,11 @@ useEffect(() => {
         <RangeInput  start={minMaxGuests[0]} end={minMaxGuests[1]} range={guestRange} setRange={setGuestRange}/>
         </Box>
         </Ranges>
+        <Box display="flex" justifyContent="center" className="rangeBox">
+        <RangePicker panelRender={PanelRenderHomePage} className='filterRange'  value={bookingTime} disabledDate={(current)=>{return checkDisabled(current, [])}} onCalendarChange={(dates)=>{onCalendarChange(dates,setBookingTime,resetRange,[])}} />
+        </Box>
         <SortSearch>
         <Typography variant='p' component='p' color='white' fontWeight='300' fontSize='1rem' fontFamily='Roboto'>Sort</Typography>
-        {/*dropdown here*/}
        <Select
         variant="outlined"
         sx={{backgroundColor: "white", borderRadius: "30px"}}
@@ -86,8 +99,8 @@ useEffect(() => {
         <DefaultInput variant="outlined"   placeholder="Search for a venue or a place"/>
         </SortSearch>
         <Box className="actions">
-        <Button text="Filter" variant="contained" color="secondary" event={()=>{initiateFilter()}}/>
         <Button text="Reset" variant="outlined" color="secondary" event={()=>{reset(); setPriceRange([0, 100000]); setGuestRange([1, 100])}}/>
+        <Button text="Filter" variant="contained" color="secondary" event={()=>{initiateFilter()}}/>
         </Box>
         </>
     )
