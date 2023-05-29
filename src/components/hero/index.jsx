@@ -1,6 +1,6 @@
 import {useState, useContext, useEffect, useCallback} from 'react'
 import { OuterHero, InnerHero, HeroSearch, HeroDate, HeroOptions} from './index.styles'
-import { Typography , Box} from '@mui/material'
+import { Typography , Box, Button as MuiButton} from '@mui/material'
 import { ArrowForward, ExpandMore } from '@mui/icons-material'
 import { DatePicker } from 'antd'
 import Button from '../Button'
@@ -14,8 +14,13 @@ import useGetallBookedDates from '../../hooks/useGetBookedDays'
 import useOnCalendarChange from '../../hooks/useOnCalendarChange'
 import useAllFilters from '../../hooks/useAllFilters'
 import PanelRenderHomePage from '../calendar/panelRenderHomePage'
+import Register from '../modal/register'
+import useModalToggler from '../../hooks/useModalToggler'
+import useSetModalContent from '../../hooks/useSetModalContent'
 const { RangePicker } = DatePicker;
 const Hero = ({venues}) => {
+    const {modalOn} = useModalToggler()
+    const {setModal} = useSetModalContent()
     const {filterAllVenues} = useAllFilters()
     const Navigate = useNavigate()
     const {onCalendarChange} = useOnCalendarChange()
@@ -85,7 +90,11 @@ const Hero = ({venues}) => {
                 <GuestInput value={guests} changer={setGuests}/>
                 </Box>
             </HeroOptions>
-                <a href="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 2rem 0"}}>
+                <Box display="flex"  flexDirection="column" gap="0.5rem">
+                    <Typography variant="p" component="p" textAlign="center" color="white" fontFamily="roboto" fontWeight="300">Or</Typography>
+                    <MuiButton onClick={()=>{modalOn(); setModal(<Register/>)}} type='text'><Typography variant="p" component="p" textAlign="center" color="white" fontFamily="roboto" fontWeight="300">Become an VenueManager</Typography></MuiButton>
+                </Box>
+                <a href="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 0 0"}}>
                 <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">View all</Typography>
                 <ExpandMore fontSize='large' sx={{color:"white"}}/>
                 </a>

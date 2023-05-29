@@ -9,6 +9,8 @@ import Booking from '../../components/booking';
 import { BookingContext } from '../../context/bookingContext';
 import useGetUserInfo from '../../hooks/useGetUserInfo';
 import VenueAdminOptions from '../../components/venueAdminOptions';
+import { Typography } from '@mui/material';
+
 const Venue = () => {
   const { id } = useParams();
   const {guests, setGuests, setVenueId, setVenueName, setPrice} = useContext(BookingContext)
