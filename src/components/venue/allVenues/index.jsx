@@ -4,6 +4,7 @@ import {OuterAllVenues} from './index.styles.js'
 import { Box } from '@mui/material'
 import Button from '../../Button'
 import Loader from '../../loading'
+import FetchError from '../../fetchError'
 const AllVenues = memo(({venues, next, prev, loading, error}) => {
   return (<>
     <OuterAllVenues id='venues'>
@@ -11,7 +12,7 @@ const AllVenues = memo(({venues, next, prev, loading, error}) => {
         <Box gridColumn="1/5">
         <Loader/>
         </Box>}
-        {error && <h1>Error...</h1>}
+        {error && <FetchError/>}
         {(!loading && !error) && venues.map((venue) => {
             const {id, name, media, price, maxGuests, meta} = venue;
             return(

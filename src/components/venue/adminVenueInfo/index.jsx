@@ -14,6 +14,7 @@ import DeleteVenue from "../../modal/deleteVenue"
 import { Link } from "react-router-dom"
 import Button from "../../Button"
 import Loader from "../../loading"
+import FetchError from "../../fetchError"
 const AdminVenueInfo = ({venue}) => {
   const {modalOn} = useMOdalToggler()
   const {setModal} = useSetModalContent()
@@ -28,10 +29,10 @@ const AdminVenueInfo = ({venue}) => {
   }, [data, getAllVenueBookings])
   return (<OuterVenueInfo>
   <Card className="aroundInfo" style={{padding:"2rem", borderRadius:"30px", boxShadow:"0px 0px 5px 1px rgba(29, 43, 56, 0.5)"}}>
+  <InnerVenueInfo>
     {isLoading && <Loader/>}
-    {isError && <div>Something went wrong...</div>}
-    <InnerVenueInfo>
-    {Object.keys(data).length > 0 && <>
+    {isError && <FetchError/>}
+    {(Object.keys(data).length > 0 && (!isLoading && !isError)) && <>
       <Box gridColumn="1/4" display="flex" flexWrap="wrap" padding="1rem 0 " gap="2rem 0" flexDirection="row" justifyContent="space-between"> 
         <Typography textAlign="center" variant="h4" >{data.name}</Typography>
         <Box display="flex" gap="1rem" margin="0 auto">

@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router'
 import { OuterBooking } from './index.styles'
 import BookingDetails from '../../components/bookingdetails'
 import EditBookingDetails from '../../components/bookingdetails/editBookingDetails'
+import { Box } from '@mui/material'
+import Loader from '../../components/loading'
+import FetchError from '../../components/fetchError'
 const Booking = () => {
   const [editStatus, setEditStatus] = useState(false)
   const {id} = useParams()
@@ -28,8 +31,8 @@ const Booking = () => {
     }
     }
   ,[data ,isLoading, isError, name, venueManager, navigate])
-  if(isLoading) return (<h1>Loading...</h1>)
-  if(isError) return (<h1>Something went wrong...{data.message} </h1>)
+  if(isLoading) return (<Box><Loader/></Box>)
+  if(isError) return (<FetchError/>)
   return (
     <OuterBooking image={(Object.keys(data).length > 0 && data.id) ? data.venue.media[0] : null}>
       <BookingDetails data={data.id ? data : []}  setEditStatus={setEditStatus} adminView={data.customer?.name !== name && venueManager} editStatus={editStatus}/>

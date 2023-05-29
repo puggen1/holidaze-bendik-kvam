@@ -40,7 +40,7 @@ const AdminBookings = ({bookings}) => {
                 </Box>
                 <Box className="price" display="flex" gap="0.5rem">
                     <Typography variant="body1">price</Typography>
-                <Typography>{booking.price}</Typography>
+                <Typography>{booking.price},- kr</Typography>
                     </Box>
             <CustomButton text="view" variant="contained" color="secondary" event={()=>{navigate("/booking/" + booking.id)}}/>
             </AdminBookingCard>})}

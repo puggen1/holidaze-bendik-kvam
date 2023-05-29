@@ -15,6 +15,7 @@ import getAll from "../../hooks/useGetAll";
 import AdminVenues from "../../components/venue/adminVenues";
 import GuestChart from "../../components/stats/guestChart";
 import Loader from "../../components/loading";
+import FetchError from "../../components/fetchError";
 const Admin = () => {
   const {getAllVenueBookings} = getAll()
   const {checkPermission} = useCheckPermission()
@@ -47,8 +48,8 @@ const Admin = () => {
   return (
     <OuterDashboard>
       {isLoading && <Box margin="2rem auto" gridColumn="1/5"><Loader/></Box>}
-      {isError && <div>Something went wrong...</div>}
-      {Object.keys(data).length > 0 &&
+      {isError && <FetchError/>}
+      {((Object.keys(data).length > 0) && (!isError && !isLoading)) &&
       (<>
         <Box>
         <Button text="Exit" color="secondary" variant="contained" event={()=>{navigate("/")}}/>

@@ -92,7 +92,7 @@ const Hero = ({venues}) => {
             </HeroOptions>
                 <Box display="flex"  flexDirection="column" gap="0.5rem">
                     <Typography variant="p" component="p" textAlign="center" color="white" fontFamily="roboto" fontWeight="300">Or</Typography>
-                    <MuiButton onClick={()=>{modalOn(); setModal(<Register/>)}} type='text'><Typography variant="p" component="p" textAlign="center" color="white" fontFamily="roboto" fontWeight="300">Become an VenueManager</Typography></MuiButton>
+                    <MuiButton onClick={(e)=>{e.preventDefault();modalOn(); setModal(<Register/>)}} type='text'><Typography variant="p" component="p" textAlign="center" color="white" fontFamily="roboto" fontWeight="300">Become an VenueManager</Typography></MuiButton>
                 </Box>
                 <a href="#venues" style={{textDecoration:"none",display:"flex", flexDirection:"column", alignItems:"center", margin:"auto 0 0 0"}}>
                 <Typography variant="p" component="p" color="white" fontFamily="roboto" fontWeight="300">View all</Typography>

@@ -17,7 +17,7 @@ const Venue = ({ children }) => {
   const [venues, setVenues] = useState([]);
   const [filter, setFilter] = useState(defaultFilter);
   const [filteredVenues, setFilteredVenues] = useState([]);
-
+  const [nonSearchFilter, setNonSearchFilter] = useState([]);
   const toggleWifi = () => {
     setFilter((prev) => {
       return { ...prev, meta: { ...prev.meta, wifi: !prev.meta.wifi } };
@@ -45,6 +45,7 @@ const Venue = ({ children }) => {
   //updates filtered venues, but keeps the original venues for reset
   useEffect(() => {
     setFilteredVenues(venues);
+    setNonSearchFilter(venues);
   }, [venues]);
   return (
     <VenueContext.Provider
@@ -60,6 +61,9 @@ const Venue = ({ children }) => {
         toggleParking,
         togglePets,
         defaultFilter,
+        setNonSearchFilter,
+        nonSearchFilter,
+
       }}
     >
       {children}

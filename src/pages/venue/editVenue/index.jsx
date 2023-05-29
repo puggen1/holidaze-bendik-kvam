@@ -14,6 +14,7 @@ import useSetModalContent from '../../../hooks/useSetModalContent'
 import useCheckPermission from '../../../hooks/useCheckPermission'
 import useGetUserInfo from '../../../hooks/useGetUserInfo'
 import Loader from '../../../components/loading'
+import FetchError from '../../../components/fetchError'
 const EditVenue = () => {
   const navigate = useNavigate()
   const {id} = useParams()
@@ -52,8 +53,8 @@ const EditVenue = () => {
   },[])
   return (<>
     {isLoading && <Box><Loader/></Box>}
-    {isError && <div>error</div>}
-    {Object.keys(data).length > 0 && 
+    {isError && <FetchError/>}
+    {((Object.keys(data).length > 0)&&(!isError && !isLoading)) && 
       <OuterVenue>
         <InnerVenue>
         <AddPictures/>

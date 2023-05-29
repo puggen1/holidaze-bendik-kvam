@@ -11,6 +11,7 @@ import useGetUserInfo from '../../hooks/useGetUserInfo';
 import VenueAdminOptions from '../../components/venueAdminOptions';
 import Loader from '../../components/loading';
 import { Box } from '@mui/material';
+import FetchError from '../../components/fetchError';
 const Venue = () => {
   const { id } = useParams();
   const {guests, setGuests, setVenueId, setVenueName, setPrice} = useContext(BookingContext)
@@ -28,8 +29,8 @@ const Venue = () => {
   }, [data, id, setVenueId, setVenueName, setPrice, setGuests, guests])
  
   if (isLoading) return<Box margin="2rem"><Loader/></Box>
-  if (isError) return <div>Error</div>
-  return (
+  if (isError) return <FetchError/>
+  if(Object.keys(data).length > 0 && (!isError && !isLoading)){return (
     <OuterVenue>
       <InnerVenue>
       <Carousel images={data.media ? data.media : []}/>
@@ -39,6 +40,6 @@ const Venue = () => {
       {data.owner.name !== name ?<Booking guests={guests} changeGuests={setGuests} bookedDates={data.bookings} max={data.maxGuests}/> : <VenueAdminOptions venueId={id}/>}
       </InnerBooking>
     </OuterVenue>)
-}
+}}
 
 export default Venue

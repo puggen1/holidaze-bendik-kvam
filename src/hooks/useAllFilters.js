@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { VenueContext } from "../context/venueContext";
 import { BookingContext } from "../context/bookingContext";
 import useFilterDays from "./useFilterDays";
+import sortSearch from "../utils/sortSearch";
 const useAllFilters = () => {
-  const { venues, setFilteredVenues, filter, setFilter, defaultFilter } =
+  const { venues, setFilteredVenues, filter, setFilter, defaultFilter, nonSearchFilter, setNonSearchFilter } =
     useContext(VenueContext);
   const {
     bookingTime,
@@ -15,7 +16,6 @@ const useAllFilters = () => {
     const { guestRange, priceRange, meta } = filter;
     const { wifi, breakfast, parking, pets } = meta;
     const filteredVenues = venues.filter((venue) => {
-      console.log(bookingTime, currentGuests);
       const VenueIsBooked = DateFilter(venue, bookingTime, currentGuests);
       const { maxGuests: venueMaxGuests, price, meta } = venue;
       const {
@@ -37,15 +37,31 @@ const useAllFilters = () => {
         VenueIsBooked
       );
     });
-    console.log(filteredVenues);
     setFilteredVenues(filteredVenues);
+    setNonSearchFilter(filteredVenues);
+
   };
   const reset = () => {
     setFilter(defaultFilter);
     setFilteredVenues(venues);
+    setNonSearchFilter(venues);
     setBookingTime([undefined, undefined]);
   };
-  return { filterAllVenues, reset };
+  const filterBySearch = (e) => {
+    if(e.target.value.length === 0) {
+      setFilteredVenues(nonSearchFilter);
+    }else{
+      const filteredVenues = nonSearchFilter.filter((venue) =>{
+        if(venue.name.length === 0){return false}
+        let { name } = venue;
+        const query = e.target.value.toLowerCase();
+        return name.toLowerCase().indexOf(query) !== -1;
+      })
+      setFilteredVenues(filteredVenues);
+    }
+   
+  };
+  return { filterAllVenues, reset, filterBySearch };
 };
 
 export default useAllFilters;

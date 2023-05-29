@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { Typography } from '@mui/material'
 import Loader from '../../../components/loading'
 import { Box } from '@mui/material'
+import FetchError from '../../../components/fetchError'
 const AdminPanelVenues = () => {
   const name = useGetUserInfo("name")
   const auth = useGetUserInfo("accessToken")
@@ -23,8 +24,8 @@ const AdminPanelVenues = () => {
   return (
     <OuterAdminVenues>
       {isLoading && <Box margin="2rem auto" gridColumn="1/5"><Loader/></Box>}
-      {isError && <div>Something went wrong...</div>}
-    {Object.keys(data).length > 0 && <>
+      {isError && <FetchError/>}
+    {(Object.keys(data).length > 0 && (!isLoading && !isError)) && <>
     <Typography component="h1" variant='h5' sx={{textAlign:"center"}} padding="1rem" gridColumn="1/4">Your Venues</Typography>
       <AdminVenueList venues={data.venues} current={currentVenue} changer={setCurrentVenue}/>
       <AdminVenueInfo venue={currentVenue ? currentVenue : data.venues[0].id} />
