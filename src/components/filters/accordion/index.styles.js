@@ -19,6 +19,9 @@ const FilterAccordion = styled(Accordion)(({ theme }) => ({
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      ".rangeBox": {
+        padding: "0.5rem 1rem",
+      },
     },
   },
   ".actions": {

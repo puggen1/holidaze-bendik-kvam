@@ -11,8 +11,8 @@ import Venue from "./context/venueContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Venue>
-      <AddEdit>
+    <AddEdit>
+      <Venue>
         <Snackbar>
           <User>
             <SearchFilter>
@@ -22,8 +22,8 @@ root.render(
             </SearchFilter>
           </User>
         </Snackbar>
-      </AddEdit>
-    </Venue>
+      </Venue>
+    </AddEdit>
   </React.StrictMode>
 );
 

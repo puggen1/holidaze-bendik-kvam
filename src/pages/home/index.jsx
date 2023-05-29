@@ -7,6 +7,7 @@ import {VenueContext} from "../../context/venueContext"
 import Filters from "../../components/filters"
 import useCreateAllSearchOptions from "../../hooks/useCreateAllSearchOptions"
 import useSetOffset from "../../hooks/useSetOffset"
+import HomePage from "./index.styles"
 export const Home = () => {
   const {setAllOptions} = useCreateAllSearchOptions()
   const [sort, setSort] = useState("nameA")
@@ -39,11 +40,11 @@ export const Home = () => {
   }, [data, setVenues, setAllOptions])
   return(
     
-  <div>
+  <HomePage>
     <Hero venues={filteredVenues}/>
     <Filters sort={sort} setSort={setSort}/>
     <AllVenues next={next} prev={prev} venues={filteredVenues} loading={isLoading} error={isError}/>
-  </div>)
+  </HomePage>)
 
 }
 
