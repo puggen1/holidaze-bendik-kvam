@@ -16,9 +16,9 @@ const RangeInput = ({start, end, setRange, range}) => {
     }
   return (
     <RangeDiv>
-        <StyledInput  onChange={updateInput} value={range[0]} variant="outlined" range="true"  label=""/>
+        <StyledInput  aria-label='minInput' onChange={updateInput} value={range[0]} variant="outlined" range="true"  label=""/>
         <Slider value={[range[0], range[1]]} onChange={update} max={end} min={start}/>
-        <StyledInput  onChange={updateInput} value={range[1]} variant="outlined" range="true"  label=""/>
+        <StyledInput aria-label='maxInput'  onChange={updateInput} value={range[1]} variant="outlined" range="true"  label=""/>
 
     </RangeDiv>
   )

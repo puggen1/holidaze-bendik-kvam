@@ -4,6 +4,11 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import useGetallBookedDates from "./useGetBookedDays";
 import useDisabledDates from "./useDisabledDates";
+/**
+ *
+ * @param {Array} venues all the venues
+ * @returns a function to filter the venues for datepickers frontpage
+ */
 const useFilterAvalibleVenues = (venues) => {
   const { checkDisabled } = useDisabledDates();
   const { bookingTime, guests } = useContext(BookingContext);

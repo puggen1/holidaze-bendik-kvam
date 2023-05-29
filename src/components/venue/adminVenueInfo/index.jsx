@@ -34,7 +34,7 @@ const AdminVenueInfo = ({venue}) => {
     {isError && <FetchError/>}
     {(Object.keys(data).length > 0 && (!isLoading && !isError)) && <>
       <Box gridColumn="1/4" display="flex" flexWrap="wrap" padding="1rem 0 " gap="2rem 0" flexDirection="row" justifyContent="space-between"> 
-        <Typography textAlign="center" variant="h4" >{data.name}</Typography>
+        <Typography textAlign="center" variant="h4" component="h2" >{data.name}</Typography>
         <Box display="flex" gap="1rem" margin="0 auto">
         <Link to={"/venue/" + data.id}><Button text="view" variant="contained" color="secondary"/></Link>
         <Link to={"/venue/" + data.id + "/edit"}><Button text="edit" variant="contained" color="primary"/></Link>

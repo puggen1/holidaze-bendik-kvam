@@ -1,6 +1,8 @@
 import * as yup from "yup";
 import { emailRegex, usernameRegex } from "../constants";
-
+/**
+ * @description - Schema for register form
+ */
 const registerSchema = yup.object({
   name: yup
     .string()

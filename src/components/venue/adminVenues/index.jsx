@@ -9,7 +9,7 @@ const AdminVenues = ({venues}) => {
   return (
     <Box className="venues" gridColumn="1/5" gridRow="3/4" boxShadow="0px 0px 5px 1px rgba(29, 43, 56, 0.5)" borderRadius="20px" padding="0 2rem">
       <Box className="topButtons" display="flex" justifyContent="space-between" flexWrap="wrap"  alignItems="center">
-        <Typography variant="h3" component="h3" textAlign="center">Venues</Typography>
+        <Typography variant="h3" component="h2" textAlign="center">Venues</Typography>
         <Box display="flex" gap="1rem">
         <Link to="/admin/venues"><Button text="view all" variant="contained" color="secondary"/></Link>
         <Link to="/venue/add"><Button text="add venue" variant="contained" color="primary"/></Link>

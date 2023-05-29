@@ -15,7 +15,7 @@ const ProfileContent = ({venues, bookings, type, own, isAdmin}) => {
     <OuterContent >
         {((type === "regular" || type==="venues") && isAdmin) &&
         <Box display="grid" gridTemplateColumns="1fr 1fr" gap="1rem" >
-        <Typography gridColumn="1/2" variant='h6' fontWeight="100"> Venues</Typography>
+        <Typography gridColumn="1/2" variant='h6' component="h2" fontWeight="100"> Venues</Typography>
         {type === "regular" ? venueLink : backLink}
         <Box className="profileVenue" gridColumn="1/3"  display="flex" flexDirection="row" flexWrap="wrap"justifyContent="space-between">
         {venues.length > 0 ? venues.map((venue, i) =>{ if(i === 2 && type==="regular"){return null } return(<Card key={venue.id} link={"/venue/"+ venue.id} firstImage={venue.media[0] ? venue.media[0] : ""} name={venue.name} price={venue.price} maxGuests={venue.maxGuests} meta={venue.meta}/>)}) : <div>no content</div>}
@@ -23,7 +23,7 @@ const ProfileContent = ({venues, bookings, type, own, isAdmin}) => {
     </Box>}
     {((type === "regular" || type==="bookings") && own) &&
     <Box display="grid" gridTemplateColumns="1fr 1fr" gap="1rem">
-    <Typography gridColumn="1/2" variant='h6' fontWeight="100"> Bookings</Typography>
+    <Typography gridColumn="1/2" variant='h6' component="h2" fontWeight="100"> Bookings</Typography>
         {type === "regular" ? bookingLink : backLink}
         <Box gridColumn="1/3" gap="1rem" display="flex" flexDirection="column">
             {bookings.length > 0 ? bookings.map((booking, i) =>{ if(i >= 3 && type ==="regular"){return null} return <BookingCard key={booking.id} name={booking.venue.name} from={booking.dateFrom} to={booking.dateTo} guests={booking.guests} price={booking.venue.price} link={"/booking/" + booking.id} />}) : <div>No bookings</div>}

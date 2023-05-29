@@ -11,16 +11,16 @@ const Icons = ({pets=false, parking=false, breakfast=false, wifi=false, type="fi
     if(type === "filter"){
         return(
             <IconBox>
-            <IconSwitch outlined="true" event={toggleWifi} checked={filter.meta.wifi}>
+            <IconSwitch outlined="true" event={toggleWifi} checked={filter.meta.wifi} label={"wifi switch"}>
                 <WifiIcon />
             </IconSwitch>
-            <IconSwitch outlined="true" event={togglePets} checked={filter.meta.pets}>
+            <IconSwitch outlined="true" event={togglePets} checked={filter.meta.pets} label={"pets switch"}>
                 <PetsIcon />
             </IconSwitch>
-            <IconSwitch outlined="true" event={toggleParking} checked={filter.meta.parking}>
+            <IconSwitch outlined="true" event={toggleParking} checked={filter.meta.parking} label={"parking switch"}>
                 <LocalParkingIcon />
             </IconSwitch>
-            <IconSwitch outlined="true" event={toggleBreakfast} checked={filter.meta.breakfast}>
+            <IconSwitch outlined="true" event={toggleBreakfast} checked={filter.meta.breakfast} label={"breakfast switch"}>
                 <BreakfastDiningIcon />
             </IconSwitch>
             </IconBox>
@@ -38,16 +38,16 @@ const Icons = ({pets=false, parking=false, breakfast=false, wifi=false, type="fi
     }
     if(type === "addEdit"){
         return(<>
-            <IconSwitch key={0} event={()=>{changer({...meta, wifi: !meta.wifi})}} checked={meta.wifi} outlined="true">
+            <IconSwitch key={0} event={()=>{changer({...meta, wifi: !meta.wifi})}} label={"wifi switch"} checked={meta.wifi} outlined="true">
             <WifiIcon />
             </IconSwitch>
-            <IconSwitch key={1} event={()=>{changer({...meta, pets: !meta.pets})}} checked={meta.pets} outlined="true">
+            <IconSwitch key={1} event={()=>{changer({...meta, pets: !meta.pets})}}  checked={meta.pets} outlined="true" label={"pets switch"}>
             <PetsIcon />
             </IconSwitch>
-            <IconSwitch key={3} event={()=>{changer({...meta, parking:!meta.parking})}} checked={meta.parking} outlined="true">
+            <IconSwitch key={3} event={()=>{changer({...meta, parking:!meta.parking})}} checked={meta.parking} outlined="true" label={"parking switch"}>
             <LocalParkingIcon />
             </IconSwitch>
-            <IconSwitch key={4} event={()=>{changer({...meta, breakfast: !meta.breakfast})}} checked={meta.breakfast} outlined="true">
+            <IconSwitch key={4} event={()=>{changer({...meta, breakfast: !meta.breakfast})}} checked={meta.breakfast} outlined="true" label={"breakfast switch"}>
             <BreakfastDiningIcon />
             </IconSwitch>
         </>

@@ -2,10 +2,20 @@ import { useContext } from "react";
 import { VenueContext } from "../context/venueContext";
 import { BookingContext } from "../context/bookingContext";
 import useFilterDays from "./useFilterDays";
-import sortSearch from "../utils/sortSearch";
+/**
+ * @description This hook is used to filter the venues based on the filter state
+ * @returns functions to filter the venues or reset the filters
+ */
 const useAllFilters = () => {
-  const { venues, setFilteredVenues, filter, setFilter, defaultFilter, nonSearchFilter, setNonSearchFilter } =
-    useContext(VenueContext);
+  const {
+    venues,
+    setFilteredVenues,
+    filter,
+    setFilter,
+    defaultFilter,
+    nonSearchFilter,
+    setNonSearchFilter,
+  } = useContext(VenueContext);
   const {
     bookingTime,
     guests: currentGuests,
@@ -39,7 +49,6 @@ const useAllFilters = () => {
     });
     setFilteredVenues(filteredVenues);
     setNonSearchFilter(filteredVenues);
-
   };
   const reset = () => {
     setFilter(defaultFilter);
@@ -48,18 +57,19 @@ const useAllFilters = () => {
     setBookingTime([undefined, undefined]);
   };
   const filterBySearch = (e) => {
-    if(e.target.value.length === 0) {
+    if (e.target.value.length === 0) {
       setFilteredVenues(nonSearchFilter);
-    }else{
-      const filteredVenues = nonSearchFilter.filter((venue) =>{
-        if(venue.name.length === 0){return false}
+    } else {
+      const filteredVenues = nonSearchFilter.filter((venue) => {
+        if (venue.name.length === 0) {
+          return false;
+        }
         let { name } = venue;
         const query = e.target.value.toLowerCase();
         return name.toLowerCase().indexOf(query) !== -1;
-      })
+      });
       setFilteredVenues(filteredVenues);
     }
-   
   };
   return { filterAllVenues, reset, filterBySearch };
 };

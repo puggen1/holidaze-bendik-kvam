@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import { baseUrl } from "../utils/constants";
+/**
+ *
+ * @param {Array} ids all the ids to fetch
+ * @param {string} subUrl the sub url to fetch
+ * @param {string} params  the params to fetch
+ * @returns all the data combined
+ */
 const useGetMultipleData = (ids, subUrl, params) => {
   const [data, setdata] = useState([]);
   const fetchSingleData = async (url) => {

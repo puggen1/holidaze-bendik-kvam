@@ -21,7 +21,6 @@ const [isError, setIsError] = useState(false)
  /*needs to add a hook for this*/
  const handleLogin =async (data) => {
     const response = await login({email:data.email, password:data.password})
-    console.log(data)
     if(response.success){
         //here show alert and close modal
         setValue("email", "")
@@ -36,7 +35,7 @@ const [isError, setIsError] = useState(false)
     }
  }
   return ( 
-    <form onChange={()=>{setIsError(false)}} onSubmit={handleSubmit(handleLogin)} style={{display:"flex", flexDirection:"column", alignItems:"center", height:"100%",  margin:"1rem auto"}}>
+    <form onChange={(e)=>{e.preventDefault(); setIsError(false)}} onSubmit={handleSubmit(handleLogin)} style={{display:"flex", flexDirection:"column", alignItems:"center", height:"100%",  margin:"1rem auto"}}>
         <Typography textAlign="center" variant='h4' component="p">Login</Typography>
         <Box sx={{width:"80%", display:"grid", gap:"1rem", margin:"1rem auto"}}>
           <Box display="flex" flexDirection="column">
