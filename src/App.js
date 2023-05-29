@@ -24,41 +24,47 @@ import "@fontsource/source-sans-pro/300.css";
 import "@fontsource/source-sans-pro/400.css";
 import "@fontsource/source-sans-pro/700.css";
 import AddVenue from "./pages/venue/addVenue";
+import { ScreenContextProvider } from "./context/screencontext";
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <ConfigProvider theme={antDTheme}>
-        <BrowserRouter>
-          <Modal>
-            <OuterModal />
-            <Layout>
-              <Routes>
-                <Route index element={<Home />} />
-                <Route path="booking/:id" element={<Booking />} />
-                <Route path="venue/:id" element={<Venue />} />
-                <Route path="venue/add" element={<AddVenue />} />
-                <Route path="venue/:id/edit" element={<EditVenue />} />
-                <Route path="profile/:name" element={<Profile />} />
-                <Route
-                  path="profile/:name/bookings"
-                  element={<Profile type="bookings" />}
-                />
-                <Route
-                  path="profile/:name/venues"
-                  element={<Profile type="venues" />}
-                />
-                <Route path="admin" element={<Admin />} />
-                <Route path="admin/venues" element={<AdminPanelVenues />} />
-                <Route path="admin/venues/:id" element={<AdminPanelVenues />} />
-                <Route
-                  path="admin/bookings"
-                  element={<AdminPanelBookings />}
-                />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Layout>
-          </Modal>
-        </BrowserRouter>
+        <ScreenContextProvider>
+          <BrowserRouter>
+            <Modal>
+              <OuterModal />
+              <Layout>
+                <Routes>
+                  <Route index element={<Home />} />
+                  <Route path="booking/:id" element={<Booking />} />
+                  <Route path="venue/:id" element={<Venue />} />
+                  <Route path="venue/add" element={<AddVenue />} />
+                  <Route path="venue/:id/edit" element={<EditVenue />} />
+                  <Route path="profile/:name" element={<Profile />} />
+                  <Route
+                    path="profile/:name/bookings"
+                    element={<Profile type="bookings" />}
+                  />
+                  <Route
+                    path="profile/:name/venues"
+                    element={<Profile type="venues" />}
+                  />
+                  <Route path="admin" element={<Admin />} />
+                  <Route path="admin/venues" element={<AdminPanelVenues />} />
+                  <Route
+                    path="admin/venues/:id"
+                    element={<AdminPanelVenues />}
+                  />
+                  <Route
+                    path="admin/bookings"
+                    element={<AdminPanelBookings />}
+                  />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Layout>
+            </Modal>
+          </BrowserRouter>
+        </ScreenContextProvider>
       </ConfigProvider>
     </ThemeProvider>
   );

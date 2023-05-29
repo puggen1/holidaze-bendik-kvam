@@ -32,6 +32,9 @@ const OuterCarousel = styled(Box)(({ theme }) => ({
   "& .carousel": {
     height: "350px",
   },
+  "& .up, .down": {
+    rotate: "90deg",
+  },
   "@media (max-width: 950px)": {
     width: "100%",
     margin: "1rem auto",

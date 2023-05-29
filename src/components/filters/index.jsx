@@ -7,12 +7,11 @@ import DefaultInput from '../input/defaultInput'
 import OuterFilterAccordion from './accordion'
 import { useContext } from 'react'
 import { VenueContext } from '../../context/venueContext'
+import ScreenContext from '../../context/screencontext'
 import Button from '../Button'
 import useAllFilters from '../../hooks/useAllFilters'
 const Filters = ({sort, setSort}) => {
-   
-    const width = window.innerWidth
-
+   const {width} = useContext(ScreenContext)
   return (
     <>
     {width > 700 ?
